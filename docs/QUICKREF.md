@@ -24,6 +24,7 @@ python main.py --mode full --audio record --duration 60
 
 ## 📦 Model Storage Locations
 
+**Linux/macOS:**
 ```
 ~/.cache/
 ├── torch/hub/
@@ -39,6 +40,18 @@ python main.py --mode full --audio record --duration 60
     │
     ├── models--Qwen--Qwen2.5-7B-Instruct/      # Qwen LLM (14 GB)
     └── models--meta-llama--Llama-3.1-8B-Instruct/  # Llama LLM (16 GB)
+```
+
+**Windows:**
+```
+C:\Users\<YourUsername>\.cache\
+├── torch\hub\
+│   └── snakers4_silero-vad_master\     # VAD model (2 MB)
+│
+└── huggingface\hub\
+    ├── models--*faster-whisper*\        # Whisper ASR (75 MB - 3 GB)
+    ├── models--Qwen--Qwen2.5-7B-Instruct\      # Qwen LLM (14 GB)
+    └── models--meta-llama--Llama-3.1-8B-Instruct\  # Llama LLM (16 GB)
 ```
 
 ## 🔧 Model Configuration
@@ -110,6 +123,7 @@ orch.cleanup()
 
 ## 🔍 Check Models
 
+**Linux/macOS:**
 ```bash
 # VAD
 ls ~/.cache/torch/hub/snakers4_silero-vad_master/files/
@@ -123,6 +137,22 @@ ls ~/.cache/huggingface/hub/ | grep -E "(Qwen|llama)"
 # Disk usage
 du -sh ~/.cache/torch/hub/
 du -sh ~/.cache/huggingface/hub/
+```
+
+**Windows (PowerShell):**
+```powershell
+# VAD
+dir $env:USERPROFILE\.cache\torch\hub\snakers4_silero-vad_master\files\
+
+# Whisper
+dir $env:USERPROFILE\.cache\huggingface\hub\ | findstr whisper
+
+# LLM
+dir $env:USERPROFILE\.cache\huggingface\hub\ | findstr "Qwen llama"
+
+# Disk usage
+Get-ChildItem $env:USERPROFILE\.cache\torch\hub\ -Recurse | Measure-Object -Property Length -Sum
+Get-ChildItem $env:USERPROFILE\.cache\huggingface\hub\ -Recurse | Measure-Object -Property Length -Sum
 ```
 
 ## 🎯 Recommended Configs

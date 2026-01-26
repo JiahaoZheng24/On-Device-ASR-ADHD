@@ -92,11 +92,78 @@ If all tests pass, you're ready to go! ✅
 
 ## Where Models Are Stored
 
+### Model Storage Locations by Operating System
+
+**Linux/macOS:**
+```
+~/.cache/
+├── torch/hub/
+│   └── snakers4_silero-vad_master/     # VAD model (2 MB)
+│
+└── huggingface/hub/
+    ├── models--*faster-whisper*/        # Whisper ASR
+    │   ├── tiny:   75 MB
+    │   ├── base:   145 MB
+    │   ├── small:  466 MB
+    │   ├── medium: 1.5 GB
+    │   └── large:  3 GB
+    │
+    ├── models--Qwen--Qwen2.5-7B-Instruct/      # Qwen LLM (14 GB)
+    └── models--meta-llama--Llama-3.1-8B-Instruct/  # Llama LLM (16 GB)
+```
+
+**Windows:**
+```
+C:\Users\<YourUsername>\.cache\
+├── torch\hub\
+│   └── snakers4_silero-vad_master\     # VAD model (2 MB)
+│
+└── huggingface\hub\
+    ├── models--*faster-whisper*\        # Whisper ASR (75 MB - 3 GB)
+    ├── models--Qwen--Qwen2.5-7B-Instruct\      # Qwen LLM (14 GB)
+    └── models--meta-llama--Llama-3.1-8B-Instruct\  # Llama LLM (16 GB)
+```
+
+### Check Downloaded Models
+
+**Linux/macOS:**
+```bash
+# Check VAD model
+ls ~/.cache/torch/hub/snakers4_silero-vad_master/files/
+
+# Check Whisper models
+ls -lh ~/.cache/huggingface/hub/ | grep whisper
+
+# Check LLM models
+ls -lh ~/.cache/huggingface/hub/ | grep -E "(Qwen|llama)"
+
+# Check total disk usage
+du -sh ~/.cache/torch/hub/
+du -sh ~/.cache/huggingface/hub/
+```
+
+**Windows (PowerShell):**
+```powershell
+# Check VAD model
+dir $env:USERPROFILE\.cache\torch\hub\snakers4_silero-vad_master\files\
+
+# Check Whisper models
+dir $env:USERPROFILE\.cache\huggingface\hub\ | findstr whisper
+
+# Check LLM models  
+dir $env:USERPROFILE\.cache\huggingface\hub\ | findstr "Qwen llama"
+
+# Check total disk usage
+Get-ChildItem $env:USERPROFILE\.cache\torch\hub\ -Recurse | Measure-Object -Property Length -Sum
+Get-ChildItem $env:USERPROFILE\.cache\huggingface\hub\ -Recurse | Measure-Object -Property Length -Sum
+```
+
 ### 1. VAD Models (Voice Activity Detection)
 
 **Silero VAD** (Default, Recommended):
 - **Auto-downloaded** from PyTorch Hub on first use
-- **Location**: `~/.cache/torch/hub/snakers4_silero-vad_master/`
+- **Location (Linux/macOS)**: `~/.cache/torch/hub/snakers4_silero-vad_master/`
+- **Location (Windows)**: `C:\Users\<YourUsername>\.cache\torch\hub\snakers4_silero-vad_master\`
 - **Size**: ~2 MB
 - **No manual download needed** - happens automatically
 
@@ -109,7 +176,8 @@ If all tests pass, you're ready to go! ✅
 
 **faster-whisper** (Default, Recommended):
 - **Auto-downloaded** on first use
-- **Location**: `~/.cache/huggingface/hub/`
+- **Location (Linux/macOS)**: `~/.cache/huggingface/hub/`
+- **Location (Windows)**: `C:\Users\<YourUsername>\.cache\huggingface\hub\`
 - **Model sizes**:
   - `tiny`: ~75 MB
   - `base`: ~145 MB
@@ -127,19 +195,23 @@ python -c "from faster_whisper import WhisperModel; WhisperModel('base', device=
 ```yaml
 # In config/settings.yaml
 asr:
-  model_path: "/path/to/your/whisper/model"
+  model_path: "/path/to/your/whisper/model"  # Linux/macOS
+  # or
+  model_path: "C:\\path\\to\\your\\whisper\\model"  # Windows
 ```
 
 ### 3. LLM Models (Qwen / Llama)
 
 **Qwen2.5-7B-Instruct**:
-- **Location**: `~/.cache/huggingface/hub/models--Qwen--Qwen2.5-7B-Instruct/`
+- **Location (Linux/macOS)**: `~/.cache/huggingface/hub/models--Qwen--Qwen2.5-7B-Instruct/`
+- **Location (Windows)**: `C:\Users\<YourUsername>\.cache\huggingface\hub\models--Qwen--Qwen2.5-7B-Instruct\`
 - **Size**: 
   - Full precision: ~14 GB
   - 4-bit quantized: ~4.5 GB (automatically done by system)
 
 **Llama-3.1-8B-Instruct**:
-- **Location**: `~/.cache/huggingface/hub/models--meta-llama--Llama-3.1-8B-Instruct/`
+- **Location (Linux/macOS)**: `~/.cache/huggingface/hub/models--meta-llama--Llama-3.1-8B-Instruct/`
+- **Location (Windows)**: `C:\Users\<YourUsername>\.cache\huggingface\hub\models--meta-llama--Llama-3.1-8B-Instruct\`
 - **Size**: 
   - Full precision: ~16 GB
   - 4-bit quantized: ~5 GB (automatically done by system)
@@ -164,11 +236,16 @@ huggingface-cli download meta-llama/Llama-3.1-8B-Instruct
 ```yaml
 # In config/settings.yaml
 llm:
+  # Linux/macOS
   model_path: "/path/to/your/downloaded/model"
+  
+  # Windows
+  model_path: "C:\\path\\to\\your\\downloaded\\model"
 ```
 
 ### Model Storage Summary
 
+**Linux/macOS:**
 ```
 ~/.cache/
 ├── torch/hub/
@@ -178,6 +255,18 @@ llm:
     ├── models--Qwen--Qwen2.5-7B-Instruct/        # Qwen LLM (~14 GB)
     ├── models--meta-llama--Llama-3.1-8B-Instruct/  # Llama LLM (~16 GB)
     └── models--guillaumekln--faster-whisper-*/    # Whisper ASR (75MB-3GB)
+```
+
+**Windows:**
+```
+C:\Users\<YourUsername>\.cache\
+├── torch\hub\
+│   └── snakers4_silero-vad_master\     # Silero VAD (~2 MB)
+│
+└── huggingface\hub\
+    ├── models--Qwen--Qwen2.5-7B-Instruct\        # Qwen LLM (~14 GB)
+    ├── models--meta-llama--Llama-3.1-8B-Instruct\  # Llama LLM (~16 GB)
+    └── models--guillaumekln--faster-whisper-*\    # Whisper ASR (75MB-3GB)
 ```
 
 **Total disk space needed**: ~20-30 GB (depending on model choices)

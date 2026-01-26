@@ -145,10 +145,21 @@ All models are automatically downloaded to your cache directory:
 - No manual action required
 
 **Storage Location:**
+
+**Linux/macOS:**
 ```
 ~/.cache/torch/hub/
 └── snakers4_silero-vad_master/
     ├── files/
+    │   └── silero_vad.jit      # Main model file (~2 MB)
+    └── hubconf.py
+```
+
+**Windows:**
+```
+C:\Users\<YourUsername>\.cache\torch\hub\
+└── snakers4_silero-vad_master\
+    ├── files\
     │   └── silero_vad.jit      # Main model file (~2 MB)
     └── hubconf.py
 ```
@@ -168,8 +179,15 @@ print('Silero VAD downloaded successfully!')
 ```
 
 **Check if downloaded:**
+
+Linux/macOS:
 ```bash
 ls -lh ~/.cache/torch/hub/snakers4_silero-vad_master/files/
+```
+
+Windows (PowerShell):
+```powershell
+dir $env:USERPROFILE\.cache\torch\hub\snakers4_silero-vad_master\files\
 ```
 
 #### WebRTC VAD (Alternative)
@@ -192,6 +210,8 @@ pip install webrtcvad
 - Cached for subsequent uses
 
 **Storage Location:**
+
+**Linux/macOS:**
 ```
 ~/.cache/huggingface/hub/
 └── models--guillaumekln--faster-whisper-*/
@@ -202,6 +222,19 @@ pip install webrtcvad
     │       ├── vocabulary.txt
     │       └── tokenizer.json
     └── refs/
+```
+
+**Windows:**
+```
+C:\Users\<YourUsername>\.cache\huggingface\hub\
+└── models--guillaumekln--faster-whisper-*\
+    ├── snapshots\
+    │   └── <hash>\
+    │       ├── config.json
+    │       ├── model.bin       # Main model
+    │       ├── vocabulary.txt
+    │       └── tokenizer.json
+    └── refs\
 ```
 
 **Model Sizes and Disk Space:**
@@ -239,15 +272,26 @@ for size in ['tiny', 'base', 'small']:
 ```
 
 **Check downloaded models:**
+
+Linux/macOS:
 ```bash
 ls -lh ~/.cache/huggingface/hub/ | grep faster-whisper
+```
+
+Windows (PowerShell):
+```powershell
+dir $env:USERPROFILE\.cache\huggingface\hub\ | findstr faster-whisper
 ```
 
 **Use custom model location:**
 ```yaml
 # In config/settings.yaml
 asr:
+  # Linux/macOS
   model_path: "/path/to/your/whisper/model"
+  
+  # Windows
+  model_path: "C:\\path\\to\\your\\whisper\\model"
 ```
 
 ### 3. LLM Models (Qwen / Llama)
@@ -297,6 +341,8 @@ print('Download complete!')
 ```
 
 **Storage Location:**
+
+**Linux/macOS:**
 ```
 ~/.cache/huggingface/hub/
 └── models--Qwen--Qwen2.5-7B-Instruct/
@@ -310,10 +356,32 @@ print('Download complete!')
     └── refs/
 ```
 
+**Windows:**
+```
+C:\Users\<YourUsername>\.cache\huggingface\hub\
+└── models--Qwen--Qwen2.5-7B-Instruct\
+    ├── snapshots\
+    │   └── <hash>\
+    │       ├── config.json
+    │       ├── generation_config.json
+    │       ├── model-*.safetensors      # Model weights (~14 GB total)
+    │       ├── tokenizer.json
+    │       └── tokenizer_config.json
+    └── refs\
+```
+
 **Check if downloaded:**
+
+Linux/macOS:
 ```bash
 ls -lh ~/.cache/huggingface/hub/models--Qwen--Qwen2.5-7B-Instruct/
 du -sh ~/.cache/huggingface/hub/models--Qwen--Qwen2.5-7B-Instruct/
+```
+
+Windows (PowerShell):
+```powershell
+dir $env:USERPROFILE\.cache\huggingface\hub\models--Qwen--Qwen2.5-7B-Instruct\
+Get-ChildItem $env:USERPROFILE\.cache\huggingface\hub\models--Qwen--Qwen2.5-7B-Instruct\ -Recurse | Measure-Object -Property Length -Sum
 ```
 
 #### Llama Models (Requires Authentication)
@@ -348,6 +416,8 @@ print('Download complete!')
 ```
 
 **Storage Location:**
+
+**Linux/macOS:**
 ```
 ~/.cache/huggingface/hub/
 └── models--meta-llama--Llama-3.1-8B-Instruct/
@@ -358,6 +428,19 @@ print('Download complete!')
     │       ├── tokenizer.json
     │       └── tokenizer_config.json
     └── refs/
+```
+
+**Windows:**
+```
+C:\Users\<YourUsername>\.cache\huggingface\hub\
+└── models--meta-llama--Llama-3.1-8B-Instruct\
+    ├── snapshots\
+    │   └── <hash>\
+    │       ├── config.json
+    │       ├── model-*.safetensors      # Model weights (~16 GB total)
+    │       ├── tokenizer.json
+    │       └── tokenizer_config.json
+    └── refs\
 ```
 
 #### Smaller LLM Options (For Limited Resources)
