@@ -3,6 +3,7 @@
 ## 📚 Documentation
 
 - **[START_HERE.md](docs/START_HERE.md)** - Complete getting started guide (READ THIS FIRST!)
+- **[AUDIO_FORMATS.md](docs/AUDIO_FORMATS.md)** - Supported audio formats and usage (NEW!) ⭐
 - **[QUICKREF.md](docs/QUICKREF.md)** - Quick reference card with common commands
 - **[INSTALL.md](docs/INSTALL.md)** - Detailed installation and model management guide
 - **[USAGE.md](docs/USAGE.md)** - Usage examples and tips
@@ -348,20 +349,47 @@ vad:
 
 ## Usage
 
+### Supported Audio Input
+
+The system supports **two input modes**:
+
+1. **Live Recording** - Record audio directly from microphone
+2. **Audio Files** - Process existing audio files
+
+#### Supported Audio Formats
+
+✅ **Fully Supported Formats:**
+- **WAV** (.wav) - Recommended, no conversion needed
+- **MP3** (.mp3) - Automatically converted
+- **FLAC** (.flac) - High quality, lossless
+- **OGG** (.ogg) - Open format
+- **M4A** (.m4a) - Apple audio format
+- **AAC** (.aac) - Advanced Audio Coding
+- **WMA** (.wma) - Windows Media Audio
+
+The system uses `librosa` which automatically handles format conversion.
+
 ### Basic Usage
 
 ```bash
 # Activate conda environment first
 conda activate adhd_audio
 
-# Run the full pipeline with live recording (5 minutes)
+# Option 1: Record live audio (5 minutes)
 python main.py --mode full --audio record --duration 300
 
-# Process an existing audio file
+# Option 2: Process a WAV file
 python main.py --mode full --audio /path/to/audio.wav
 
-# Run specific stages
-python main.py --mode vad --audio audio.wav
+# Option 3: Process an MP3 file
+python main.py --mode full --audio /path/to/audio.mp3
+
+# Option 4: Process any supported audio format
+python main.py --mode full --audio /path/to/audio.flac
+python main.py --mode full --audio /path/to/audio.m4a
+
+# Run specific stages on audio file
+python main.py --mode vad --audio audio.mp3
 python main.py --mode transcribe --segments-dir data/audio_segments
 python main.py --mode summarize --transcript-file data/transcripts/transcripts_20240101.json
 ```
@@ -371,12 +399,47 @@ python main.py --mode summarize --transcript-file data/transcripts/transcripts_2
 ```python
 from pipeline.orchestrator import PipelineOrchestrator
 
-# Initialize and run
+# Process WAV file
 with PipelineOrchestrator("config/settings.yaml") as orchestrator:
     output_dir = orchestrator.run_full_pipeline(
         audio_source="path/to/audio.wav"
     )
     print(f"Report saved to: {output_dir}")
+
+# Process MP3 file
+with PipelineOrchestrator("config/settings.yaml") as orchestrator:
+    output_dir = orchestrator.run_full_pipeline(
+        audio_source="path/to/recording.mp3"
+    )
+    print(f"Report saved to: {output_dir}")
+
+# Process any audio format
+with PipelineOrchestrator("config/settings.yaml") as orchestrator:
+    output_dir = orchestrator.run_full_pipeline(
+        audio_source="path/to/audio.flac"  # or .m4a, .ogg, etc.
+    )
+    print(f"Report saved to: {output_dir}")
+```
+
+### Batch Processing Multiple Files
+
+```python
+from pipeline.orchestrator import PipelineOrchestrator
+from pathlib import Path
+
+# Process all audio files in a directory
+audio_dir = Path("recordings")
+audio_files = list(audio_dir.glob("*.wav")) + \
+              list(audio_dir.glob("*.mp3")) + \
+              list(audio_dir.glob("*.flac"))
+
+with PipelineOrchestrator() as orchestrator:
+    for audio_file in audio_files:
+        print(f"Processing {audio_file.name}...")
+        output_dir = orchestrator.run_full_pipeline(
+            audio_source=str(audio_file)
+        )
+        print(f"✓ Completed: {output_dir}")
 ```
 
 ## Quick Start Example

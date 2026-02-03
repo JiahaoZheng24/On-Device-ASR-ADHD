@@ -1,5 +1,16 @@
 # Quick Reference Card
 
+## 📁 Supported Audio Formats
+
+✅ **Input Audio Files:**
+- WAV (.wav) - **Recommended** (fastest, no conversion)
+- MP3 (.mp3) - Popular format
+- FLAC (.flac) - Lossless quality
+- M4A (.m4a) - iPhone/iTunes
+- OGG (.ogg), AAC (.aac), WMA (.wma), OPUS (.opus)
+
+💡 **No manual conversion needed** - system auto-converts all formats to 16kHz mono
+
 ## 🚀 Quick Start (Copy & Paste)
 
 ```bash
@@ -93,12 +104,17 @@ huggingface-cli download meta-llama/Llama-3.1-8B-Instruct
 ## 💻 Commands
 
 ```bash
-# Full pipeline
+# Record live audio
 python main.py --mode full --audio record --duration 300
-python main.py --mode full --audio audio.wav
+
+# Process audio files (any format)
+python main.py --mode full --audio recording.wav  # WAV (fastest)
+python main.py --mode full --audio recording.mp3  # MP3
+python main.py --mode full --audio recording.flac # FLAC (high quality)
+python main.py --mode full --audio recording.m4a  # M4A (iPhone)
 
 # Individual stages
-python main.py --mode vad --audio audio.wav
+python main.py --mode vad --audio recording.mp3
 python main.py --mode transcribe --segments-dir data/audio_segments
 python main.py --mode summarize --transcript-file data/transcripts/transcripts_20240101.json
 ```
@@ -108,9 +124,16 @@ python main.py --mode summarize --transcript-file data/transcripts/transcripts_2
 ```python
 from pipeline.orchestrator import PipelineOrchestrator
 
-# Basic usage
+# Process any audio format
 with PipelineOrchestrator() as orch:
-    orch.run_full_pipeline(audio_source="audio.wav")
+    orch.run_full_pipeline(audio_source="audio.wav")  # or .mp3, .flac, .m4a
+
+# Batch process multiple files
+from pathlib import Path
+audio_files = list(Path("recordings").glob("*.mp3"))
+with PipelineOrchestrator() as orch:
+    for f in audio_files:
+        orch.run_full_pipeline(audio_source=str(f))
 
 # Custom config
 orch = PipelineOrchestrator()

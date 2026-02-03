@@ -1,6 +1,38 @@
-# Quick Start Guide
+# Usage Guide
 
-## Installation
+## Audio Input Overview
+
+The system supports **two modes of audio input**:
+
+### 1. Live Recording Mode
+Record audio directly from your microphone in real-time.
+
+### 2. Audio File Mode  
+Process pre-recorded audio files in various formats.
+
+## Supported Audio Formats
+
+✅ **All Major Audio Formats Supported:**
+
+| Format | Extension | Notes |
+|--------|-----------|-------|
+| WAV | .wav | ⭐ **Recommended** - No conversion needed, fastest |
+| MP3 | .mp3 | ✅ Popular compressed format |
+| FLAC | .flac | ✅ Lossless, high quality |
+| OGG | .ogg | ✅ Open-source format |
+| M4A | .m4a | ✅ Apple/iTunes format |
+| AAC | .aac | ✅ Advanced Audio Coding |
+| WMA | .wma | ✅ Windows Media Audio |
+| OPUS | .opus | ✅ Modern codec |
+
+**How it works:**
+- The system uses `librosa` which automatically converts all formats to the required format
+- No manual conversion needed - just provide the file path
+- All formats are automatically resampled to 16kHz mono (optimal for speech)
+
+## Quick Start Guide
+
+### Installation
 
 ### 1. Install System Dependencies
 
@@ -51,43 +83,129 @@ huggingface-cli download meta-llama/Llama-3.1-8B-Instruct
 
 ### Command Line Interface
 
-**Full Pipeline (Record → VAD → Transcribe → Summarize):**
+**Option 1: Live Recording (Record → VAD → Transcribe → Summarize)**
 ```bash
+# Record 5 minutes of audio
 python main.py --mode full --audio record --duration 300
+
+# Record 1 hour
+python main.py --mode full --audio record --duration 3600
 ```
 
-**Process Audio File:**
+**Option 2: Process Audio Files**
+
+Works with **any audio format** - the system handles conversion automatically:
+
 ```bash
-python main.py --mode full --audio /path/to/audio.wav
+# Process WAV file (fastest, no conversion)
+python main.py --mode full --audio /path/to/recording.wav
+
+# Process MP3 file
+python main.py --mode full --audio /path/to/recording.mp3
+
+# Process FLAC file (high quality)
+python main.py --mode full --audio /path/to/recording.flac
+
+# Process M4A file (iPhone recordings)
+python main.py --mode full --audio /path/to/recording.m4a
+
+# Process OGG file
+python main.py --mode full --audio /path/to/recording.ogg
+
+# Works with relative paths
+python main.py --mode full --audio recordings/day1.mp3
+
+# Works with absolute paths
+python main.py --mode full --audio /home/user/audio/interview.wav
 ```
 
-**VAD Only:**
+**Run Specific Stages:**
 ```bash
-python main.py --mode vad --audio /path/to/audio.wav
-```
+# VAD only - detect speech segments
+python main.py --mode vad --audio recording.mp3
 
-**Transcription Only:**
-```bash
+# Transcription only - convert speech to text
 python main.py --mode transcribe --segments-dir data/audio_segments
-```
 
-**Summary Only:**
-```bash
+# Summary only - generate report from transcripts
 python main.py --mode summarize --transcript-file data/transcripts/transcripts_20240101.json
 ```
 
 ### Python API
 
+**Process Single Audio File:**
 ```python
 from pipeline.orchestrator import PipelineOrchestrator
 
-# Initialize orchestrator
+# Process WAV file
 with PipelineOrchestrator("config/settings.yaml") as orchestrator:
-    # Run full pipeline
     output_dir = orchestrator.run_full_pipeline(
-        audio_source="path/to/audio.wav"
+        audio_source="recordings/day1.wav"
     )
     print(f"Report saved to: {output_dir}")
+
+# Process MP3 file
+with PipelineOrchestrator("config/settings.yaml") as orchestrator:
+    output_dir = orchestrator.run_full_pipeline(
+        audio_source="recordings/day1.mp3"
+    )
+    print(f"Report saved to: {output_dir}")
+```
+
+**Process Multiple Audio Files:**
+```python
+from pipeline.orchestrator import PipelineOrchestrator
+from pathlib import Path
+
+# Get all audio files from a directory
+audio_dir = Path("recordings")
+audio_files = (
+    list(audio_dir.glob("*.wav")) +
+    list(audio_dir.glob("*.mp3")) +
+    list(audio_dir.glob("*.flac")) +
+    list(audio_dir.glob("*.m4a"))
+)
+
+print(f"Found {len(audio_files)} audio files to process")
+
+# Process each file
+with PipelineOrchestrator() as orchestrator:
+    for i, audio_file in enumerate(audio_files, 1):
+        print(f"\n[{i}/{len(audio_files)}] Processing: {audio_file.name}")
+        
+        try:
+            output_dir = orchestrator.run_full_pipeline(
+                audio_source=str(audio_file)
+            )
+            print(f"✓ Success! Report: {output_dir}")
+        except Exception as e:
+            print(f"✗ Failed: {e}")
+
+print("\n✓ Batch processing complete!")
+```
+
+**Process with Custom Settings:**
+```python
+from pipeline.orchestrator import PipelineOrchestrator
+
+orchestrator = PipelineOrchestrator("config/settings.yaml")
+
+# Use larger Whisper model for better accuracy
+orchestrator.config['asr']['model_name'] = 'small'
+
+# Use Llama instead of Qwen
+orchestrator.config['llm']['model_type'] = 'llama'
+orchestrator.config['llm']['model_name'] = 'meta-llama/Llama-3.1-8B-Instruct'
+
+orchestrator.initialize_agents()
+
+# Process audio file
+output_dir = orchestrator.run_full_pipeline(
+    audio_source="important_recording.mp3"
+)
+
+orchestrator.cleanup()
+print(f"Report saved to: {output_dir}")
 ```
 
 ## Configuration
