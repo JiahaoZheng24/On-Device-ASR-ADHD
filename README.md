@@ -3,469 +3,419 @@
 ## 📚 Documentation
 
 - **[START_HERE.md](docs/START_HERE.md)** - Complete getting started guide (READ THIS FIRST!)
-- **[AUDIO_FORMATS.md](docs/AUDIO_FORMATS.md)** - Supported audio formats and usage (NEW!) ⭐
-- **[QUICKREF.md](docs/QUICKREF.md)** - Quick reference card with common commands
-- **[INSTALL.md](docs/INSTALL.md)** - Detailed installation and model management guide
-- **[USAGE.md](docs/USAGE.md)** - Usage examples and tips
-- **[ARCHITECTURE.md](docs/ARCHITECTURE.md)** - System architecture documentation
-- **[DELIVERY.md](docs/DELIVERY.md)** - Project delivery summary
+- **[AUDIO_FORMATS.md](docs/AUDIO_FORMATS.md)** - Supported audio formats (WAV, MP3, FLAC, M4A, etc.)
+- **[QUICKREF.md](docs/QUICKREF.md)** - Quick reference card
+- **[INSTALL.md](docs/INSTALL.md)** - Detailed installation guide
+- **[USAGE.md](docs/USAGE.md)** - Usage examples
+- **[ARCHITECTURE.md](docs/ARCHITECTURE.md)** - System architecture
+- **[DELIVERY.md](docs/DELIVERY.md)** - Project summary
 
-## Quick Navigation
-- [Installation Guide](#installation-guide)
-- [Model Locations](#where-models-are-stored)
-- [Project Structure](#project-structure)
-- [Usage](#usage)
-- [Configuration](#configuration)
+## Quick Start
 
-## Installation Guide
+```bash
+# 1. Create environment
+conda create -n adhd_audio python=3.10 -y && conda activate adhd_audio
+
+# 2. Install system dependencies
+# Ubuntu/Debian: sudo apt-get install -y ffmpeg portaudio19-dev
+# macOS: brew install ffmpeg portaudio
+# Windows: conda install -c conda-forge ffmpeg -y
+
+# 3. Install PyTorch
+conda install pytorch torchvision torchaudio cpuonly -c pytorch -y
+
+# 4. Install project dependencies
+cd adhd_audio_system && pip install -r requirements.txt
+
+# 5. Test installation
+python test_setup.py
+
+# 6. Run (process an audio file)
+python main.py --mode full --audio your_audio.wav
+```
+
+## Installation
 
 ### Step 1: Create Conda Environment
 
 ```bash
-# Create a new conda environment with Python 3.10
+# Create environment with Python 3.10
 conda create -n adhd_audio python=3.10 -y
 
-# Activate the environment
+# Activate environment
 conda activate adhd_audio
 ```
 
 ### Step 2: Install System Dependencies
 
-#### On Ubuntu/Debian:
+**Ubuntu/Debian:**
 ```bash
-# Install ffmpeg and audio libraries
 sudo apt-get update
 sudo apt-get install -y ffmpeg portaudio19-dev
-
-# Optional: Install build tools if needed
-sudo apt-get install -y build-essential
 ```
 
-#### On macOS:
+**macOS:**
 ```bash
-# Install ffmpeg using Homebrew
 brew install ffmpeg portaudio
 ```
 
-#### On Windows:
+**Windows:**
 ```bash
-# Install ffmpeg via conda (recommended on Windows)
-conda install -c conda-forge ffmpeg
-
-# Or download manually from: https://ffmpeg.org/download.html
-# Add ffmpeg to your system PATH
+conda install -c conda-forge ffmpeg -y
 ```
 
 ### Step 3: Install PyTorch
 
-Choose the appropriate command based on your system:
-
-#### CPU Only (Recommended for most users):
+**CPU Only (Recommended for most users):**
 ```bash
-conda install pytorch torchvision torchaudio cpuonly -c pytorch
+conda install pytorch torchvision torchaudio cpuonly -c pytorch -y
 ```
 
-#### CUDA 11.8 (For NVIDIA GPU):
+**GPU with CUDA 11.8:**
 ```bash
-conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia -y
 ```
 
-#### CUDA 12.1 (For newer NVIDIA GPU):
+**GPU with CUDA 12.1:**
 ```bash
-conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
+conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia -y
 ```
 
 ### Step 4: Install Python Dependencies
 
 ```bash
-# Install all required packages
+cd adhd_audio_system
 pip install -r requirements.txt
 ```
+
+**What gets installed:**
+- `numpy`, `scipy` - Numerical computing
+- `openai-whisper` - Speech recognition (most compatible)
+- `transformers`, `accelerate` - LLM support
+- `sounddevice`, `librosa` - Audio processing
+- `PyYAML` - Configuration
 
 ### Step 5: Verify Installation
 
 ```bash
-# Run the setup test script
 python test_setup.py
 ```
 
-If all tests pass, you're ready to go! ✅
-
-## Where Models Are Stored
-
-### Model Storage Locations by Operating System
-
-**Linux/macOS:**
-```
-~/.cache/
-├── torch/hub/
-│   └── snakers4_silero-vad_master/     # VAD model (2 MB)
-│
-└── huggingface/hub/
-    ├── models--*faster-whisper*/        # Whisper ASR
-    │   ├── tiny:   75 MB
-    │   ├── base:   145 MB
-    │   ├── small:  466 MB
-    │   ├── medium: 1.5 GB
-    │   └── large:  3 GB
-    │
-    ├── models--Qwen--Qwen2.5-7B-Instruct/      # Qwen LLM (14 GB)
-    └── models--meta-llama--Llama-3.1-8B-Instruct/  # Llama LLM (16 GB)
-```
-
-**Windows:**
-```
-C:\Users\<YourUsername>\.cache\
-├── torch\hub\
-│   └── snakers4_silero-vad_master\     # VAD model (2 MB)
-│
-└── huggingface\hub\
-    ├── models--*faster-whisper*\        # Whisper ASR (75 MB - 3 GB)
-    ├── models--Qwen--Qwen2.5-7B-Instruct\      # Qwen LLM (14 GB)
-    └── models--meta-llama--Llama-3.1-8B-Instruct\  # Llama LLM (16 GB)
-```
-
-### Check Downloaded Models
-
-**Linux/macOS:**
-```bash
-# Check VAD model
-ls ~/.cache/torch/hub/snakers4_silero-vad_master/files/
-
-# Check Whisper models
-ls -lh ~/.cache/huggingface/hub/ | grep whisper
-
-# Check LLM models
-ls -lh ~/.cache/huggingface/hub/ | grep -E "(Qwen|llama)"
-
-# Check total disk usage
-du -sh ~/.cache/torch/hub/
-du -sh ~/.cache/huggingface/hub/
-```
-
-**Windows (PowerShell):**
-```powershell
-# Check VAD model
-dir $env:USERPROFILE\.cache\torch\hub\snakers4_silero-vad_master\files\
-
-# Check Whisper models
-dir $env:USERPROFILE\.cache\huggingface\hub\ | findstr whisper
-
-# Check LLM models  
-dir $env:USERPROFILE\.cache\huggingface\hub\ | findstr "Qwen llama"
-
-# Check total disk usage
-Get-ChildItem $env:USERPROFILE\.cache\torch\hub\ -Recurse | Measure-Object -Property Length -Sum
-Get-ChildItem $env:USERPROFILE\.cache\huggingface\hub\ -Recurse | Measure-Object -Property Length -Sum
-```
-
-### 1. VAD Models (Voice Activity Detection)
-
-**Silero VAD** (Default, Recommended):
-- **Auto-downloaded** from PyTorch Hub on first use
-- **Location (Linux/macOS)**: `~/.cache/torch/hub/snakers4_silero-vad_master/`
-- **Location (Windows)**: `C:\Users\<YourUsername>\.cache\torch\hub\snakers4_silero-vad_master\`
-- **Size**: ~2 MB
-- **No manual download needed** - happens automatically
-
-**WebRTC VAD** (Alternative):
-- Built into the `webrtcvad` package
-- No separate model files
-- Very lightweight
-
-### 2. ASR Models (Whisper)
-
-**faster-whisper** (Default, Recommended):
-- **Auto-downloaded** on first use
-- **Location (Linux/macOS)**: `~/.cache/huggingface/hub/`
-- **Location (Windows)**: `C:\Users\<YourUsername>\.cache\huggingface\hub\`
-- **Model sizes**:
-  - `tiny`: ~75 MB
-  - `base`: ~145 MB
-  - `small`: ~466 MB
-  - `medium`: ~1.5 GB
-  - `large`: ~3 GB
-
-**Pre-download Whisper models** (Optional):
-```bash
-# Pre-download to avoid waiting during first run
-python -c "from faster_whisper import WhisperModel; WhisperModel('base', device='cpu', compute_type='int8')"
-```
-
-**Custom model location** (Optional):
-```yaml
-# In config/settings.yaml
-asr:
-  model_path: "/path/to/your/whisper/model"  # Linux/macOS
-  # or
-  model_path: "C:\\path\\to\\your\\whisper\\model"  # Windows
-```
-
-### 3. LLM Models (Qwen / Llama)
-
-**Qwen2.5-7B-Instruct**:
-- **Location (Linux/macOS)**: `~/.cache/huggingface/hub/models--Qwen--Qwen2.5-7B-Instruct/`
-- **Location (Windows)**: `C:\Users\<YourUsername>\.cache\huggingface\hub\models--Qwen--Qwen2.5-7B-Instruct\`
-- **Size**: 
-  - Full precision: ~14 GB
-  - 4-bit quantized: ~4.5 GB (automatically done by system)
-
-**Llama-3.1-8B-Instruct**:
-- **Location (Linux/macOS)**: `~/.cache/huggingface/hub/models--meta-llama--Llama-3.1-8B-Instruct/`
-- **Location (Windows)**: `C:\Users\<YourUsername>\.cache\huggingface\hub\models--meta-llama--Llama-3.1-8B-Instruct\`
-- **Size**: 
-  - Full precision: ~16 GB
-  - 4-bit quantized: ~5 GB (automatically done by system)
-
-**Pre-download LLM models** (Optional but recommended):
-
-```bash
-# For Qwen (no authentication needed)
-huggingface-cli download Qwen/Qwen2.5-7B-Instruct
-
-# For Llama (requires HuggingFace account and access approval)
-huggingface-cli login  # Enter your token
-huggingface-cli download meta-llama/Llama-3.1-8B-Instruct
-```
-
-**Note**: Llama models require:
-1. HuggingFace account: https://huggingface.co/join
-2. Request access: https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct
-3. Generate token: https://huggingface.co/settings/tokens
-
-**Use local model path** (Optional):
-```yaml
-# In config/settings.yaml
-llm:
-  # Linux/macOS
-  model_path: "/path/to/your/downloaded/model"
-  
-  # Windows
-  model_path: "C:\\path\\to\\your\\downloaded\\model"
-```
-
-### Model Storage Summary
-
-**Linux/macOS:**
-```
-~/.cache/
-├── torch/hub/
-│   └── snakers4_silero-vad_master/     # Silero VAD (~2 MB)
-│
-└── huggingface/hub/
-    ├── models--Qwen--Qwen2.5-7B-Instruct/        # Qwen LLM (~14 GB)
-    ├── models--meta-llama--Llama-3.1-8B-Instruct/  # Llama LLM (~16 GB)
-    └── models--guillaumekln--faster-whisper-*/    # Whisper ASR (75MB-3GB)
-```
-
-**Windows:**
-```
-C:\Users\<YourUsername>\.cache\
-├── torch\hub\
-│   └── snakers4_silero-vad_master\     # Silero VAD (~2 MB)
-│
-└── huggingface\hub\
-    ├── models--Qwen--Qwen2.5-7B-Instruct\        # Qwen LLM (~14 GB)
-    ├── models--meta-llama--Llama-3.1-8B-Instruct\  # Llama LLM (~16 GB)
-    └── models--guillaumekln--faster-whisper-*\    # Whisper ASR (75MB-3GB)
-```
-
-**Total disk space needed**: ~20-30 GB (depending on model choices)
-
-## Project Structure
-
-```
-adhd_audio_system/
-├── config/
-│   ├── __init__.py
-│   └── settings.yaml          # Configuration file for models and parameters
-├── models/
-│   ├── __init__.py
-│   ├── base.py                # Abstract base classes
-│   ├── vad_models.py          # Voice Activity Detection implementations
-│   ├── asr_models.py          # ASR model implementations (Whisper)
-│   └── llm_models.py          # LLM implementations (Qwen, Llama)
-├── agents/
-│   ├── __init__.py
-│   ├── recording_agent.py     # Continuous audio recording
-│   ├── vad_transcription_agents.py  # VAD and transcription agents
-│   └── summary_agent.py       # Daily summary generation
-├── pipeline/
-│   ├── __init__.py
-│   └── orchestrator.py        # Main pipeline orchestrator
-├── outputs/
-│   └── daily_reports/         # Generated daily reports
-├── data/
-│   ├── audio_segments/        # Detected speech segments
-│   └── transcripts/           # Transcribed segments
-├── main.py                     # Entry point
-├── examples.py                 # Usage examples
-├── test_setup.py              # Installation verification
-├── requirements.txt           # Python dependencies
-├── README.md                  # This file
-├── USAGE.md                   # Detailed usage guide
-├── ARCHITECTURE.md            # System architecture documentation
-└── DELIVERY.md                # Project delivery summary
-```
+✅ If all tests pass, you're ready to use the system!
 
 ## Key Features
 
-1. **Modular Design**: Easy to swap ASR/LLM models by changing configuration
-2. **Agent-Based Architecture**: Each component is an independent agent
-3. **Privacy-First**: All processing happens locally
-4. **Efficient Processing**: Only transcribes detected speech segments
-5. **Clinical Focus**: Generates structured, time-anchored reports
+- **Privacy-First**: All processing happens locally on your device
+- **Multi-Format Support**: WAV, MP3, FLAC, M4A, OGG, AAC, and more
+- **Modular Design**: Easy to swap ASR/LLM models
+- **Agent Architecture**: Independent components for flexibility
+- **Cross-Platform**: Works on Linux, macOS, and Windows
+- **No Cloud APIs**: Complete on-device processing
 
-## Configuration
+## Supported Audio Formats
 
-Edit `config/settings.yaml` to customize:
+✅ **All Major Formats:**
+- **WAV** (.wav) - Recommended, fastest processing
+- **MP3** (.mp3) - Most common format
+- **FLAC** (.flac) - Lossless quality
+- **M4A** (.m4a) - iPhone/iTunes recordings
+- **OGG**, **AAC**, **WMA**, **OPUS** - All supported
 
-### Switch ASR Model:
-```yaml
-asr:
-  model_name: "base"  # Options: tiny, base, small, medium, large
-  device: "cpu"       # Options: cpu, cuda
-```
-
-### Switch LLM Model:
-```yaml
-# Use Qwen (default, no auth needed)
-llm:
-  model_type: "qwen"
-  model_name: "Qwen/Qwen2.5-7B-Instruct"
-
-# Or use Llama (requires HuggingFace auth)
-llm:
-  model_type: "llama"
-  model_name: "meta-llama/Llama-3.1-8B-Instruct"
-```
-
-### Adjust VAD Sensitivity:
-```yaml
-vad:
-  model: "silero"      # Options: silero, webrtc
-  threshold: 0.5       # Lower = more sensitive (0.0-1.0)
-```
+The system automatically handles format conversion. See [AUDIO_FORMATS.md](docs/AUDIO_FORMATS.md) for details.
 
 ## Usage
 
-### Supported Audio Input
-
-The system supports **two input modes**:
-
-1. **Live Recording** - Record audio directly from microphone
-2. **Audio Files** - Process existing audio files
-
-#### Supported Audio Formats
-
-✅ **Fully Supported Formats:**
-- **WAV** (.wav) - Recommended, no conversion needed
-- **MP3** (.mp3) - Automatically converted
-- **FLAC** (.flac) - High quality, lossless
-- **OGG** (.ogg) - Open format
-- **M4A** (.m4a) - Apple audio format
-- **AAC** (.aac) - Advanced Audio Coding
-- **WMA** (.wma) - Windows Media Audio
-
-The system uses `librosa` which automatically handles format conversion.
-
-### Basic Usage
+### Process Audio Files
 
 ```bash
-# Activate conda environment first
+# Activate environment first
 conda activate adhd_audio
 
-# Option 1: Record live audio (5 minutes)
+# Process any audio format
+python main.py --mode full --audio recording.wav
+python main.py --mode full --audio recording.mp3
+python main.py --mode full --audio voice_memo.m4a
+
+# Record live audio (5 minutes)
 python main.py --mode full --audio record --duration 300
-
-# Option 2: Process a WAV file
-python main.py --mode full --audio /path/to/audio.wav
-
-# Option 3: Process an MP3 file
-python main.py --mode full --audio /path/to/audio.mp3
-
-# Option 4: Process any supported audio format
-python main.py --mode full --audio /path/to/audio.flac
-python main.py --mode full --audio /path/to/audio.m4a
-
-# Run specific stages on audio file
-python main.py --mode vad --audio audio.mp3
-python main.py --mode transcribe --segments-dir data/audio_segments
-python main.py --mode summarize --transcript-file data/transcripts/transcripts_20240101.json
 ```
 
-### Python API Usage
+### Python API
 
 ```python
 from pipeline.orchestrator import PipelineOrchestrator
 
-# Process WAV file
-with PipelineOrchestrator("config/settings.yaml") as orchestrator:
-    output_dir = orchestrator.run_full_pipeline(
-        audio_source="path/to/audio.wav"
-    )
-    print(f"Report saved to: {output_dir}")
-
-# Process MP3 file
-with PipelineOrchestrator("config/settings.yaml") as orchestrator:
-    output_dir = orchestrator.run_full_pipeline(
-        audio_source="path/to/recording.mp3"
-    )
-    print(f"Report saved to: {output_dir}")
-
-# Process any audio format
-with PipelineOrchestrator("config/settings.yaml") as orchestrator:
-    output_dir = orchestrator.run_full_pipeline(
-        audio_source="path/to/audio.flac"  # or .m4a, .ogg, etc.
+# Process audio file
+with PipelineOrchestrator() as orch:
+    output_dir = orch.run_full_pipeline(
+        audio_source="recording.mp3"
     )
     print(f"Report saved to: {output_dir}")
 ```
 
-### Batch Processing Multiple Files
+### Batch Processing
 
 ```python
 from pipeline.orchestrator import PipelineOrchestrator
 from pathlib import Path
 
-# Process all audio files in a directory
-audio_dir = Path("recordings")
-audio_files = list(audio_dir.glob("*.wav")) + \
-              list(audio_dir.glob("*.mp3")) + \
-              list(audio_dir.glob("*.flac"))
+# Process all MP3 files in a directory
+audio_files = list(Path("recordings").glob("*.mp3"))
 
-with PipelineOrchestrator() as orchestrator:
+with PipelineOrchestrator() as orch:
     for audio_file in audio_files:
         print(f"Processing {audio_file.name}...")
-        output_dir = orchestrator.run_full_pipeline(
+        output_dir = orch.run_full_pipeline(
             audio_source=str(audio_file)
         )
-        print(f"✓ Completed: {output_dir}")
+        print(f"✓ Report: {output_dir}")
 ```
 
-## Quick Start Example
+See [USAGE.md](docs/USAGE.md) for more examples.
 
+## Configuration
+
+Edit `config/settings.yaml` to customize models and parameters:
+
+```yaml
+# Speech Recognition
+asr:
+  model_name: "base"  # Options: tiny, base, small, medium, large
+  device: "cpu"       # Options: cpu, cuda
+
+# Language Model
+llm:
+  model_type: "qwen"  # Options: qwen, llama
+  model_name: "Qwen/Qwen2.5-7B-Instruct"
+  load_in_4bit: true  # Reduce memory usage
+
+# Voice Activity Detection
+vad:
+  model: "silero"     # Options: silero, webrtc
+  threshold: 0.5      # Lower = more sensitive (0.0-1.0)
+```
+
+## Model Storage Locations
+
+**Linux/macOS:**
+```
+~/.cache/
+├── torch/hub/
+│   └── snakers4_silero-vad_master/     # VAD (2 MB)
+└── huggingface/hub/
+    ├── models--openai--whisper-base/    # Whisper (145 MB)
+    └── models--Qwen--Qwen2.5-7B-Instruct/ # Qwen (14 GB)
+```
+
+**Windows:**
+```
+C:\Users\<YourUsername>\.cache\
+├── torch\hub\
+│   └── snakers4_silero-vad_master\     # VAD (2 MB)
+└── huggingface\hub\
+    ├── models--openai--whisper-base\    # Whisper (145 MB)
+    └── models--Qwen--Qwen2.5-7B-Instruct\ # Qwen (14 GB)
+```
+
+**Check downloaded models:**
+
+Linux/macOS:
 ```bash
-# 1. Setup environment
-conda create -n adhd_audio python=3.10 -y
-conda activate adhd_audio
-
-# 2. Install dependencies
-conda install pytorch cpuonly -c pytorch
-pip install -r requirements.txt
-
-# 3. Test installation
-python test_setup.py
-
-# 4. Run a quick test (1 minute recording)
-python main.py --mode full --audio record --duration 60
-
-# 5. View the generated report
-cat outputs/daily_reports/report_*.md
+ls ~/.cache/torch/hub/
+ls ~/.cache/huggingface/hub/
+du -sh ~/.cache/huggingface/hub/
 ```
+
+Windows (PowerShell):
+```powershell
+dir $env:USERPROFILE\.cache\torch\hub\
+dir $env:USERPROFILE\.cache\huggingface\hub\
+```
+
+## Project Structure
+
+```
+adhd_audio_system/
+├── README.md                    # This file
+├── config/
+│   └── settings.yaml           # Configuration
+├── models/                     # Model implementations
+│   ├── base.py
+│   ├── vad_models.py
+│   ├── asr_models.py
+│   └── llm_models.py
+├── agents/                     # Processing agents
+│   ├── recording_agent.py
+│   ├── vad_transcription_agents.py
+│   └── summary_agent.py
+├── pipeline/
+│   └── orchestrator.py         # Main coordinator
+├── docs/                       # Documentation
+├── data/                       # Audio segments & transcripts
+├── outputs/                    # Generated reports
+├── main.py                     # Entry point
+├── examples.py                 # Usage examples
+├── test_setup.py              # Installation verification
+└── requirements.txt           # Dependencies
+```
+
+## Generated Reports
+
+Reports are saved to `outputs/daily_reports/`:
+
+```
+outputs/daily_reports/
+├── report_20240101.md      # Human-readable markdown
+└── summary_20240101.json   # Machine-readable JSON
+```
+
+### Report Contents
+
+1. **Overview**: Total speech duration, segment count
+2. **Temporal Distribution**: When speech occurred throughout the day
+3. **Communication Patterns**: Descriptive observations
+4. **Representative Excerpts**: 5-8 time-stamped examples with transcripts
+
+## Disk Space Requirements
+
+| Configuration | Total Size |
+|--------------|-----------|
+| **Minimal** (tiny Whisper + 1.5B LLM) | ~1.1 GB |
+| **Recommended** (base Whisper + 7B LLM quantized) | ~4.7 GB |
+| **High Quality** (small Whisper + 7B LLM full) | ~14.5 GB |
+
+## System Requirements
+
+**Minimum:**
+- Python 3.10+
+- 4 GB RAM
+- 2 GB disk space
+
+**Recommended:**
+- Python 3.10+
+- 8 GB RAM
+- 5 GB disk space
+- Multi-core CPU
+
+**For GPU:**
+- NVIDIA GPU with 4+ GB VRAM
+- CUDA 11.8 or 12.1
 
 ## Privacy & Ethics
 
-- All data stays on device
-- No cloud API calls
-- Audio segments can be automatically deleted after processing
-- System provides observations, not diagnoses
+- ✅ All data stays on your device
+- ✅ No cloud API calls
+- ✅ No internet required after installation
+- ✅ Audio can be automatically deleted after processing
+- ✅ System provides observations, not medical diagnoses
+
+## Troubleshooting
+
+### Common Issues
+
+**Issue:** `ModuleNotFoundError` after installation
+```bash
+# Ensure you're in the correct environment
+conda activate adhd_audio
+
+# Reinstall dependencies
+pip install -r requirements.txt
+```
+
+**Issue:** Audio file loading fails
+```bash
+# Ensure ffmpeg is installed
+ffmpeg -version
+
+# If not installed:
+# Windows: conda install -c conda-forge ffmpeg
+# Ubuntu: sudo apt-get install ffmpeg
+# macOS: brew install ffmpeg
+```
+
+**Issue:** `No module named 'sounddevice'` (only needed for live recording)
+```bash
+conda install -c conda-forge sounddevice
+```
+
+**Issue:** Out of memory during LLM processing
+```yaml
+# Edit config/settings.yaml
+llm:
+  load_in_4bit: true  # Enable 4-bit quantization
+```
+
+### For More Help
+
+- **Installation**: See [INSTALL.md](docs/INSTALL.md)
+- **Audio formats**: See [AUDIO_FORMATS.md](docs/AUDIO_FORMATS.md)
+- **Usage examples**: See [USAGE.md](docs/USAGE.md)
+- **Architecture**: See [ARCHITECTURE.md](docs/ARCHITECTURE.md)
+
+## Examples
+
+### Example 1: Process a Single File
+
+```bash
+python main.py --mode full --audio interview.mp3
+```
+
+### Example 2: Process Multiple Files
+
+```bash
+# Process all audio files in a directory
+for file in recordings/*.wav; do
+    python main.py --mode full --audio "$file"
+done
+```
+
+### Example 3: Custom Configuration
+
+```python
+from pipeline.orchestrator import PipelineOrchestrator
+
+# Initialize with custom settings
+orch = PipelineOrchestrator()
+orch.config['asr']['model_name'] = 'small'  # Better accuracy
+orch.config['vad']['threshold'] = 0.3       # More sensitive
+orch.initialize_agents()
+
+# Process file
+orch.run_full_pipeline(audio_source="recording.mp3")
+orch.cleanup()
+```
+
+## What Happens on First Run?
+
+Models will auto-download on first use:
+
+1. **Silero VAD** (~2 MB) - Downloads in seconds
+2. **Whisper base** (~145 MB) - Takes 1-2 minutes
+3. **Qwen LLM** (~14 GB) - Takes 10-30 minutes depending on internet speed
+
+Total first-run time: ~15-35 minutes (one-time only)
+
+## Performance Tips
+
+### For Faster Processing:
+- Use `tiny` or `base` Whisper models
+- Enable 4-bit quantization for LLM
+- Process shorter audio segments
+- Use CPU for small files, GPU for large batches
+
+### For Better Accuracy:
+- Use `small` or `medium` Whisper models
+- Disable quantization (requires more RAM)
+- Lower VAD threshold for more speech detection
+
+## License
+
+See project license file for details.
+
+## Citation
+
+If you use this system in your research or clinical practice, please cite appropriately.
+
+## Support
+
+For issues, questions, or contributions, please refer to the documentation in the `docs/` folder.

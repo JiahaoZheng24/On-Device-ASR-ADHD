@@ -102,6 +102,20 @@ def test_dependencies():
             logger.info(f"✓ {name} installed")
         except ImportError:
             logger.warning(f"⚠ {name} NOT installed (optional)")
+        except Exception as e:
+            # Handle ctranslate2 ROCm SDK error on Windows
+            if module == 'faster_whisper' and 'rocm_sdk_core' in str(e):
+                logger.warning(f"⚠ {name} installed but has ctranslate2 issue (see docs/FIX_CTRANSLATE2.md)")
+                logger.warning(f"   Quick fix: pip uninstall faster-whisper ctranslate2 -y && pip install openai-whisper")
+            else:
+                logger.warning(f"⚠ {name} has import error: {e}")
+    
+    # Check for alternative whisper implementation
+    try:
+        import whisper as openai_whisper
+        logger.info("✓ openai-whisper (alternative ASR) installed")
+    except ImportError:
+        pass
     
     return all_ok
 

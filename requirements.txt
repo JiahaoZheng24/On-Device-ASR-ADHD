@@ -6,37 +6,27 @@ PyYAML>=6.0
 # Audio processing
 sounddevice>=0.4.6
 librosa>=0.10.0
-webrtcvad>=2.0.10
 
 # Voice Activity Detection
 torch>=2.0.0
 torchaudio>=2.0.0
 
-# Speech Recognition
-faster-whisper>=0.10.0
-# Alternative: openai-whisper>=20230314
+# Speech Recognition (using original OpenAI Whisper for best compatibility)
+openai-whisper>=20231117
 
 # Large Language Models
 transformers>=4.35.0
 accelerate>=0.24.0
-bitsandbytes>=0.41.0  # For quantization
-sentencepiece>=0.1.99  # For tokenization
+sentencepiece>=0.1.99
 
-# Optional: CUDA support (uncomment if using GPU)
-# torch>=2.0.0+cu118
-# torchaudio>=2.0.0+cu118
+# Quantization (optional, comment out if installation fails)
+bitsandbytes>=0.41.0
 
 # Utilities
 python-dateutil>=2.8.0
 tqdm>=4.65.0
 
-# Development
-pytest>=7.4.0
-black>=23.0.0
-flake8>=6.0.0
-
 # Notes:
-# - For Qwen models, transformers>=4.35.0 is required
-# - For Llama models, you may need huggingface_hub for authentication
-# - faster-whisper requires CUDA for GPU support
-# - Silero VAD is loaded from torch hub (no pip install needed)
+# - Uses openai-whisper instead of faster-whisper for better cross-platform compatibility
+# - bitsandbytes may not work on all systems (can be commented out)
+# - System works with CPU-only configuration

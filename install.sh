@@ -165,9 +165,9 @@ if [[ $download_models =~ ^[Yy]$ ]]; then
     echo ""
     echo "Downloading Whisper base model..."
     python -c "
-from faster_whisper import WhisperModel
+import whisper
 print('Downloading Whisper base model...')
-model = WhisperModel('base', device='cpu', compute_type='int8')
+model = whisper.load_model('base')
 print('Whisper base model downloaded!')
 "
     print_status "Whisper model downloaded"
