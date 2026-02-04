@@ -222,22 +222,33 @@ class TranscriptionAgent(BaseAgent):
         """
         return self.asr_model.transcribe(segment, self.sample_rate)
     
-    def save_transcripts(self, transcripts: List[TranscriptSegment], 
-                        date: datetime = None) -> Path:
+    def save_transcripts(self, transcripts: List[TranscriptSegment],
+                        date: datetime = None,
+                        input_filename: str = None) -> Path:
         """
         Save transcripts to JSON file.
-        
+
         Args:
             transcripts: List of TranscriptSegment objects
             date: Date for the transcripts (uses current date if None)
-            
+            input_filename: Original input audio filename (optional)
+
         Returns:
             Path to saved file
         """
         if date is None:
             date = datetime.now()
-        
-        filename = f"transcripts_{date.strftime('%Y%m%d')}.json"
+
+        # Build filename with optional input filename
+        date_str = date.strftime('%Y%m%d')
+        if input_filename:
+            # Remove extension and sanitize filename
+            base_name = Path(input_filename).stem
+            # Remove any characters that might cause issues
+            base_name = "".join(c for c in base_name if c.isalnum() or c in ('_', '-'))
+            filename = f"transcripts_{date_str}_{base_name}.json"
+        else:
+            filename = f"transcripts_{date_str}.json"
         filepath = self.output_dir / filename
         
         # Convert to JSON-serializable format

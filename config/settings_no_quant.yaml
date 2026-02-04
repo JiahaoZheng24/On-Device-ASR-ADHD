@@ -1,4 +1,5 @@
 # System Configuration for ADHD Audio Summarization System
+# NO QUANTIZATION VERSION - Works without bitsandbytes
 
 # Audio Recording Settings
 audio:
@@ -21,7 +22,7 @@ asr:
   model_name: "base"  # Options: tiny, base, small, medium, large
   # For local model path: uncomment below
   # model_path: "/path/to/local/whisper/model"
-  device: "cuda"  # Options: cpu, cuda
+  device: "cpu"  # Options: cpu, cuda
   language: "en"  # Options: en, zh, auto
   batch_size: 8
   compute_type: "int8"  # Options: float32, float16, int8
@@ -35,16 +36,14 @@ llm:
   # Local model path (if using downloaded model)
   model_path: null  # e.g., "/home/user/models/Qwen2.5-7B-Instruct"
   
-  device: "cuda"  # Options: cpu, cuda
+  device: "cpu"  # Options: cpu, cuda
   max_length: 4096
   temperature: 0.7
   top_p: 0.9
   
-  # Quantization settings for efficiency
-  # NOTE: Requires bitsandbytes library which may not work on all systems
-  # Set both to false if you get "unexpected keyword argument" errors
+  # Quantization settings - DISABLED for compatibility
   load_in_8bit: false
-  load_in_4bit: false  # Disabled by default for compatibility
+  load_in_4bit: false  # Set to false to avoid bitsandbytes issues
   
 # Summary Generation Settings
 summary:
@@ -52,7 +51,6 @@ summary:
   excerpt_count: 8  # Number of representative excerpts
   time_bins: 24  # Hourly bins for temporal analysis
   min_segment_length: 3  # Minimum words in a segment to consider
-  min_confidence: 0.3  # Minimum confidence score (0.0-1.0) to include transcript
   
 # Data Retention Policy
 retention:

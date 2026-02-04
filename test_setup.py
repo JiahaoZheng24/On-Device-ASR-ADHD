@@ -15,33 +15,33 @@ def test_imports():
     
     try:
         from models.base import AudioSegment, TranscriptSegment, DailySummary
-        logger.info("✓ Base models imported")
+        logger.info("[OK] Base models imported")
         
         from models.vad_models import create_vad_model
-        logger.info("✓ VAD models imported")
+        logger.info("[OK] VAD models imported")
         
         from models.asr_models import create_asr_model
-        logger.info("✓ ASR models imported")
+        logger.info("[OK] ASR models imported")
         
         from models.llm_models import create_llm_model
-        logger.info("✓ LLM models imported")
+        logger.info("[OK] LLM models imported")
         
         from agents.recording_agent import RecordingAgent
-        logger.info("✓ Recording agent imported")
+        logger.info("[OK] Recording agent imported")
         
         from agents.vad_transcription_agents import VADAgent, TranscriptionAgent
-        logger.info("✓ VAD and Transcription agents imported")
+        logger.info("[OK] VAD and Transcription agents imported")
         
         from agents.summary_agent import SummaryAgent
-        logger.info("✓ Summary agent imported")
+        logger.info("[OK] Summary agent imported")
         
         from pipeline.orchestrator import PipelineOrchestrator
-        logger.info("✓ Pipeline orchestrator imported")
+        logger.info("[OK] Pipeline orchestrator imported")
         
         return True
     
     except ImportError as e:
-        logger.error(f"✗ Import failed: {e}")
+        logger.error(f"[ERROR] Import failed: {e}")
         return False
 
 
@@ -54,7 +54,7 @@ def test_config():
         with open('config/settings.yaml', 'r') as f:
             config = yaml.safe_load(f)
         
-        logger.info("✓ Configuration loaded successfully")
+        logger.info("[OK] Configuration loaded successfully")
         logger.info(f"  - ASR model: {config['asr']['model_name']}")
         logger.info(f"  - LLM model: {config['llm']['model_name']}")
         logger.info(f"  - VAD model: {config['vad']['model']}")
@@ -62,7 +62,7 @@ def test_config():
         return True
     
     except Exception as e:
-        logger.error(f"✗ Configuration loading failed: {e}")
+        logger.error(f"[ERROR] Configuration loading failed: {e}")
         return False
 
 
@@ -83,9 +83,9 @@ def test_dependencies():
     for module, name in dependencies.items():
         try:
             __import__(module)
-            logger.info(f"✓ {name} installed")
+            logger.info(f"[OK] {name} installed")
         except ImportError:
-            logger.error(f"✗ {name} NOT installed")
+            logger.error(f"[ERROR] {name} NOT installed")
             all_ok = False
     
     # Optional dependencies
@@ -99,21 +99,21 @@ def test_dependencies():
     for module, name in optional_deps.items():
         try:
             __import__(module)
-            logger.info(f"✓ {name} installed")
+            logger.info(f"[OK] {name} installed")
         except ImportError:
-            logger.warning(f"⚠ {name} NOT installed (optional)")
+            logger.warning(f"[WARNING] {name} NOT installed (optional)")
         except Exception as e:
             # Handle ctranslate2 ROCm SDK error on Windows
             if module == 'faster_whisper' and 'rocm_sdk_core' in str(e):
-                logger.warning(f"⚠ {name} installed but has ctranslate2 issue (see docs/FIX_CTRANSLATE2.md)")
+                logger.warning(f"[WARNING] {name} installed but has ctranslate2 issue (see docs/FIX_CTRANSLATE2.md)")
                 logger.warning(f"   Quick fix: pip uninstall faster-whisper ctranslate2 -y && pip install openai-whisper")
             else:
-                logger.warning(f"⚠ {name} has import error: {e}")
+                logger.warning(f"[WARNING] {name} has import error: {e}")
     
     # Check for alternative whisper implementation
     try:
         import whisper as openai_whisper
-        logger.info("✓ openai-whisper (alternative ASR) installed")
+        logger.info("[OK] openai-whisper (alternative ASR) installed")
     except ImportError:
         pass
     
@@ -144,9 +144,9 @@ def test_directories():
     for dir_name in directories:
         dir_path = Path(dir_name)
         if dir_path.exists():
-            logger.info(f"✓ {dir_name}/ exists")
+            logger.info(f"[OK] {dir_name}/ exists")
         else:
-            logger.warning(f"⚠ {dir_name}/ does NOT exist (will be created automatically)")
+            logger.warning(f"[WARNING] {dir_name}/ does NOT exist (will be created automatically)")
     
     return all_ok
 
@@ -169,20 +169,20 @@ def main():
     logger.info("=" * 60)
     
     for test_name, result in results.items():
-        status = "✓ PASSED" if result else "✗ FAILED"
+        status = "[OK] PASSED" if result else "[ERROR] FAILED"
         logger.info(f"{test_name.capitalize()}: {status}")
     
     all_passed = all(results.values())
     
     if all_passed:
-        logger.info("\n✓ All tests passed! System is ready to use.")
+        logger.info("\n[OK] All tests passed! System is ready to use.")
         logger.info("\nNext steps:")
         logger.info("1. Install missing dependencies: pip install -r requirements.txt")
         logger.info("2. Run example: python examples.py")
         logger.info("3. Or run main pipeline: python main.py --mode full --audio record --duration 60")
         return 0
     else:
-        logger.error("\n✗ Some tests failed. Please install missing dependencies.")
+        logger.error("\n[ERROR] Some tests failed. Please install missing dependencies.")
         logger.error("Run: pip install -r requirements.txt")
         return 1
 

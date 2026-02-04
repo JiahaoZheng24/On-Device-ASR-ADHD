@@ -25,11 +25,16 @@ class QwenLLM(BaseLLMModel):
     def load_model(self) -> None:
         """Load Qwen2.5 model."""
         try:
-            from transformers import AutoModelForCausalLM, AutoTokenizer
+            from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
             import torch
             
             model_name = self.config.get('model_name', 'Qwen/Qwen2.5-7B-Instruct')
-            model_path = self.config.get('model_path', model_name)
+            model_path = self.config.get('model_path')
+            
+            # Use model_path if provided, otherwise use model_name
+            if model_path is None or model_path == 'null':
+                model_path = model_name
+            
             device = self.config.get('device', 'cpu')
             
             logger.info(f"Loading Qwen model: {model_path} on {device}")
@@ -40,23 +45,52 @@ class QwenLLM(BaseLLMModel):
                 trust_remote_code=True
             )
             
-            # Load model with quantization if specified
+            # Prepare model loading arguments
             load_kwargs = {
                 "trust_remote_code": True,
-                "torch_dtype": torch.float16 if device == "cuda" else torch.float32,
             }
             
-            if self.config.get('load_in_8bit', False):
-                load_kwargs['load_in_8bit'] = True
-            elif self.config.get('load_in_4bit', False):
-                load_kwargs['load_in_4bit'] = True
+            # Handle quantization with bitsandbytes
+            load_in_8bit = self.config.get('load_in_8bit', False)
+            load_in_4bit = self.config.get('load_in_4bit', False)
             
+            if load_in_8bit or load_in_4bit:
+                try:
+                    import bitsandbytes
+                    
+                    if load_in_4bit:
+                        logger.info("Loading model with 4-bit quantization...")
+                        quantization_config = BitsAndBytesConfig(
+                            load_in_4bit=True,
+                            bnb_4bit_compute_dtype=torch.float16,
+                            bnb_4bit_use_double_quant=True,
+                            bnb_4bit_quant_type="nf4"
+                        )
+                        load_kwargs['quantization_config'] = quantization_config
+                        load_kwargs['device_map'] = 'auto'
+                    elif load_in_8bit:
+                        logger.info("Loading model with 8-bit quantization...")
+                        quantization_config = BitsAndBytesConfig(
+                            load_in_8bit=True
+                        )
+                        load_kwargs['quantization_config'] = quantization_config
+                        load_kwargs['device_map'] = 'auto'
+                        
+                except ImportError:
+                    logger.warning("bitsandbytes not installed, loading model in full precision")
+                    logger.warning("Install with: pip install bitsandbytes")
+                    load_kwargs['torch_dtype'] = torch.float16 if device == "cuda" else torch.float32
+            else:
+                load_kwargs['torch_dtype'] = torch.float16 if device == "cuda" else torch.float32
+            
+            # Load model
             self.model = AutoModelForCausalLM.from_pretrained(
                 model_path,
                 **load_kwargs
             )
             
-            if device == "cuda":
+            # Move to device if not using quantization (which handles device_map automatically)
+            if device == "cuda" and 'device_map' not in load_kwargs:
                 self.model = self.model.cuda()
             
             self._is_initialized = True
@@ -133,6 +167,10 @@ class QwenLLM(BaseLLMModel):
         except Exception as e:
             logger.error(f"LLM generation failed: {e}")
             summary_content = self._create_fallback_summary(transcripts, temporal_dist)
+
+        # Override temporal_notes with accurate calculation (LLM often gets this wrong)
+        if 'communication_patterns' in summary_content:
+            summary_content['communication_patterns']['temporal_notes'] = self._calculate_time_range(transcripts)
         
         # Create DailySummary object
         date = transcripts[0].timestamp.date() if transcripts else datetime.now().date()
@@ -153,15 +191,17 @@ class QwenLLM(BaseLLMModel):
     
     @staticmethod
     def _analyze_temporal_distribution(transcripts: List[TranscriptSegment]) -> Dict[int, float]:
-        """Analyze speech distribution across hours."""
-        hourly_duration = defaultdict(float)
-        
+        """Analyze speech distribution across the audio timeline (in minutes)."""
+        # Group by minute in the audio (using start_time, not processing timestamp)
+        minute_duration = defaultdict(float)
+
         for t in transcripts:
-            hour = t.timestamp.hour
+            # Use audio position (start_time) to determine which minute
+            minute = int(t.start_time // 60)
             duration = t.end_time - t.start_time
-            hourly_duration[hour] += duration
-        
-        return dict(hourly_duration)
+            minute_duration[minute] += duration
+
+        return dict(minute_duration)
     
     @staticmethod
     def _prepare_transcript_data(transcripts: List[TranscriptSegment]) -> str:
@@ -189,8 +229,40 @@ class QwenLLM(BaseLLMModel):
         
         return "".join(data_parts)
     
-    def _create_summary_prompt(self, transcript_data: str, 
-                               temporal_dist: Dict[int, float], 
+    @staticmethod
+    def _calculate_time_range(transcripts: List[TranscriptSegment]) -> str:
+        """Calculate the actual time range from transcripts based on audio position."""
+        if not transcripts:
+            return "No speech detected"
+
+        # Use audio start_time/end_time for actual audio position
+        first_segment_start = min(t.start_time for t in transcripts)
+        last_segment_end = max(t.end_time for t in transcripts)
+
+        # Calculate audio span in seconds
+        audio_span_seconds = last_segment_end - first_segment_start
+
+        # Format duration string
+        if audio_span_seconds < 60:
+            duration_str = f"{audio_span_seconds:.0f} seconds"
+        elif audio_span_seconds < 3600:
+            duration_str = f"{audio_span_seconds / 60:.1f} minutes"
+        else:
+            duration_str = f"{audio_span_seconds / 3600:.1f} hours"
+
+        # Format start/end as MM:SS
+        def format_audio_time(seconds: float) -> str:
+            mins = int(seconds // 60)
+            secs = int(seconds % 60)
+            return f"{mins:02d}:{secs:02d}"
+
+        start_str = format_audio_time(first_segment_start)
+        end_str = format_audio_time(last_segment_end)
+
+        return f"Speech segments span from {start_str} to {end_str} in the audio (approximately {duration_str})"
+
+    def _create_summary_prompt(self, transcript_data: str,
+                               temporal_dist: Dict[int, float],
                                total_duration: float) -> str:
         """Create prompt for LLM summary generation."""
         
@@ -313,7 +385,12 @@ class LlamaLLM(BaseLLMModel):
             import torch
             
             model_name = self.config.get('model_name', 'meta-llama/Llama-3.1-8B-Instruct')
-            model_path = self.config.get('model_path', model_name)
+            model_path = self.config.get('model_path')
+            
+            # Use model_path if provided, otherwise use model_name
+            if model_path is None or model_path == 'null':
+                model_path = model_name
+            
             device = self.config.get('device', 'cpu')
             
             logger.info(f"Loading Llama model: {model_path} on {device}")

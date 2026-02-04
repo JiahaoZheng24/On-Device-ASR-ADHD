@@ -100,11 +100,28 @@ class PipelineOrchestrator:
         logger.info("Starting full pipeline execution")
         logger.info("=" * 60)
         
-        # Ensure all agents are initialized
+        # Determine which agents are needed based on audio source
+        required_agents = ['vad', 'transcription', 'summary']
+        
+        if audio_source == "record":
+            required_agents.insert(0, 'recording')
+        else:
+            required_agents.insert(0, 'audio_file')
+        
+        # Ensure required agents are initialized
         if not self.is_initialized:
-            self.initialize_agents()
+            self.initialize_agents(required_agents)
+        else:
+            # Initialize missing agents if needed
+            if audio_source == "record" and self.recording_agent is None:
+                self.recording_agent = RecordingAgent(self.config)
+                self.recording_agent.initialize()
+            elif audio_source != "record" and self.audio_file_agent is None:
+                self.audio_file_agent = AudioFileAgent(self.config)
+                self.audio_file_agent.initialize()
         
         # Step 1: Get audio
+        input_filename = None
         if audio_source == "record":
             logger.info(f"Step 1/4: Recording audio ({duration}s)...")
             audio = self.recording_agent.execute(duration)
@@ -112,6 +129,7 @@ class PipelineOrchestrator:
         else:
             logger.info(f"Step 1/4: Loading audio from {audio_source}...")
             audio, sample_rate = self.audio_file_agent.execute(Path(audio_source))
+            input_filename = Path(audio_source).name
         
         # Step 2: Detect speech segments
         logger.info("Step 2/4: Detecting speech segments...")
@@ -132,15 +150,17 @@ class PipelineOrchestrator:
             return None
         
         # Save transcripts
-        transcript_path = self.transcription_agent.save_transcripts(transcripts)
+        transcript_path = self.transcription_agent.save_transcripts(
+            transcripts, input_filename=input_filename
+        )
         logger.info(f"Transcripts saved to {transcript_path}")
-        
+
         # Step 4: Generate summary
         logger.info("Step 4/4: Generating daily summary...")
         summary = self.summary_agent.execute(transcripts)
-        
+
         # Save summary
-        output_dir = self.summary_agent.save_summary(summary)
+        output_dir = self.summary_agent.save_summary(summary, input_filename=input_filename)
         
         logger.info("=" * 60)
         logger.info("Pipeline execution completed successfully")

@@ -1,0 +1,562 @@
+2026-02-03 15:15:43,959 - __main__ - INFO - ======================================================================
+2026-02-03 15:15:43,960 - __main__ - INFO - ADHD Audio Summarization System
+2026-02-03 15:15:43,960 - __main__ - INFO - On-Device Processing - Privacy Preserved
+2026-02-03 15:15:43,960 - __main__ - INFO - ======================================================================
+2026-02-03 15:15:43,960 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-03 15:15:43,978 - __main__ - INFO - Running full pipeline...
+2026-02-03 15:15:43,978 - pipeline.orchestrator - INFO - ============================================================
+2026-02-03 15:15:43,982 - pipeline.orchestrator - INFO - Starting full pipeline execution
+2026-02-03 15:15:43,983 - pipeline.orchestrator - INFO - ============================================================
+2026-02-03 15:15:43,984 - pipeline.orchestrator - INFO - Initializing agents: ['recording', 'vad', 'transcription', 'summary']
+2026-02-03 15:15:43,985 - agents.recording_agent - INFO - Initializing RecordingAgent...
+2026-02-03 15:15:43,987 - agents.recording_agent - INFO - Available audio devices:    0 Microsoft Sound Mapper - Output, MME (0 in, 2 out)
+<  1 Speakers (Realtek(R) Audio), MME (0 in, 2 out)
+   2 DELL U2424H (NVIDIA High Defini, MME (0 in, 2 out)
+   3 DELL U2424H (NVIDIA High Defini, MME (0 in, 2 out)
+   4 Primary Sound Driver, Windows DirectSound (0 in, 2 out)
+   5 Speakers (Realtek(R) Audio), Windows DirectSound (0 in, 2 out)
+   6 DELL U2424H (NVIDIA High Definition Audio), Windows DirectSound (0 in, 2 out)
+   7 DELL U2424H (NVIDIA High Definition Audio), Windows DirectSound (0 in, 2 out)
+   8 Speakers (Realtek(R) Audio), Windows WASAPI (0 in, 2 out)
+   9 DELL U2424H (NVIDIA High Definition Audio), Windows WASAPI (0 in, 2 out)
+  10 DELL U2424H (NVIDIA High Definition Audio), Windows WASAPI (0 in, 2 out)
+  11 Microphone (Realtek HD Audio Mic input), Windows WDM-KS (2 in, 0 out)
+  12 FrontMic (Realtek HD Audio Front Mic input), Windows WDM-KS (2 in, 0 out)
+  13 Stereo Mix (Realtek HD Audio Stereo input), Windows WDM-KS (2 in, 0 out)
+  14 Headphones (Realtek HD Audio 2nd output), Windows WDM-KS (0 in, 2 out)
+  15 Speakers (Realtek HD Audio output), Windows WDM-KS (0 in, 2 out)
+  16 Output (NVIDIA High Definition Audio), Windows WDM-KS (0 in, 2 out)
+  17 Output (NVIDIA High Definition Audio), Windows WDM-KS (0 in, 2 out)
+2026-02-03 15:15:43,987 - agents.recording_agent - INFO - Using default device: [-1, 1]
+2026-02-03 15:15:43,988 - agents.recording_agent - INFO - RecordingAgent initialized successfully
+2026-02-03 15:15:43,989 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-03 15:15:43,990 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-03 15:15:55,236 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-03 15:15:55,237 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-03 15:15:55,237 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-03 15:15:55,238 - models.asr_models - ERROR - faster-whisper not installed. Install with: pip install faster-whisper
+2026-02-03 15:15:55,239 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-03 15:15:55,240 - agents.recording_agent - INFO - RecordingAgent cleaned up
+2026-02-03 15:15:55,243 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-03 15:15:55,244 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-03 15:15:55,245 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-03 15:19:02,049 - __main__ - INFO - ======================================================================
+2026-02-03 15:19:02,049 - __main__ - INFO - ADHD Audio Summarization System
+2026-02-03 15:19:02,049 - __main__ - INFO - On-Device Processing - Privacy Preserved
+2026-02-03 15:19:02,049 - __main__ - INFO - ======================================================================
+2026-02-03 15:19:02,049 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-03 15:19:02,049 - __main__ - INFO - Running full pipeline...
+2026-02-03 15:19:02,049 - pipeline.orchestrator - INFO - ============================================================
+2026-02-03 15:19:02,049 - pipeline.orchestrator - INFO - Starting full pipeline execution
+2026-02-03 15:19:02,066 - pipeline.orchestrator - INFO - ============================================================
+2026-02-03 15:19:02,066 - pipeline.orchestrator - INFO - Initializing agents: ['recording', 'vad', 'transcription', 'summary']
+2026-02-03 15:19:02,067 - agents.recording_agent - INFO - Initializing RecordingAgent...
+2026-02-03 15:19:02,069 - agents.recording_agent - INFO - Available audio devices:    0 Microsoft Sound Mapper - Output, MME (0 in, 2 out)
+<  1 Speakers (Realtek(R) Audio), MME (0 in, 2 out)
+   2 DELL U2424H (NVIDIA High Defini, MME (0 in, 2 out)
+   3 DELL U2424H (NVIDIA High Defini, MME (0 in, 2 out)
+   4 Primary Sound Driver, Windows DirectSound (0 in, 2 out)
+   5 Speakers (Realtek(R) Audio), Windows DirectSound (0 in, 2 out)
+   6 DELL U2424H (NVIDIA High Definition Audio), Windows DirectSound (0 in, 2 out)
+   7 DELL U2424H (NVIDIA High Definition Audio), Windows DirectSound (0 in, 2 out)
+   8 Speakers (Realtek(R) Audio), Windows WASAPI (0 in, 2 out)
+   9 DELL U2424H (NVIDIA High Definition Audio), Windows WASAPI (0 in, 2 out)
+  10 DELL U2424H (NVIDIA High Definition Audio), Windows WASAPI (0 in, 2 out)
+  11 Microphone (Realtek HD Audio Mic input), Windows WDM-KS (2 in, 0 out)
+  12 FrontMic (Realtek HD Audio Front Mic input), Windows WDM-KS (2 in, 0 out)
+  13 Stereo Mix (Realtek HD Audio Stereo input), Windows WDM-KS (2 in, 0 out)
+  14 Headphones (Realtek HD Audio 2nd output), Windows WDM-KS (0 in, 2 out)
+  15 Speakers (Realtek HD Audio output), Windows WDM-KS (0 in, 2 out)
+  16 Output (NVIDIA High Definition Audio), Windows WDM-KS (0 in, 2 out)
+  17 Output (NVIDIA High Definition Audio), Windows WDM-KS (0 in, 2 out)
+2026-02-03 15:19:02,069 - agents.recording_agent - INFO - Using default device: [-1, 1]
+2026-02-03 15:19:02,071 - agents.recording_agent - INFO - RecordingAgent initialized successfully
+2026-02-03 15:19:02,071 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-03 15:19:02,071 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-03 15:19:02,632 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-03 15:19:02,632 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-03 15:19:02,632 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-03 15:19:03,008 - models.asr_models - INFO - Loading Whisper model (openai-whisper): base on cpu
+2026-02-03 15:19:08,898 - models.asr_models - INFO - Whisper model (openai-whisper) loaded successfully
+2026-02-03 15:19:08,899 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-03 15:19:08,900 - agents.summary_agent - INFO - Initializing SummaryAgent...
+2026-02-03 15:19:16,206 - models.llm_models - INFO - Loading Qwen model: None on cpu
+2026-02-03 15:19:16,355 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/None/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+2026-02-03 15:19:16,399 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/None/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+2026-02-03 15:19:16,399 - models.llm_models - ERROR - Failed to load Qwen model: None is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your_token>`
+2026-02-03 15:19:16,399 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-03 15:19:16,399 - agents.recording_agent - INFO - RecordingAgent cleaned up
+2026-02-03 15:19:16,399 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-03 15:19:16,434 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-03 15:19:16,435 - agents.summary_agent - INFO - SummaryAgent cleaned up
+2026-02-03 15:19:16,435 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-03 15:19:16,435 - __main__ - ERROR - 
+
+[ERROR] Error occurred: None is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your_token>`
+Traceback (most recent call last):
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\utils\_http.py", line 657, in hf_raise_for_status
+    response.raise_for_status()
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\httpx\_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '401 Unauthorized' for url 'https://huggingface.co/None/resolve/main/config.json'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\transformers\utils\hub.py", line 419, in cached_files
+    hf_hub_download(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\utils\_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 1024, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 1175, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 1804, in _raise_on_head_call_error
+    raise head_call_error
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 1691, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\utils\_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 1614, in get_hf_file_metadata
+    response = _httpx_follow_relative_redirects(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 309, in _httpx_follow_relative_redirects
+    hf_raise_for_status(response)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\utils\_http.py", line 710, in hf_raise_for_status
+    raise _format(RepositoryNotFoundError, message, response) from e
+huggingface_hub.errors.RepositoryNotFoundError: 401 Client Error. (Request ID: Root=1-69825844-7f2058b4692fad3d356ddcf7;b73dcd12-f5ab-4d9f-afe9-4d293c537d0f)
+
+Repository Not Found for url: https://huggingface.co/None/resolve/main/config.json.
+Please make sure you specified the correct `repo_id` and `repo_type`.
+If you are trying to access a private or gated repo, make sure you are authenticated. For more details, see https://huggingface.co/docs/huggingface_hub/authentication
+Invalid username or password.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\transformers\models\auto\tokenization_auto.py", line 617, in from_pretrained
+    config = AutoConfig.from_pretrained(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\transformers\models\auto\configuration_auto.py", line 1356, in from_pretrained
+    config_dict, unused_kwargs = PreTrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\transformers\configuration_utils.py", line 569, in get_config_dict
+    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\transformers\configuration_utils.py", line 624, in _get_config_dict
+    resolved_config_file = cached_file(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\transformers\utils\hub.py", line 276, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\transformers\utils\hub.py", line 449, in cached_files
+    raise OSError(
+OSError: None is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your_token>`
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\utils\_http.py", line 657, in hf_raise_for_status
+    response.raise_for_status()
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\httpx\_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '401 Unauthorized' for url 'https://huggingface.co/None/resolve/main/config.json'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\transformers\utils\hub.py", line 419, in cached_files
+    hf_hub_download(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\utils\_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 1024, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 1175, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 1804, in _raise_on_head_call_error
+    raise head_call_error
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 1691, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\utils\_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 1614, in get_hf_file_metadata
+    response = _httpx_follow_relative_redirects(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 309, in _httpx_follow_relative_redirects
+    hf_raise_for_status(response)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\utils\_http.py", line 710, in hf_raise_for_status
+    raise _format(RepositoryNotFoundError, message, response) from e
+huggingface_hub.errors.RepositoryNotFoundError: 401 Client Error. (Request ID: Root=1-69825844-3bcc32e1417ee449024a5bbd;1cf43125-d135-4f4c-b552-444f3647ca89)
+
+Repository Not Found for url: https://huggingface.co/None/resolve/main/config.json.
+Please make sure you specified the correct `repo_id` and `repo_type`.
+If you are trying to access a private or gated repo, make sure you are authenticated. For more details, see https://huggingface.co/docs/huggingface_hub/authentication
+Invalid username or password.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\main.py", line 114, in main
+    output_dir = orchestrator.run_full_pipeline(
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\pipeline\orchestrator.py", line 105, in run_full_pipeline
+    self.initialize_agents()
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\pipeline\orchestrator.py", line 82, in initialize_agents
+    self.summary_agent.initialize()
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\agents\summary_agent.py", line 32, in initialize
+    self.llm_model.load_model()
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\models\llm_models.py", line 38, in load_model
+    self.tokenizer = AutoTokenizer.from_pretrained(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\transformers\models\auto\tokenization_auto.py", line 621, in from_pretrained
+    config = PreTrainedConfig.from_pretrained(pretrained_model_name_or_path, **kwargs)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\transformers\configuration_utils.py", line 531, in from_pretrained
+    config_dict, kwargs = cls.get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\transformers\configuration_utils.py", line 569, in get_config_dict
+    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\transformers\configuration_utils.py", line 624, in _get_config_dict
+    resolved_config_file = cached_file(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\transformers\utils\hub.py", line 276, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\transformers\utils\hub.py", line 449, in cached_files
+    raise OSError(
+OSError: None is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your_token>`
+2026-02-03 15:22:32,531 - __main__ - INFO - ======================================================================
+2026-02-03 15:22:32,531 - __main__ - INFO - ADHD Audio Summarization System
+2026-02-03 15:22:32,531 - __main__ - INFO - On-Device Processing - Privacy Preserved
+2026-02-03 15:22:32,531 - __main__ - INFO - ======================================================================
+2026-02-03 15:22:32,531 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-03 15:22:32,550 - __main__ - INFO - Running full pipeline...
+2026-02-03 15:22:32,551 - pipeline.orchestrator - INFO - ============================================================
+2026-02-03 15:22:32,552 - pipeline.orchestrator - INFO - Starting full pipeline execution
+2026-02-03 15:22:32,552 - pipeline.orchestrator - INFO - ============================================================
+2026-02-03 15:22:32,554 - pipeline.orchestrator - INFO - Initializing agents: ['recording', 'vad', 'transcription', 'summary']
+2026-02-03 15:22:32,555 - agents.recording_agent - INFO - Initializing RecordingAgent...
+2026-02-03 15:22:32,556 - agents.recording_agent - INFO - Available audio devices:    0 Microsoft Sound Mapper - Output, MME (0 in, 2 out)
+<  1 Speakers (Realtek(R) Audio), MME (0 in, 2 out)
+   2 DELL U2424H (NVIDIA High Defini, MME (0 in, 2 out)
+   3 DELL U2424H (NVIDIA High Defini, MME (0 in, 2 out)
+   4 Primary Sound Driver, Windows DirectSound (0 in, 2 out)
+   5 Speakers (Realtek(R) Audio), Windows DirectSound (0 in, 2 out)
+   6 DELL U2424H (NVIDIA High Definition Audio), Windows DirectSound (0 in, 2 out)
+   7 DELL U2424H (NVIDIA High Definition Audio), Windows DirectSound (0 in, 2 out)
+   8 Speakers (Realtek(R) Audio), Windows WASAPI (0 in, 2 out)
+   9 DELL U2424H (NVIDIA High Definition Audio), Windows WASAPI (0 in, 2 out)
+  10 DELL U2424H (NVIDIA High Definition Audio), Windows WASAPI (0 in, 2 out)
+  11 Microphone (Realtek HD Audio Mic input), Windows WDM-KS (2 in, 0 out)
+  12 FrontMic (Realtek HD Audio Front Mic input), Windows WDM-KS (2 in, 0 out)
+  13 Stereo Mix (Realtek HD Audio Stereo input), Windows WDM-KS (2 in, 0 out)
+  14 Headphones (Realtek HD Audio 2nd output), Windows WDM-KS (0 in, 2 out)
+  15 Speakers (Realtek HD Audio output), Windows WDM-KS (0 in, 2 out)
+  16 Output (NVIDIA High Definition Audio), Windows WDM-KS (0 in, 2 out)
+  17 Output (NVIDIA High Definition Audio), Windows WDM-KS (0 in, 2 out)
+2026-02-03 15:22:32,558 - agents.recording_agent - INFO - Using default device: [-1, 1]
+2026-02-03 15:22:32,559 - agents.recording_agent - INFO - RecordingAgent initialized successfully
+2026-02-03 15:22:32,559 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-03 15:22:32,559 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-03 15:22:32,888 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-03 15:22:32,888 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-03 15:22:32,888 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-03 15:22:33,272 - models.asr_models - INFO - Loading Whisper model (openai-whisper): base on cpu
+2026-02-03 15:22:33,979 - models.asr_models - INFO - Whisper model (openai-whisper) loaded successfully
+2026-02-03 15:22:33,979 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-03 15:22:33,979 - agents.summary_agent - INFO - Initializing SummaryAgent...
+2026-02-03 15:22:36,589 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cpu
+2026-02-03 15:22:36,694 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 15:22:36,717 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-03 15:22:36,750 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-03 15:22:36,822 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 15:22:36,822 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-02-03 15:22:36,855 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-03 15:22:36,873 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-03 15:22:36,947 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-03 15:22:36,998 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-03 15:22:37,042 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/vocab.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 15:22:37,057 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/vocab.json "HTTP/1.1 200 OK"
+2026-02-03 15:22:37,079 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/vocab.json "HTTP/1.1 200 OK"
+2026-02-03 15:22:37,237 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/merges.txt "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 15:22:37,254 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/merges.txt "HTTP/1.1 200 OK"
+2026-02-03 15:22:37,276 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/merges.txt "HTTP/1.1 200 OK"
+2026-02-03 15:22:37,362 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 15:22:37,378 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer.json "HTTP/1.1 200 OK"
+2026-02-03 15:22:37,400 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer.json "HTTP/1.1 200 OK"
+2026-02-03 15:22:37,530 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/added_tokens.json "HTTP/1.1 404 Not Found"
+2026-02-03 15:22:37,580 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/special_tokens_map.json "HTTP/1.1 404 Not Found"
+2026-02-03 15:22:37,639 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-02-03 15:22:38,523 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-03 15:22:38,576 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 15:22:38,594 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-03 15:22:41,013 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-02-03 15:22:41,061 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/model.safetensors.index.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 15:22:41,078 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/model.safetensors.index.json "HTTP/1.1 200 OK"
+2026-02-03 15:22:41,099 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/model.safetensors.index.json "HTTP/1.1 200 OK"
+2026-02-03 15:22:41,163 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/revision/main "HTTP/1.1 200 OK"
+2026-02-03 15:22:41,214 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/model-00001-of-00004.safetensors "HTTP/1.1 302 Found"
+2026-02-03 15:22:41,257 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/model-00002-of-00004.safetensors "HTTP/1.1 302 Found"
+2026-02-03 15:22:41,259 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/model-00003-of-00004.safetensors "HTTP/1.1 302 Found"
+2026-02-03 15:22:41,268 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/model-00004-of-00004.safetensors "HTTP/1.1 302 Found"
+2026-02-03 15:22:41,437 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/xet-read-token/a09a35458c702b33eeacc393d103063234e8bc28 "HTTP/1.1 200 OK"
+2026-02-03 15:22:41,437 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/xet-read-token/a09a35458c702b33eeacc393d103063234e8bc28 "HTTP/1.1 200 OK"
+2026-02-03 15:22:41,440 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/xet-read-token/a09a35458c702b33eeacc393d103063234e8bc28 "HTTP/1.1 200 OK"
+2026-02-03 15:22:41,442 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/xet-read-token/a09a35458c702b33eeacc393d103063234e8bc28 "HTTP/1.1 200 OK"
+2026-02-03 15:24:33,688 - models.llm_models - ERROR - Failed to load Qwen model: Qwen2ForCausalLM.__init__() got an unexpected keyword argument 'load_in_4bit'
+2026-02-03 15:24:33,689 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-03 15:24:33,689 - agents.recording_agent - INFO - RecordingAgent cleaned up
+2026-02-03 15:24:33,695 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-03 15:24:33,712 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-03 15:24:33,714 - agents.summary_agent - INFO - SummaryAgent cleaned up
+2026-02-03 15:24:33,714 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-03 15:24:33,714 - __main__ - ERROR - 
+
+[ERROR] Error occurred: Qwen2ForCausalLM.__init__() got an unexpected keyword argument 'load_in_4bit'
+Traceback (most recent call last):
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\main.py", line 114, in main
+    output_dir = orchestrator.run_full_pipeline(
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\pipeline\orchestrator.py", line 105, in run_full_pipeline
+    self.initialize_agents()
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\pipeline\orchestrator.py", line 82, in initialize_agents
+    self.summary_agent.initialize()
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\agents\summary_agent.py", line 32, in initialize
+    self.llm_model.load_model()
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\models\llm_models.py", line 59, in load_model
+    self.model = AutoModelForCausalLM.from_pretrained(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\transformers\models\auto\auto_factory.py", line 372, in from_pretrained
+    return model_class.from_pretrained(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\transformers\modeling_utils.py", line 4072, in from_pretrained
+    model = cls(config, *model_args, **model_kwargs)
+TypeError: Qwen2ForCausalLM.__init__() got an unexpected keyword argument 'load_in_4bit'
+2026-02-03 15:31:09,473 - __main__ - INFO - ======================================================================
+2026-02-03 15:31:09,473 - __main__ - INFO - ADHD Audio Summarization System
+2026-02-03 15:31:09,474 - __main__ - INFO - On-Device Processing - Privacy Preserved
+2026-02-03 15:31:09,474 - __main__ - INFO - ======================================================================
+2026-02-03 15:31:09,474 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-03 15:31:09,479 - __main__ - INFO - Running full pipeline...
+2026-02-03 15:31:09,479 - pipeline.orchestrator - INFO - ============================================================
+2026-02-03 15:31:09,480 - pipeline.orchestrator - INFO - Starting full pipeline execution
+2026-02-03 15:31:09,481 - pipeline.orchestrator - INFO - ============================================================
+2026-02-03 15:31:09,481 - pipeline.orchestrator - INFO - Initializing agents: ['recording', 'vad', 'transcription', 'summary']
+2026-02-03 15:31:09,482 - agents.recording_agent - INFO - Initializing RecordingAgent...
+2026-02-03 15:31:09,483 - agents.recording_agent - INFO - Available audio devices:    0 Microsoft Sound Mapper - Output, MME (0 in, 2 out)
+<  1 Speakers (Realtek(R) Audio), MME (0 in, 2 out)
+   2 DELL U2424H (NVIDIA High Defini, MME (0 in, 2 out)
+   3 DELL U2424H (NVIDIA High Defini, MME (0 in, 2 out)
+   4 Primary Sound Driver, Windows DirectSound (0 in, 2 out)
+   5 Speakers (Realtek(R) Audio), Windows DirectSound (0 in, 2 out)
+   6 DELL U2424H (NVIDIA High Definition Audio), Windows DirectSound (0 in, 2 out)
+   7 DELL U2424H (NVIDIA High Definition Audio), Windows DirectSound (0 in, 2 out)
+   8 Speakers (Realtek(R) Audio), Windows WASAPI (0 in, 2 out)
+   9 DELL U2424H (NVIDIA High Definition Audio), Windows WASAPI (0 in, 2 out)
+  10 DELL U2424H (NVIDIA High Definition Audio), Windows WASAPI (0 in, 2 out)
+  11 Microphone (Realtek HD Audio Mic input), Windows WDM-KS (2 in, 0 out)
+  12 FrontMic (Realtek HD Audio Front Mic input), Windows WDM-KS (2 in, 0 out)
+  13 Stereo Mix (Realtek HD Audio Stereo input), Windows WDM-KS (2 in, 0 out)
+  14 Headphones (Realtek HD Audio 2nd output), Windows WDM-KS (0 in, 2 out)
+  15 Speakers (Realtek HD Audio output), Windows WDM-KS (0 in, 2 out)
+  16 Output (NVIDIA High Definition Audio), Windows WDM-KS (0 in, 2 out)
+  17 Output (NVIDIA High Definition Audio), Windows WDM-KS (0 in, 2 out)
+2026-02-03 15:31:09,484 - agents.recording_agent - INFO - Using default device: [-1, 1]
+2026-02-03 15:31:09,484 - agents.recording_agent - INFO - RecordingAgent initialized successfully
+2026-02-03 15:31:09,485 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-03 15:31:09,485 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-03 15:31:09,965 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-03 15:31:09,965 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-03 15:31:09,978 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-03 15:31:10,541 - models.asr_models - INFO - Loading Whisper model (openai-whisper): base on cpu
+2026-02-03 15:31:11,368 - models.asr_models - INFO - Whisper model (openai-whisper) loaded successfully
+2026-02-03 15:31:11,370 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-03 15:31:11,370 - agents.summary_agent - INFO - Initializing SummaryAgent...
+2026-02-03 15:31:15,614 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cpu
+2026-02-03 15:31:15,697 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 15:31:15,720 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-03 15:31:15,775 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 15:31:15,796 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-03 15:31:15,851 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-03 15:31:15,913 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-03 15:31:16,761 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-03 15:31:16,809 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 15:31:16,830 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-03 15:31:57,836 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 15:31:57,871 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/generation_config.json "HTTP/1.1 200 OK"
+2026-02-03 15:31:57,907 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/generation_config.json "HTTP/1.1 200 OK"
+2026-02-03 15:31:58,023 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-02-03 15:31:58,037 - models.llm_models - INFO - Qwen model loaded successfully
+2026-02-03 15:31:58,038 - agents.summary_agent - INFO - SummaryAgent initialized successfully
+2026-02-03 15:31:58,041 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-03 15:31:58,041 - pipeline.orchestrator - INFO - Step 1/4: Loading audio from D:\Jiahao_Zheng\On-Device-ASR-ADHD\data\ENNIA413.mp3...
+2026-02-03 15:31:58,041 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-03 15:31:58,043 - agents.recording_agent - INFO - RecordingAgent cleaned up
+2026-02-03 15:31:58,101 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-03 15:31:58,131 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-03 15:32:00,826 - agents.summary_agent - INFO - SummaryAgent cleaned up
+2026-02-03 15:32:00,827 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-03 15:32:00,827 - __main__ - ERROR - 
+
+[ERROR] Error occurred: 'NoneType' object has no attribute 'execute'
+Traceback (most recent call last):
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\main.py", line 114, in main
+    output_dir = orchestrator.run_full_pipeline(
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\pipeline\orchestrator.py", line 114, in run_full_pipeline
+    audio, sample_rate = self.audio_file_agent.execute(Path(audio_source))
+AttributeError: 'NoneType' object has no attribute 'execute'
+2026-02-03 15:35:05,832 - __main__ - INFO - ======================================================================
+2026-02-03 15:35:05,833 - __main__ - INFO - ADHD Audio Summarization System
+2026-02-03 15:35:05,833 - __main__ - INFO - On-Device Processing - Privacy Preserved
+2026-02-03 15:35:05,833 - __main__ - INFO - ======================================================================
+2026-02-03 15:35:05,834 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-03 15:35:05,840 - __main__ - INFO - Running full pipeline...
+2026-02-03 15:35:05,840 - pipeline.orchestrator - INFO - ============================================================
+2026-02-03 15:35:05,840 - pipeline.orchestrator - INFO - Starting full pipeline execution
+2026-02-03 15:35:05,840 - pipeline.orchestrator - INFO - ============================================================
+2026-02-03 15:35:05,840 - pipeline.orchestrator - INFO - Initializing agents: ['audio_file', 'vad', 'transcription', 'summary']
+2026-02-03 15:35:05,840 - agents.recording_agent - INFO - AudioFileAgent initialized
+2026-02-03 15:35:05,842 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-03 15:35:05,842 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-03 15:35:06,348 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-03 15:35:06,348 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-03 15:35:06,350 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-03 15:35:07,067 - models.asr_models - INFO - Loading Whisper model (openai-whisper): base on cpu
+2026-02-03 15:35:07,873 - models.asr_models - INFO - Whisper model (openai-whisper) loaded successfully
+2026-02-03 15:35:07,876 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-03 15:35:07,876 - agents.summary_agent - INFO - Initializing SummaryAgent...
+2026-02-03 15:35:12,647 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cpu
+2026-02-03 15:35:12,724 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 15:35:12,749 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-03 15:35:12,799 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 15:35:12,826 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-03 15:35:12,881 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-03 15:35:12,932 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-03 15:35:13,774 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-03 15:35:13,824 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 15:35:13,842 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-03 15:35:50,954 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 15:35:50,995 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/generation_config.json "HTTP/1.1 200 OK"
+2026-02-03 15:35:51,123 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-02-03 15:35:51,141 - models.llm_models - INFO - Qwen model loaded successfully
+2026-02-03 15:35:51,143 - agents.summary_agent - INFO - SummaryAgent initialized successfully
+2026-02-03 15:35:51,143 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-03 15:35:51,143 - pipeline.orchestrator - INFO - Step 1/4: Loading audio from D:\Jiahao_Zheng\On-Device-ASR-ADHD\data\ENNIA413.mp3...
+2026-02-03 15:35:51,147 - agents.recording_agent - INFO - Loading audio from: D:\Jiahao_Zheng\On-Device-ASR-ADHD\data\ENNIA413.mp3
+2026-02-03 15:36:15,153 - agents.recording_agent - INFO - Loaded 392.69s of audio at 16000Hz
+2026-02-03 15:36:15,154 - pipeline.orchestrator - INFO - Step 2/4: Detecting speech segments...
+2026-02-03 15:36:15,156 - agents.vad_transcription_agents - INFO - Running VAD on 392.69s of audio...
+2026-02-03 15:36:19,582 - models.vad_models - INFO - Detected 104 speech segments
+2026-02-03 15:36:19,582 - agents.vad_transcription_agents - INFO - Detected 104 speech segments
+2026-02-03 15:36:19,586 - agents.vad_transcription_agents - INFO - Total speech: 164.99s, Average segment: 1.59s
+2026-02-03 15:36:19,586 - pipeline.orchestrator - INFO - Found 104 speech segments
+2026-02-03 15:36:19,586 - pipeline.orchestrator - INFO - Step 3/4: Transcribing speech...
+2026-02-03 15:36:19,586 - agents.vad_transcription_agents - INFO - Transcribing 104 segments...
+2026-02-03 15:36:19,586 - models.asr_models - INFO - Transcribing 104 audio segments...
+2026-02-03 15:36:39,729 - models.asr_models - INFO - Progress: 10/104 segments transcribed
+2026-02-03 15:37:05,780 - models.asr_models - INFO - Progress: 20/104 segments transcribed
+2026-02-03 15:37:28,186 - models.asr_models - INFO - Progress: 30/104 segments transcribed
+2026-02-03 15:37:54,498 - models.asr_models - INFO - Progress: 40/104 segments transcribed
+2026-02-03 15:38:28,745 - models.asr_models - INFO - Progress: 50/104 segments transcribed
+2026-02-03 15:38:56,646 - models.asr_models - INFO - Progress: 60/104 segments transcribed
+2026-02-03 15:39:40,300 - models.asr_models - INFO - Progress: 70/104 segments transcribed
+2026-02-03 15:40:23,940 - models.asr_models - INFO - Progress: 80/104 segments transcribed
+2026-02-03 15:40:56,402 - models.asr_models - INFO - Progress: 90/104 segments transcribed
+2026-02-03 15:41:26,661 - models.asr_models - INFO - Progress: 100/104 segments transcribed
+2026-02-03 15:41:42,284 - models.asr_models - INFO - Progress: 104/104 segments transcribed
+2026-02-03 15:41:43,337 - models.asr_models - INFO - Completed transcription of 104 segments
+2026-02-03 15:41:43,337 - agents.vad_transcription_agents - INFO - Successfully transcribed 103/104 segments
+2026-02-03 15:41:43,351 - agents.vad_transcription_agents - INFO - Saved 103 transcripts to outputs\daily_reports\transcripts_20260203.json
+2026-02-03 15:41:43,351 - pipeline.orchestrator - INFO - Transcripts saved to outputs\daily_reports\transcripts_20260203.json
+2026-02-03 15:41:43,353 - pipeline.orchestrator - INFO - Step 4/4: Generating daily summary...
+2026-02-03 15:41:43,353 - agents.summary_agent - INFO - Generating summary for 103 transcripts...
+2026-02-03 15:41:43,353 - agents.summary_agent - INFO - Using 47 transcripts after filtering
+2026-02-03 16:02:06,623 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-03 16:02:06,747 - agents.recording_agent - INFO - AudioFileAgent cleaned up
+2026-02-03 16:02:07,014 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-03 16:02:07,072 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-03 16:02:07,073 - agents.summary_agent - INFO - SummaryAgent cleaned up
+2026-02-03 16:02:07,073 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-03 16:02:07,074 - __main__ - INFO - 
+
+Operation cancelled by user
+2026-02-03 16:04:10,562 - __main__ - INFO - ======================================================================
+2026-02-03 16:04:10,562 - __main__ - INFO - ADHD Audio Summarization System
+2026-02-03 16:04:10,562 - __main__ - INFO - On-Device Processing - Privacy Preserved
+2026-02-03 16:04:10,562 - __main__ - INFO - ======================================================================
+2026-02-03 16:04:10,563 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-03 16:04:10,575 - __main__ - INFO - Running summary generation only...
+2026-02-03 16:04:10,575 - pipeline.orchestrator - INFO - Running summary-only mode
+2026-02-03 16:04:10,575 - pipeline.orchestrator - INFO - Initializing agents: ['summary']
+2026-02-03 16:04:10,577 - agents.summary_agent - INFO - Initializing SummaryAgent...
+2026-02-03 16:04:15,816 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cpu
+2026-02-03 16:04:16,006 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 16:04:16,026 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-03 16:04:16,102 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 16:04:16,122 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-03 16:04:16,186 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-03 16:04:16,237 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-03 16:04:17,102 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-03 16:04:17,161 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 16:04:17,177 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-03 16:04:49,944 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 16:04:49,992 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/generation_config.json "HTTP/1.1 200 OK"
+2026-02-03 16:04:50,077 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-02-03 16:04:50,078 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-02-03 16:04:50,094 - models.llm_models - INFO - Qwen model loaded successfully
+2026-02-03 16:04:50,098 - agents.summary_agent - INFO - SummaryAgent initialized successfully
+2026-02-03 16:04:50,100 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-03 16:04:50,100 - pipeline.orchestrator - INFO - Initializing agents: ['transcription']
+2026-02-03 16:04:50,101 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-03 16:04:51,267 - models.asr_models - INFO - Loading Whisper model (openai-whisper): base on cpu
+2026-02-03 16:04:52,344 - models.asr_models - INFO - Whisper model (openai-whisper) loaded successfully
+2026-02-03 16:04:52,344 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-03 16:04:52,348 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-03 16:04:52,356 - agents.vad_transcription_agents - INFO - Loaded 103 transcripts from D:\Jiahao_Zheng\On-Device-ASR-ADHD\outputs\daily_reports\transcripts_20260203.json
+2026-02-03 16:04:52,357 - agents.summary_agent - INFO - Generating summary for 103 transcripts...
+2026-02-03 16:04:52,357 - agents.summary_agent - INFO - Using 47 transcripts after filtering
+2026-02-03 16:06:26,285 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-03 16:06:26,371 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-03 16:06:26,374 - agents.summary_agent - INFO - SummaryAgent cleaned up
+2026-02-03 16:06:26,374 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-03 16:06:26,374 - __main__ - INFO - 
+
+Operation cancelled by user
+2026-02-03 23:48:33,377 - __main__ - INFO - ======================================================================
+2026-02-03 23:48:33,377 - __main__ - INFO - ADHD Audio Summarization System
+2026-02-03 23:48:33,381 - __main__ - INFO - On-Device Processing - Privacy Preserved
+2026-02-03 23:48:33,381 - __main__ - INFO - ======================================================================
+2026-02-03 23:48:33,381 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-03 23:48:33,386 - __main__ - INFO - Running summary generation only...
+2026-02-03 23:48:33,386 - pipeline.orchestrator - INFO - Running summary-only mode
+2026-02-03 23:48:33,386 - pipeline.orchestrator - INFO - Initializing agents: ['summary']
+2026-02-03 23:48:33,386 - agents.summary_agent - INFO - Initializing SummaryAgent...
+2026-02-03 23:48:43,752 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cuda
+2026-02-03 23:48:43,891 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 23:48:43,909 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-03 23:48:43,972 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 23:48:44,002 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-03 23:48:44,057 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-03 23:48:44,110 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-03 23:48:44,862 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-03 23:48:44,939 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 23:48:44,956 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-03 23:49:00,098 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-03 23:49:00,101 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-02-03 23:49:00,119 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/generation_config.json "HTTP/1.1 200 OK"
+2026-02-03 23:49:00,175 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-02-03 23:49:25,130 - models.llm_models - INFO - Qwen model loaded successfully
+2026-02-03 23:49:25,132 - agents.summary_agent - INFO - SummaryAgent initialized successfully
+2026-02-03 23:49:25,132 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-03 23:49:25,132 - pipeline.orchestrator - INFO - Initializing agents: ['transcription']
+2026-02-03 23:49:25,133 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-03 23:49:26,027 - models.asr_models - INFO - Loading Whisper model (openai-whisper): base on cuda
+2026-02-03 23:49:29,277 - models.asr_models - INFO - Whisper model (openai-whisper) loaded successfully
+2026-02-03 23:49:29,277 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-03 23:49:29,279 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-03 23:49:29,286 - agents.vad_transcription_agents - INFO - Loaded 103 transcripts from D:\Jiahao_Zheng\On-Device-ASR-ADHD\outputs\daily_reports\transcripts_20260203.json
+2026-02-03 23:49:29,288 - agents.summary_agent - INFO - Generating summary for 103 transcripts...
+2026-02-03 23:49:29,288 - agents.summary_agent - INFO - Using 47 transcripts after filtering
+2026-02-03 23:49:59,802 - agents.summary_agent - INFO - Summary generated successfully
+2026-02-03 23:49:59,806 - agents.summary_agent - INFO - Saved summary JSON to outputs\daily_reports\summary_20260203.json
+2026-02-03 23:49:59,812 - agents.summary_agent - INFO - Saved summary report to outputs\daily_reports\report_20260203.md
+2026-02-03 23:49:59,812 - __main__ - INFO - 
+[OK] Summary generated at: outputs\daily_reports
+2026-02-03 23:49:59,812 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-03 23:49:59,815 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-03 23:49:59,909 - agents.summary_agent - INFO - SummaryAgent cleaned up
+2026-02-03 23:49:59,909 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-03 23:49:59,909 - __main__ - INFO - 
+======================================================================
+2026-02-03 23:49:59,909 - __main__ - INFO - Processing completed successfully
+2026-02-03 23:49:59,909 - __main__ - INFO - ======================================================================

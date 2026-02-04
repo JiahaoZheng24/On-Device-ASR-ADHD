@@ -25,7 +25,7 @@ conda create -n adhd_audio python=3.10 -y && conda activate adhd_audio
 conda install pytorch torchvision torchaudio cpuonly -c pytorch -y
 
 # 4. Install project dependencies
-cd adhd_audio_system && pip install -r requirements.txt
+cd On-Device-ASR-ADHD && pip install -r requirements.txt
 
 # 5. Test installation
 python test_setup.py
@@ -84,7 +84,7 @@ conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvi
 ### Step 4: Install Python Dependencies
 
 ```bash
-cd adhd_audio_system
+cd On-Device-ASR-ADHD
 pip install -r requirements.txt
 ```
 
@@ -235,7 +235,7 @@ dir $env:USERPROFILE\.cache\huggingface\hub\
 ## Project Structure
 
 ```
-adhd_audio_system/
+On-Device-ASR-ADHD/
 ├── README.md                    # This file
 ├── config/
 │   └── settings.yaml           # Configuration

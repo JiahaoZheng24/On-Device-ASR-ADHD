@@ -56,19 +56,29 @@ class SummaryAgent(BaseAgent):
         try:
             # Filter transcripts if configured
             min_words = self.summary_config.get('min_segment_length', 3)
+            min_confidence = self.summary_config.get('min_confidence', 0.2)
             filtered_transcripts = [
-                t for t in transcripts 
-                if len(t.text.split()) >= min_words
+                t for t in transcripts
+                if len(t.text.split()) >= min_words and t.confidence >= min_confidence
             ]
-            
-            logger.info(f"Using {len(filtered_transcripts)} transcripts after filtering")
+
+            logger.info(f"Using {len(filtered_transcripts)} transcripts after filtering "
+                       f"(min_words={min_words}, min_confidence={min_confidence})")
             
             # Generate summary using LLM
             summary = self.llm_model.generate_summary(filtered_transcripts)
-            
+
+            # Add filtering info to metadata
+            summary.metadata['original_transcript_count'] = len(transcripts)
+            summary.metadata['filtered_transcript_count'] = len(filtered_transcripts)
+            summary.metadata['filter_settings'] = {
+                'min_words': min_words,
+                'min_confidence': min_confidence
+            }
+
             logger.info("Summary generated successfully")
             self.set_status("idle")
-            
+
             return summary
             
         except Exception as e:
@@ -76,27 +86,39 @@ class SummaryAgent(BaseAgent):
             self.set_status("error")
             raise
     
-    def save_summary(self, summary: DailySummary) -> Path:
+    def save_summary(self, summary: DailySummary, input_filename: str = None) -> Path:
         """
         Save summary to files (JSON and markdown).
-        
+
         Args:
             summary: DailySummary object
-            
+            input_filename: Original input audio filename (optional)
+
         Returns:
             Path to saved files directory
         """
         date_str = summary.date.strftime("%Y%m%d")
-        
+
+        # Build filename with optional input filename
+        if input_filename:
+            # Remove extension and sanitize filename
+            from pathlib import Path as PathLib
+            base_name = PathLib(input_filename).stem
+            # Remove any characters that might cause issues
+            base_name = "".join(c for c in base_name if c.isalnum() or c in ('_', '-'))
+            file_suffix = f"{date_str}_{base_name}"
+        else:
+            file_suffix = date_str
+
         # Save JSON version
-        json_path = self.output_dir / f"summary_{date_str}.json"
+        json_path = self.output_dir / f"summary_{file_suffix}.json"
         with open(json_path, 'w', encoding='utf-8') as f:
             json.dump(summary.to_dict(), f, indent=2, ensure_ascii=False)
         
         logger.info(f"Saved summary JSON to {json_path}")
-        
+
         # Save human-readable markdown version
-        md_path = self.output_dir / f"report_{date_str}.md"
+        md_path = self.output_dir / f"report_{file_suffix}.md"
         markdown_content = self._generate_markdown_report(summary)
         
         with open(md_path, 'w', encoding='utf-8') as f:
@@ -126,23 +148,31 @@ class SummaryAgent(BaseAgent):
         # Overview
         md += "## Overview\n\n"
         md += f"- **Total Speech Duration:** {summary.total_speech_duration / 60:.1f} minutes\n"
-        md += f"- **Number of Segments:** {summary.segment_count}\n"
+
+        # Show both original and filtered counts if available
+        original_count = summary.metadata.get('original_transcript_count')
+        filtered_count = summary.metadata.get('filtered_transcript_count')
+        if original_count and filtered_count:
+            md += f"- **Segments Analyzed:** {filtered_count} (filtered from {original_count} total)\n"
+        else:
+            md += f"- **Number of Segments:** {summary.segment_count}\n"
+
         md += f"- **Average Confidence:** {summary.metadata.get('average_confidence', 0):.2%}\n\n"
         
-        # Temporal Distribution
-        md += "## Speech Distribution Throughout the Day\n\n"
-        
+        # Temporal Distribution (by audio position in minutes)
+        md += "## Speech Distribution in Audio\n\n"
+
         if summary.temporal_distribution:
-            md += "| Time Period | Speech Duration (minutes) |\n"
-            md += "|-------------|---------------------------|\n"
-            
-            for hour in sorted(summary.temporal_distribution.keys()):
-                duration_min = summary.temporal_distribution[hour] / 60
-                time_str = f"{hour:02d}:00 - {hour+1:02d}:00"
-                md += f"| {time_str} | {duration_min:.1f} |\n"
-            
+            md += "| Audio Position | Speech Duration (seconds) |\n"
+            md += "|----------------|---------------------------|\n"
+
+            for minute in sorted(summary.temporal_distribution.keys()):
+                duration_sec = summary.temporal_distribution[minute]
+                time_str = f"{minute:02d}:00 - {minute+1:02d}:00"
+                md += f"| {time_str} | {duration_sec:.1f} |\n"
+
             md += "\n"
-            
+
             # Visual bar chart (ASCII)
             md += self._create_temporal_chart(summary.temporal_distribution)
             md += "\n"
@@ -198,32 +228,36 @@ class SummaryAgent(BaseAgent):
     
     def _create_temporal_chart(self, temporal_dist: Dict[int, float]) -> str:
         """
-        Create ASCII bar chart of temporal distribution.
-        
+        Create ASCII bar chart of temporal distribution (by audio minute).
+
         Args:
-            temporal_dist: Dictionary of hour -> duration
-            
+            temporal_dist: Dictionary of minute -> duration (seconds)
+
         Returns:
             ASCII chart string
         """
         if not temporal_dist:
             return ""
-        
+
         max_duration = max(temporal_dist.values())
         max_bar_length = 40
-        
-        chart = "### Speech Activity Chart\n\n"
+
+        # Determine range of minutes to show
+        min_minute = min(temporal_dist.keys())
+        max_minute = max(temporal_dist.keys())
+
+        chart = "### Speech Activity Chart (by audio minute)\n\n"
         chart += "```\n"
-        
-        for hour in range(24):
-            duration = temporal_dist.get(hour, 0)
+
+        for minute in range(min_minute, max_minute + 1):
+            duration = temporal_dist.get(minute, 0)
             bar_length = int((duration / max_duration) * max_bar_length) if max_duration > 0 else 0
             bar = "█" * bar_length
-            
-            chart += f"{hour:02d}:00 | {bar} {duration/60:.1f}m\n"
-        
+
+            chart += f"{minute:02d}:00 | {bar} {duration:.1f}s\n"
+
         chart += "```\n"
-        
+
         return chart
     
     def generate_weekly_summary(self, daily_summaries: List[DailySummary]) -> Dict[str, Any]:

@@ -12,18 +12,31 @@ from pipeline.orchestrator import PipelineOrchestrator
 
 
 def setup_logging(log_level: str = "INFO"):
-    """Set up logging configuration."""
+    """Set up logging configuration with UTF-8 encoding for cross-platform compatibility."""
+    # Create logs directory if it doesn't exist
+    Path('logs').mkdir(exist_ok=True)
+    
+    # Configure handlers with UTF-8 encoding
+    handlers = [
+        logging.StreamHandler(sys.stdout),
+        logging.FileHandler(
+            f'logs/app_{datetime.now().strftime("%Y%m%d")}.log',
+            encoding='utf-8'  # Force UTF-8 encoding
+        )
+    ]
+    
+    # Set UTF-8 encoding for StreamHandler on Windows
+    if sys.platform == 'win32':
+        # Force UTF-8 output on Windows console
+        import io
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+        sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
+    
     logging.basicConfig(
         level=getattr(logging, log_level.upper()),
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        handlers=[
-            logging.StreamHandler(sys.stdout),
-            logging.FileHandler(f'logs/app_{datetime.now().strftime("%Y%m%d")}.log')
-        ]
+        handlers=handlers
     )
-    
-    # Create logs directory if it doesn't exist
-    Path('logs').mkdir(exist_ok=True)
 
 
 def main():
@@ -104,14 +117,14 @@ def main():
                 )
                 
                 if output_dir:
-                    logger.info(f"\n✓ Success! Reports available at: {output_dir}")
+                    logger.info(f"\n[OK] Success! Reports available at: {output_dir}")
                 else:
-                    logger.warning("\n✗ No output generated (no speech detected)")
+                    logger.warning("\n[ERROR] No output generated (no speech detected)")
             
             elif args.mode == 'vad':
                 logger.info("Running VAD only...")
                 segments = orchestrator.run_vad_only(args.audio, save_segments=True)
-                logger.info(f"\n✓ Detected {len(segments)} speech segments")
+                logger.info(f"\n[OK] Detected {len(segments)} speech segments")
             
             elif args.mode == 'transcribe':
                 if not args.segments_dir:
@@ -120,7 +133,7 @@ def main():
                 
                 logger.info("Running transcription only...")
                 transcripts = orchestrator.run_transcription_only(args.segments_dir)
-                logger.info(f"\n✓ Transcribed {len(transcripts)} segments")
+                logger.info(f"\n[OK] Transcribed {len(transcripts)} segments")
             
             elif args.mode == 'summarize':
                 if not args.transcript_file:
@@ -129,7 +142,7 @@ def main():
                 
                 logger.info("Running summary generation only...")
                 output_dir = orchestrator.run_summary_only(args.transcript_file)
-                logger.info(f"\n✓ Summary generated at: {output_dir}")
+                logger.info(f"\n[OK] Summary generated at: {output_dir}")
             
             elif args.mode == 'daily':
                 logger.info("Running daily scheduled job...")
@@ -146,7 +159,7 @@ def main():
         return 130
     
     except Exception as e:
-        logger.error(f"\n\n✗ Error occurred: {e}", exc_info=True)
+        logger.error(f"\n\n[ERROR] Error occurred: {e}", exc_info=True)
         return 1
 
 

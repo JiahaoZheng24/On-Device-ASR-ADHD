@@ -14,22 +14,48 @@ logger = logging.getLogger(__name__)
 
 
 class WhisperASR(BaseASRModel):
-    """OpenAI Whisper ASR implementation using faster-whisper for efficiency."""
+    """OpenAI Whisper ASR implementation. Supports both openai-whisper and faster-whisper."""
     
     def __init__(self, config: Dict[str, Any]):
         super().__init__(config)
         self.model = None
+        self.using_faster_whisper = False
         
     def load_model(self) -> None:
-        """Load Whisper model using faster-whisper."""
+        """Load Whisper model. Tries openai-whisper first, then faster-whisper."""
+        model_name = self.config.get('model_name', 'base')
+        device = self.config.get('device', 'cpu')
+        
+        # Try openai-whisper first (most compatible)
+        try:
+            import whisper
+            
+            logger.info(f"Loading Whisper model (openai-whisper): {model_name} on {device}")
+            
+            # Check if custom model path is provided
+            model_path = self.config.get('model_path')
+            if model_path:
+                logger.info(f"Using custom model path: {model_path}")
+                self.model = whisper.load_model(model_path, device=device)
+            else:
+                self.model = whisper.load_model(model_name, device=device)
+            
+            self.using_faster_whisper = False
+            self._is_initialized = True
+            logger.info("Whisper model (openai-whisper) loaded successfully")
+            return
+            
+        except ImportError:
+            logger.warning("openai-whisper not found, trying faster-whisper...")
+        except Exception as e:
+            logger.warning(f"Failed to load openai-whisper: {e}, trying faster-whisper...")
+        
+        # Fall back to faster-whisper
         try:
             from faster_whisper import WhisperModel
             
-            model_name = self.config.get('model_name', 'base')
-            device = self.config.get('device', 'cpu')
             compute_type = self.config.get('compute_type', 'int8')
-            
-            logger.info(f"Loading Whisper model: {model_name} on {device} with {compute_type}")
+            logger.info(f"Loading Whisper model (faster-whisper): {model_name} on {device} with {compute_type}")
             
             # Check if custom model path is provided
             model_path = self.config.get('model_path')
@@ -43,11 +69,20 @@ class WhisperASR(BaseASRModel):
                 compute_type=compute_type
             )
             
+            self.using_faster_whisper = True
             self._is_initialized = True
-            logger.info("Whisper model loaded successfully")
+            logger.info("Whisper model (faster-whisper) loaded successfully")
+            return
             
         except ImportError:
-            logger.error("faster-whisper not installed. Install with: pip install faster-whisper")
+            error_msg = (
+                "Neither openai-whisper nor faster-whisper is installed.\n"
+                "Install one of them:\n"
+                "  pip install openai-whisper  (recommended, most compatible)\n"
+                "  pip install faster-whisper  (faster, may have Windows issues)"
+            )
+            logger.error(error_msg)
+            raise ImportError(error_msg)
             raise
         except Exception as e:
             logger.error(f"Failed to load Whisper model: {e}")
@@ -77,32 +112,59 @@ class WhisperASR(BaseASRModel):
             audio = audio / 32768.0
         
         try:
-            # Transcribe with Whisper
             language = self.config.get('language', 'en')
             
-            segments, info = self.model.transcribe(
-                audio,
-                language=language if language != 'auto' else None,
-                beam_size=5,
-                best_of=5,
-                temperature=0.0,
-                vad_filter=True,
-                vad_parameters={
-                    "threshold": 0.5,
-                    "min_speech_duration_ms": 250,
-                }
-            )
-            
-            # Combine all segment texts
-            full_text = ""
-            confidence_scores = []
-            
-            for segment in segments:
-                full_text += segment.text + " "
-                confidence_scores.append(segment.avg_logprob)
-            
-            # Calculate average confidence
-            avg_confidence = np.exp(np.mean(confidence_scores)) if confidence_scores else 0.0
+            if self.using_faster_whisper:
+                # Use faster-whisper transcribe
+                segments, info = self.model.transcribe(
+                    audio,
+                    language=language if language != 'auto' else None,
+                    beam_size=5,
+                    best_of=5,
+                    temperature=0.0,
+                    vad_filter=True,
+                    vad_parameters={
+                        "threshold": 0.5,
+                        "min_speech_duration_ms": 250,
+                    }
+                )
+                
+                # Combine all segment texts
+                full_text = ""
+                confidence_scores = []
+                
+                for segment in segments:
+                    full_text += segment.text + " "
+                    confidence_scores.append(segment.avg_logprob)
+                
+                # Calculate average confidence
+                avg_confidence = np.exp(np.mean(confidence_scores)) if confidence_scores else 0.0
+                
+            else:
+                # Use openai-whisper transcribe
+                result = self.model.transcribe(
+                    audio,
+                    language=language if language != 'auto' else None,
+                    fp16=False,  # Use fp32 for CPU
+                    verbose=False
+                )
+                
+                full_text = result['text']
+                
+                # Extract confidence from segments if available
+                if 'segments' in result and result['segments']:
+                    confidence_scores = []
+                    for seg in result['segments']:
+                        if 'avg_logprob' in seg:
+                            confidence_scores.append(seg['avg_logprob'])
+                        elif 'no_speech_prob' in seg:
+                            # Convert no_speech_prob to confidence
+                            confidence_scores.append(np.log(1 - seg['no_speech_prob']))
+                    
+                    avg_confidence = np.exp(np.mean(confidence_scores)) if confidence_scores else 0.8
+                else:
+                    # Default confidence
+                    avg_confidence = 0.8
             
             transcript = TranscriptSegment(
                 start_time=audio_segment.start_time,
