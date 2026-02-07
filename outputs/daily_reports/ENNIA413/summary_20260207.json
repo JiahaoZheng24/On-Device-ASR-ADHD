@@ -1,0 +1,59 @@
+{
+  "date": "2026-02-07T00:00:00",
+  "total_speech_duration": 67.108,
+  "segment_count": 33,
+  "temporal_distribution": {
+    "0": 15.287999999999986,
+    "1": 12.280000000000015,
+    "2": 7.696000000000012,
+    "3": 14.56000000000003,
+    "4": 9.011999999999972,
+    "5": 8.271999999999991
+  },
+  "communication_patterns": {
+    "primary_characteristics": [
+      "Short and fragmented utterances",
+      "Lack of sustained attention to task"
+    ],
+    "temporal_notes": "Speech segments span from 00:00 to 06:01 in the audio (approximately 6.0 minutes)",
+    "interaction_style": "Brief exchanges"
+  },
+  "representative_excerpts": [
+    {
+      "time": "14:43:50",
+      "text": "Okay, Tyler, look at these pictures and tell me what's happening.",
+      "context": "This excerpt shows the initial instruction given to Tyler, indicating the start of an interaction focused on observing and describing pictures."
+    },
+    {
+      "time": "14:43:51",
+      "text": "Why you can't keep? [and for us.] telling the story that you see in this picture.",
+      "context": "This snippet illustrates a brief exchange where the speaker provides instructions followed by a question from Tyler, demonstrating a quick back-and-forth conversation."
+    },
+    {
+      "time": "14:43:52",
+      "text": "I can't do it. It's only poo. I look good.",
+      "context": "This excerpt represents a short, fragmented statement from Tyler, highlighting his difficulty in engaging with the task and providing a brief commentary on his perception of himself."
+    },
+    {
+      "time": "14:43:53",
+      "text": "What is this? Okay, Tyler, tell me the story is speaking. I got in it. I'm back on me.",
+      "context": "This segment captures another brief exchange where Tyler responds to further instructions, showing his attempt to engage but still struggling with sustained participation in the activity."
+    }
+  ],
+  "metadata": {
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "total_transcripts": 33,
+    "average_confidence": 0.45427256914736,
+    "original_transcript_count": 103,
+    "filtered_transcript_count": 33,
+    "filter_settings": {
+      "min_words": 3,
+      "min_confidence": 0.3
+    },
+    "speaker_statistics": {
+      "child_segments": 15,
+      "adult_segments": 18,
+      "child_ratio": 0.45454545454545453
+    }
+  }
+}

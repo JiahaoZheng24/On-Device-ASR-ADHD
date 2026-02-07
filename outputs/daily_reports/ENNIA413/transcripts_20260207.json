@@ -1,0 +1,830 @@
+{
+  "date": "2026-02-07T14:44:10.259597",
+  "total_segments": 103,
+  "transcripts": [
+    {
+      "start_time": 0.926,
+      "end_time": 5.794,
+      "text": "Okay, Tyler, look at these pictures and tell me what's happening.",
+      "confidence": 0.6501441498772559,
+      "timestamp": "2026-02-07T14:43:50.306364",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 7.006,
+      "end_time": 8.546,
+      "text": "A sad pill.",
+      "confidence": 0.04758623253720481,
+      "timestamp": "2026-02-07T14:43:50.826865",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 11.806,
+      "end_time": 13.922,
+      "text": "Okay, cookie.",
+      "confidence": 0.49475059289648265,
+      "timestamp": "2026-02-07T14:43:50.915944",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 17.694,
+      "end_time": 19.298,
+      "text": "Why you can't keep?",
+      "confidence": 0.42051761926170445,
+      "timestamp": "2026-02-07T14:43:51.008153",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 21.79,
+      "end_time": 23.65,
+      "text": "and for us.",
+      "confidence": 0.37250464310024073,
+      "timestamp": "2026-02-07T14:43:51.089207",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 29.086,
+      "end_time": 30.146,
+      "text": "Eh because, creamy and fluffy. Ahh.",
+      "confidence": 0.005604957362579239,
+      "timestamp": "2026-02-07T14:43:51.492055",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 34.27,
+      "end_time": 35.202,
+      "text": "Oh!",
+      "confidence": 0.39753273015287754,
+      "timestamp": "2026-02-07T14:43:51.556083",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 37.118,
+      "end_time": 38.306,
+      "text": "Okay Tyler.",
+      "confidence": 0.49795613253006454,
+      "timestamp": "2026-02-07T14:43:51.639141",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 38.75,
+      "end_time": 41.282,
+      "text": "telling the story that you see in this picture.",
+      "confidence": 0.47149176177680285,
+      "timestamp": "2026-02-07T14:43:51.783159",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 41.918,
+      "end_time": 43.106,
+      "text": "Bye bye.",
+      "confidence": 0.3914026081458847,
+      "timestamp": "2026-02-07T14:43:51.854986",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 45.214,
+      "end_time": 45.986,
+      "text": "Oh",
+      "confidence": 0.040526861358614594,
+      "timestamp": "2026-02-07T14:43:52.206563",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 46.718,
+      "end_time": 49.666,
+      "text": "I can't do it. It's only poo.",
+      "confidence": 0.3715534331248201,
+      "timestamp": "2026-02-07T14:43:52.505413",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 51.806,
+      "end_time": 53.282,
+      "text": "I look good.",
+      "confidence": 0.5030008489623535,
+      "timestamp": "2026-02-07T14:43:52.590461",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 57.886,
+      "end_time": 59.202,
+      "text": "Thank you.",
+      "confidence": 0.5294518914265358,
+      "timestamp": "2026-02-07T14:43:52.685632",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 61.374,
+      "end_time": 62.21,
+      "text": "UAJ",
+      "confidence": 0.006390620148526318,
+      "timestamp": "2026-02-07T14:43:53.076507",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 63.038,
+      "end_time": 64.45,
+      "text": "What is this?",
+      "confidence": 0.3888730175111761,
+      "timestamp": "2026-02-07T14:43:53.171177",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 66.814,
+      "end_time": 69.154,
+      "text": "and over.",
+      "confidence": 0.37283061582776433,
+      "timestamp": "2026-02-07T14:43:53.253895",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 70.622,
+      "end_time": 73.186,
+      "text": "Okay, Tyler, tell me the story is speaking.",
+      "confidence": 0.5839854595281421,
+      "timestamp": "2026-02-07T14:43:53.409841",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 73.95,
+      "end_time": 75.778,
+      "text": "It's swimming.",
+      "confidence": 0.3809136473722689,
+      "timestamp": "2026-02-07T14:43:53.579036",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 77.726,
+      "end_time": 79.554,
+      "text": "I got in it.",
+      "confidence": 0.4111759546303423,
+      "timestamp": "2026-02-07T14:43:53.668042",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 84.062,
+      "end_time": 85.442,
+      "text": "And one.",
+      "confidence": 0.38604074936878785,
+      "timestamp": "2026-02-07T14:43:53.743902",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 87.774,
+      "end_time": 89.922,
+      "text": "I'm back on me.",
+      "confidence": 0.4669423022310233,
+      "timestamp": "2026-02-07T14:43:53.840362",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 91.678,
+      "end_time": 93.858,
+      "text": "and cry.",
+      "confidence": 0.412659930281863,
+      "timestamp": "2026-02-07T14:43:53.925887",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 97.214,
+      "end_time": 99.138,
+      "text": "and quite large.",
+      "confidence": 0.4383293899162648,
+      "timestamp": "2026-02-07T14:43:54.061748",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 101.31,
+      "end_time": 103.714,
+      "text": "and sit on the edge.",
+      "confidence": 0.4517907658486936,
+      "timestamp": "2026-02-07T14:43:54.143962",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 106.462,
+      "end_time": 107.682,
+      "text": "Um...",
+      "confidence": 0.3758301545556827,
+      "timestamp": "2026-02-07T14:43:54.204529",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 109.406,
+      "end_time": 110.274,
+      "text": "Day!",
+      "confidence": 0.09630785617371836,
+      "timestamp": "2026-02-07T14:43:54.582258",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 112.126,
+      "end_time": 114.626,
+      "text": "they... umpach..",
+      "confidence": 0.06543413117824708,
+      "timestamp": "2026-02-07T14:43:55.032582",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 116.126,
+      "end_time": 116.898,
+      "text": "Goal.",
+      "confidence": 0.07513780004971261,
+      "timestamp": "2026-02-07T14:43:55.393187",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 118.814,
+      "end_time": 119.938,
+      "text": "Okay, Tyler.",
+      "confidence": 0.545658213585899,
+      "timestamp": "2026-02-07T14:43:55.456305",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 120.446,
+      "end_time": 122.05,
+      "text": "Go ahead and clean this too.",
+      "confidence": 0.4945021891069366,
+      "timestamp": "2026-02-07T14:43:55.548141",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 123.326,
+      "end_time": 124.77,
+      "text": "No...",
+      "confidence": 0.029544743333541686,
+      "timestamp": "2026-02-07T14:43:55.847299",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 129.15,
+      "end_time": 131.266,
+      "text": "Play, I play.",
+      "confidence": 0.4515954125192716,
+      "timestamp": "2026-02-07T14:43:55.923694",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 133.342,
+      "end_time": 134.434,
+      "text": "I pray...",
+      "confidence": 0.48504199600441256,
+      "timestamp": "2026-02-07T14:43:56.000361",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 134.846,
+      "end_time": 136.354,
+      "text": "Are pl dressing.",
+      "confidence": 0.03904405550955425,
+      "timestamp": "2026-02-07T14:43:56.410538",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 138.174,
+      "end_time": 139.266,
+      "text": "I'm pretty...",
+      "confidence": 0.3996506878287766,
+      "timestamp": "2026-02-07T14:43:56.479097",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 139.998,
+      "end_time": 142.306,
+      "text": "and... and why don't?",
+      "confidence": 0.3703571149358424,
+      "timestamp": "2026-02-07T14:43:56.572708",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 145.79,
+      "end_time": 147.17,
+      "text": "I agree.",
+      "confidence": 0.503820996931437,
+      "timestamp": "2026-02-07T14:43:56.642569",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 149.79,
+      "end_time": 150.69,
+      "text": "Cause I'mватi",
+      "confidence": 0.007504861378141946,
+      "timestamp": "2026-02-07T14:43:56.938430",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 158.91,
+      "end_time": 159.874,
+      "text": "Dad.",
+      "confidence": 0.4189300224059648,
+      "timestamp": "2026-02-07T14:43:56.992612",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 162.366,
+      "end_time": 163.33,
+      "text": "vious boy.",
+      "confidence": 0.0050518999033618795,
+      "timestamp": "2026-02-07T14:43:57.326729",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 163.646,
+      "end_time": 165.41,
+      "text": "opoly tidak Chu",
+      "confidence": 0.002244648615704022,
+      "timestamp": "2026-02-07T14:43:57.759392",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 167.166,
+      "end_time": 168.354,
+      "text": "Oh, my dick,",
+      "confidence": 0.06585462082792203,
+      "timestamp": "2026-02-07T14:43:58.161758",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 169.246,
+      "end_time": 171.138,
+      "text": "Cause it, I get it!",
+      "confidence": 0.14122974396041957,
+      "timestamp": "2026-02-07T14:43:58.707166",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 174.27,
+      "end_time": 175.618,
+      "text": "Okay.",
+      "confidence": 0.41100333203939876,
+      "timestamp": "2026-02-07T14:43:58.763606",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 178.686,
+      "end_time": 180.354,
+      "text": "Forget it, isn't it?",
+      "confidence": 0.5053641623512253,
+      "timestamp": "2026-02-07T14:43:58.870155",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 181.47,
+      "end_time": 183.298,
+      "text": "but in there.",
+      "confidence": 0.4327862737358578,
+      "timestamp": "2026-02-07T14:43:58.948718",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 186.27,
+      "end_time": 188.13,
+      "text": "I did it.",
+      "confidence": 0.49747944328605953,
+      "timestamp": "2026-02-07T14:43:59.031850",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 190.686,
+      "end_time": 192.418,
+      "text": "Who cares?",
+      "confidence": 0.4000765125196425,
+      "timestamp": "2026-02-07T14:43:59.090997",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 195.166,
+      "end_time": 196.61,
+      "text": "Anнуться RECIECE",
+      "confidence": 0.003105495766539414,
+      "timestamp": "2026-02-07T14:43:59.492698",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 198.878,
+      "end_time": 201.73,
+      "text": "And what? Last day I loved her.",
+      "confidence": 0.5762578214737161,
+      "timestamp": "2026-02-07T14:43:59.595547",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 205.086,
+      "end_time": 207.49,
+      "text": "Go ahead, time to tell me the story of this thing.",
+      "confidence": 0.5327687157576427,
+      "timestamp": "2026-02-07T14:43:59.725289",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 208.19,
+      "end_time": 210.85,
+      "text": "different instance",
+      "confidence": 0.014434341787085317,
+      "timestamp": "2026-02-07T14:44:00.190779",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 212.766,
+      "end_time": 213.922,
+      "text": "Can't play me.",
+      "confidence": 0.37989019184073397,
+      "timestamp": "2026-02-07T14:44:00.330839",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 214.014,
+      "end_time": 215.106,
+      "text": "Castle.",
+      "confidence": 0.39748284151862756,
+      "timestamp": "2026-02-07T14:44:00.398923",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 216.638,
+      "end_time": 218.018,
+      "text": "I got it.",
+      "confidence": 0.42447603124980676,
+      "timestamp": "2026-02-07T14:44:00.469303",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 219.23,
+      "end_time": 220.834,
+      "text": "and one, tap it.",
+      "confidence": 0.4088689694760458,
+      "timestamp": "2026-02-07T14:44:00.552697",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 222.91,
+      "end_time": 224.194,
+      "text": "Oh no.",
+      "confidence": 0.4605892610500345,
+      "timestamp": "2026-02-07T14:44:00.612174",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 225.918,
+      "end_time": 226.818,
+      "text": "so",
+      "confidence": 0.0809166527615104,
+      "timestamp": "2026-02-07T14:44:00.908022",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 231.998,
+      "end_time": 233.122,
+      "text": "Why?",
+      "confidence": 0.40107461844111403,
+      "timestamp": "2026-02-07T14:44:00.967252",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 235.454,
+      "end_time": 236.226,
+      "text": "Oh.",
+      "confidence": 0.4198194239943126,
+      "timestamp": "2026-02-07T14:44:01.031541",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 237.854,
+      "end_time": 239.01,
+      "text": "Okay, Tyler.",
+      "confidence": 0.535100546817058,
+      "timestamp": "2026-02-07T14:44:01.103040",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 239.134,
+      "end_time": 240.61,
+      "text": "I'm gonna stir it easy.",
+      "confidence": 0.3832310812407963,
+      "timestamp": "2026-02-07T14:44:01.186497",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 240.83,
+      "end_time": 242.466,
+      "text": "Like a pinkhead?",
+      "confidence": 0.4182468217952173,
+      "timestamp": "2026-02-07T14:44:01.264529",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 244.67,
+      "end_time": 246.178,
+      "text": "8 18 Conceal",
+      "confidence": 0.00782656577060915,
+      "timestamp": "2026-02-07T14:44:01.697434",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 248.158,
+      "end_time": 250.562,
+      "text": "I'll click STOOSE",
+      "confidence": 0.13327285650845438,
+      "timestamp": "2026-02-07T14:44:02.111151",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 252.606,
+      "end_time": 254.21,
+      "text": "And how about you?",
+      "confidence": 0.11048828167433813,
+      "timestamp": "2026-02-07T14:44:02.512676",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 255.742,
+      "end_time": 256.546,
+      "text": "Oh my gosh! and",
+      "confidence": 0.016535959028047924,
+      "timestamp": "2026-02-07T14:44:02.895608",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 257.374,
+      "end_time": 258.53,
+      "text": "That girl.",
+      "confidence": 0.38457175122625886,
+      "timestamp": "2026-02-07T14:44:02.966345",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 258.686,
+      "end_time": 259.746,
+      "text": "a friendly",
+      "confidence": 0.06934301082253157,
+      "timestamp": "2026-02-07T14:44:03.318205",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 259.902,
+      "end_time": 262.146,
+      "text": "I'm tired. Very sick.",
+      "confidence": 0.37061230156032454,
+      "timestamp": "2026-02-07T14:44:03.425809",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 263.038,
+      "end_time": 263.842,
+      "text": "you a, sure.",
+      "confidence": 0.025225059965753787,
+      "timestamp": "2026-02-07T14:44:03.801429",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 264.126,
+      "end_time": 264.994,
+      "text": "It's the",
+      "confidence": 0.1105983161961439,
+      "timestamp": "2026-02-07T14:44:04.142146",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 267.966,
+      "end_time": 269.058,
+      "text": "Um",
+      "confidence": 0.3907119210942966,
+      "timestamp": "2026-02-07T14:44:04.195243",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 270.622,
+      "end_time": 272.098,
+      "text": "about the week",
+      "confidence": 0.1364062704097454,
+      "timestamp": "2026-02-07T14:44:04.663853",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 274.334,
+      "end_time": 275.426,
+      "text": "Tell me what.",
+      "confidence": 0.38529577120123326,
+      "timestamp": "2026-02-07T14:44:04.741511",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 278.558,
+      "end_time": 279.906,
+      "text": "like, any kind of another like clicks.",
+      "confidence": 0.011228628476963815,
+      "timestamp": "2026-02-07T14:44:05.189804",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 282.622,
+      "end_time": 283.554,
+      "text": "Colleague",
+      "confidence": 0.04740084701295029,
+      "timestamp": "2026-02-07T14:44:05.535830",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 284.254,
+      "end_time": 285.922,
+      "text": "Go dark or see it?",
+      "confidence": 0.06452446735313112,
+      "timestamp": "2026-02-07T14:44:05.969384",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 288.958,
+      "end_time": 290.37,
+      "text": "Dark gold.",
+      "confidence": 0.38165195945847546,
+      "timestamp": "2026-02-07T14:44:06.047190",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 293.79,
+      "end_time": 295.01,
+      "text": "Go ahead, tell him.",
+      "confidence": 0.43266473643694997,
+      "timestamp": "2026-02-07T14:44:06.143804",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 295.774,
+      "end_time": 298.594,
+      "text": "Look at the pictures and tell me the stories.",
+      "confidence": 0.6727565400390687,
+      "timestamp": "2026-02-07T14:44:06.266106",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 300.51,
+      "end_time": 301.666,
+      "text": "a play",
+      "confidence": 0.28113775361352095,
+      "timestamp": "2026-02-07T14:44:06.601003",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 305.022,
+      "end_time": 306.242,
+      "text": "and",
+      "confidence": 0.3933017356869729,
+      "timestamp": "2026-02-07T14:44:06.657044",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 307.358,
+      "end_time": 309.666,
+      "text": "Hope that I'll find you.",
+      "confidence": 0.3978081400978365,
+      "timestamp": "2026-02-07T14:44:06.755744",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 312.766,
+      "end_time": 313.858,
+      "text": "Tie it up.",
+      "confidence": 0.4741563608946931,
+      "timestamp": "2026-02-07T14:44:06.831267",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 315.966,
+      "end_time": 318.37,
+      "text": "a pile",
+      "confidence": 0.40301433388334235,
+      "timestamp": "2026-02-07T14:44:06.947505",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 320.382,
+      "end_time": 322.658,
+      "text": "Up, well,",
+      "confidence": 0.14741817830707685,
+      "timestamp": "2026-02-07T14:44:07.352811",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 325.278,
+      "end_time": 326.402,
+      "text": "up",
+      "confidence": 0.010451772916951499,
+      "timestamp": "2026-02-07T14:44:07.695359",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 332.35,
+      "end_time": 333.282,
+      "text": "Oh.",
+      "confidence": 0.3965125492486704,
+      "timestamp": "2026-02-07T14:44:07.758104",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 333.566,
+      "end_time": 335.49,
+      "text": "Life!",
+      "confidence": 0.018555871926039573,
+      "timestamp": "2026-02-07T14:44:08.113261",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 339.038,
+      "end_time": 340.162,
+      "text": "Man, look.",
+      "confidence": 0.3736123263696147,
+      "timestamp": "2026-02-07T14:44:08.190945",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 340.382,
+      "end_time": 341.826,
+      "text": "Blint on it.",
+      "confidence": 0.46595053017867494,
+      "timestamp": "2026-02-07T14:44:08.265929",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 344.19,
+      "end_time": 345.218,
+      "text": "Take one.",
+      "confidence": 0.5082363947445026,
+      "timestamp": "2026-02-07T14:44:08.336265",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 350.43,
+      "end_time": 351.426,
+      "text": "Um...",
+      "confidence": 0.3901426684470239,
+      "timestamp": "2026-02-07T14:44:08.398367",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 352.894,
+      "end_time": 354.882,
+      "text": "Elisa",
+      "confidence": 0.0604015464997679,
+      "timestamp": "2026-02-07T14:44:08.768573",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 358.27,
+      "end_time": 361.698,
+      "text": "And thank you here.",
+      "confidence": 0.38561682691612803,
+      "timestamp": "2026-02-07T14:44:08.849534",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 362.11,
+      "end_time": 363.362,
+      "text": "It's sad...",
+      "confidence": 0.06885226552396966,
+      "timestamp": "2026-02-07T14:44:09.203326",
+      "speaker_id": "adult"
+    },
+    {
+      "start_time": 371.71,
+      "end_time": 373.666,
+      "text": "and talk.",
+      "confidence": 0.41804408646421376,
+      "timestamp": "2026-02-07T14:44:09.257752",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 378.078,
+      "end_time": 379.458,
+      "text": "and money.",
+      "confidence": 0.44744505834042014,
+      "timestamp": "2026-02-07T14:44:09.322260",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 383.838,
+      "end_time": 386.786,
+      "text": "and revealing their root blue.",
+      "confidence": 0.01503867607415464,
+      "timestamp": "2026-02-07T14:44:09.828916",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 389.502,
+      "end_time": 390.658,
+      "text": "is it an apple?",
+      "confidence": 0.11592814964293512,
+      "timestamp": "2026-02-07T14:44:10.177384",
+      "speaker_id": "child"
+    },
+    {
+      "start_time": 390.878,
+      "end_time": 391.842,
+      "text": "And over.",
+      "confidence": 0.49095136719815735,
+      "timestamp": "2026-02-07T14:44:10.259597",
+      "speaker_id": "adult"
+    }
+  ]
+}

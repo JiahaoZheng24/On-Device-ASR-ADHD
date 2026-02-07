@@ -301,22 +301,208 @@ class WhisperOriginalASR(BaseASRModel):
         return transcripts
 
 
+class WhisperDiarizationASR(BaseASRModel):
+    """
+    Joint ASR and Speaker Diarization model for child-adult interactions.
+    Based on USC SAIL's joint-asr-diarization-child-adult model.
+
+    Model: https://huggingface.co/AlexXu811/child-adult-joint-asr-diarization
+    Paper: arXiv 2601.17640
+
+    Speaker classes: 0=silence, 1=child, 2=adult
+    """
+
+    # Speaker label mapping
+    SPEAKER_LABELS = {0: "silence", 1: "child", 2: "adult"}
+
+    def __init__(self, config: Dict[str, Any]):
+        super().__init__(config)
+        self.model = None
+        self.processor = None
+        self.device = None
+
+    def load_model(self) -> None:
+        """Load the joint ASR-diarization model from HuggingFace."""
+        try:
+            import torch
+            from transformers import WhisperProcessor
+
+            # Try to import the custom model class
+            try:
+                from models.whisper_diarization import WhisperWithDiarization
+            except ImportError:
+                logger.error(
+                    "WhisperWithDiarization model not found.\n"
+                    "Please download model.py from:\n"
+                    "  https://github.com/usc-sail/joint-asr-diarization-child-adult\n"
+                    "And save it as models/whisper_diarization.py"
+                )
+                raise
+
+            device = self.config.get('device', 'cpu')
+            self.device = device
+
+            model_name = self.config.get('diarization_model',
+                'AlexXu811/child-adult-joint-asr-diarization')
+
+            logger.info(f"Loading joint ASR-diarization model: {model_name} on {device}")
+
+            # Load processor (uses Whisper small.en tokenizer)
+            self.processor = WhisperProcessor.from_pretrained("openai/whisper-small.en")
+
+            # Load the joint model
+            self.model = WhisperWithDiarization.from_pretrained(
+                model_name,
+                num_diar_classes=3,  # silence, child, adult
+                diar_loss_weight=1.0
+            )
+            self.model.to(device)
+            self.model.eval()
+
+            self._is_initialized = True
+            logger.info("Joint ASR-diarization model loaded successfully")
+
+        except ImportError as e:
+            logger.error(f"Missing dependencies for diarization model: {e}")
+            logger.error("Install with: pip install transformers torch")
+            raise
+        except Exception as e:
+            logger.error(f"Failed to load diarization model: {e}")
+            raise
+
+    def transcribe(self, audio_segment: AudioSegment, sample_rate: int) -> TranscriptSegment:
+        """
+        Transcribe audio and identify speaker (child vs adult).
+
+        Args:
+            audio_segment: AudioSegment containing speech
+            sample_rate: Sample rate of audio
+
+        Returns:
+            TranscriptSegment with transcription and speaker_id
+        """
+        if not self._is_initialized:
+            raise RuntimeError("Model not initialized. Call load_model() first.")
+
+        import torch
+
+        # Prepare audio
+        audio = audio_segment.audio_data
+        if audio.dtype != np.float32:
+            audio = audio.astype(np.float32)
+
+        if audio.max() > 1.0:
+            audio = audio / 32768.0
+
+        # Resample to 16kHz if needed (Whisper requirement)
+        if sample_rate != 16000:
+            import librosa
+            audio = librosa.resample(audio, orig_sr=sample_rate, target_sr=16000)
+
+        try:
+            # Process audio through the model
+            input_features = self.processor(
+                audio,
+                sampling_rate=16000,
+                return_tensors="pt"
+            ).input_features.to(self.device)
+
+            with torch.no_grad():
+                # Generate transcription
+                generated_ids = self.model.generate(input_features)
+                transcription = self.processor.batch_decode(
+                    generated_ids,
+                    skip_special_tokens=True
+                )[0]
+
+                # Get diarization predictions
+                # WhisperForConditionalGeneration.model.encoder is the correct path
+                encoder_outputs = self.model.model.model.encoder(input_features)
+                diar_logits = self.model.diar_head(encoder_outputs.last_hidden_state)
+                diar_preds = torch.argmax(diar_logits, dim=-1)
+
+                # Determine dominant speaker (exclude silence=0)
+                speaker_counts = torch.bincount(diar_preds.flatten(), minlength=3)
+                # Only consider child (1) and adult (2)
+                if speaker_counts[1] > speaker_counts[2]:
+                    speaker_id = "child"
+                elif speaker_counts[2] > speaker_counts[1]:
+                    speaker_id = "adult"
+                else:
+                    speaker_id = "unknown"
+
+                # Calculate confidence from diarization logits
+                diar_probs = torch.softmax(diar_logits, dim=-1)
+                confidence = diar_probs.max(dim=-1).values.mean().item()
+
+            transcript = TranscriptSegment(
+                start_time=audio_segment.start_time,
+                end_time=audio_segment.end_time,
+                text=transcription.strip(),
+                confidence=float(confidence),
+                timestamp=datetime.now(),
+                speaker_id=speaker_id
+            )
+
+            logger.debug(f"Transcribed ({speaker_id}): {transcript.text[:50]}...")
+            return transcript
+
+        except Exception as e:
+            logger.error(f"Transcription with diarization failed: {e}")
+            return TranscriptSegment(
+                start_time=audio_segment.start_time,
+                end_time=audio_segment.end_time,
+                text="[Transcription failed]",
+                confidence=0.0,
+                timestamp=datetime.now(),
+                speaker_id=None
+            )
+
+    def transcribe_batch(self, audio_segments: List[AudioSegment],
+                        sample_rate: int) -> List[TranscriptSegment]:
+        """Transcribe multiple segments with speaker identification."""
+        if not self._is_initialized:
+            raise RuntimeError("Model not initialized. Call load_model() first.")
+
+        transcripts = []
+        total = len(audio_segments)
+
+        logger.info(f"Transcribing {total} segments with speaker diarization...")
+
+        for i, segment in enumerate(audio_segments):
+            if (i + 1) % 10 == 0 or i == total - 1:
+                logger.info(f"Progress: {i+1}/{total} segments transcribed")
+
+            transcript = self.transcribe(segment, sample_rate)
+            transcripts.append(transcript)
+
+        # Log speaker statistics
+        child_count = sum(1 for t in transcripts if t.speaker_id == "child")
+        adult_count = sum(1 for t in transcripts if t.speaker_id == "adult")
+        logger.info(f"Speaker breakdown: {child_count} child, {adult_count} adult segments")
+
+        return transcripts
+
+
 def create_asr_model(config: Dict[str, Any]) -> BaseASRModel:
     """
     Factory function to create ASR model based on configuration.
-    
+
     Args:
         config: Configuration dictionary
-        
+
     Returns:
         Initialized ASR model
     """
     model_type = config.get('model_type', 'whisper').lower()
-    
+
     if model_type == 'whisper':
         # Default to faster-whisper for efficiency
         return WhisperASR(config)
     elif model_type == 'whisper-original':
         return WhisperOriginalASR(config)
+    elif model_type == 'whisper-diarization':
+        # Joint ASR + child/adult diarization
+        return WhisperDiarizationASR(config)
     else:
         raise ValueError(f"Unknown ASR model type: {model_type}")

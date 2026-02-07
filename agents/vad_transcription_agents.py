@@ -189,19 +189,25 @@ class TranscriptionAgent(BaseAgent):
         
         logger.info(f"Transcribing {len(segments)} segments...")
         self.set_status("processing")
-        
+
         try:
             # Use batch processing if available
             transcripts = self.asr_model.transcribe_batch(segments, self.sample_rate)
-            
+
+            # Copy speaker_id from input segments to transcripts if available
+            # (for diarization-first pipeline where segments have speaker labels)
+            for i, (segment, transcript) in enumerate(zip(segments, transcripts)):
+                if hasattr(segment, 'speaker_id') and segment.speaker_id:
+                    transcript.speaker_id = segment.speaker_id
+
             # Filter out failed transcriptions
             valid_transcripts = [
-                t for t in transcripts 
+                t for t in transcripts
                 if t.text and t.text != "[Transcription failed]"
             ]
-            
+
             logger.info(f"Successfully transcribed {len(valid_transcripts)}/{len(segments)} segments")
-            
+
             self.set_status("idle")
             return valid_transcripts
             
@@ -224,14 +230,16 @@ class TranscriptionAgent(BaseAgent):
     
     def save_transcripts(self, transcripts: List[TranscriptSegment],
                         date: datetime = None,
-                        input_filename: str = None) -> Path:
+                        input_filename: str = None,
+                        output_subdir: Path = None) -> Path:
         """
         Save transcripts to JSON file.
 
         Args:
             transcripts: List of TranscriptSegment objects
             date: Date for the transcripts (uses current date if None)
-            input_filename: Original input audio filename (optional)
+            input_filename: Original input audio filename (optional, deprecated)
+            output_subdir: Subdirectory for this input file's outputs (optional)
 
         Returns:
             Path to saved file
@@ -239,17 +247,18 @@ class TranscriptionAgent(BaseAgent):
         if date is None:
             date = datetime.now()
 
-        # Build filename with optional input filename
-        date_str = date.strftime('%Y%m%d')
-        if input_filename:
-            # Remove extension and sanitize filename
-            base_name = Path(input_filename).stem
-            # Remove any characters that might cause issues
-            base_name = "".join(c for c in base_name if c.isalnum() or c in ('_', '-'))
-            filename = f"transcripts_{date_str}_{base_name}.json"
+        # Determine output directory
+        if output_subdir:
+            save_dir = output_subdir
         else:
-            filename = f"transcripts_{date_str}.json"
-        filepath = self.output_dir / filename
+            save_dir = self.output_dir
+
+        save_dir.mkdir(parents=True, exist_ok=True)
+
+        # Build filename
+        date_str = date.strftime('%Y%m%d')
+        filename = f"transcripts_{date_str}.json"
+        filepath = save_dir / filename
         
         # Convert to JSON-serializable format
         data = {

@@ -3,6 +3,7 @@
 from agents.recording_agent import RecordingAgent, AudioFileAgent
 from agents.vad_transcription_agents import VADAgent, TranscriptionAgent
 from agents.summary_agent import SummaryAgent
+from agents.diarization_agent import DiarizationAgent
 
 __all__ = [
     'RecordingAgent',
@@ -10,4 +11,5 @@ __all__ = [
     'VADAgent',
     'TranscriptionAgent',
     'SummaryAgent',
+    'DiarizationAgent',
 ]

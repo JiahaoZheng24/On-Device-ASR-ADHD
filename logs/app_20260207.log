@@ -1,0 +1,195 @@
+2026-02-07 14:21:32,904 - __main__ - INFO - ======================================================================
+2026-02-07 14:21:32,906 - __main__ - INFO - ADHD Audio Summarization System
+2026-02-07 14:21:32,906 - __main__ - INFO - On-Device Processing - Privacy Preserved
+2026-02-07 14:21:32,906 - __main__ - INFO - ======================================================================
+2026-02-07 14:21:32,906 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-07 14:21:32,917 - __main__ - INFO - Running full pipeline...
+2026-02-07 14:21:32,917 - pipeline.orchestrator - INFO - ============================================================
+2026-02-07 14:21:32,920 - pipeline.orchestrator - INFO - Starting full pipeline execution
+2026-02-07 14:21:32,920 - pipeline.orchestrator - INFO - ============================================================
+2026-02-07 14:21:32,920 - pipeline.orchestrator - INFO - Diarization-first mode enabled
+2026-02-07 14:21:32,920 - pipeline.orchestrator - INFO - Initializing agents: ['audio_file', 'vad', 'diarization', 'transcription']
+2026-02-07 14:21:32,920 - agents.recording_agent - INFO - AudioFileAgent initialized
+2026-02-07 14:21:32,920 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-07 14:21:32,920 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-07 14:21:33,636 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-07 14:21:33,637 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-07 14:21:33,637 - agents.diarization_agent - INFO - Initializing speaker diarization (simple)...
+2026-02-07 14:21:37,738 - models.simple_diarization - INFO - Initialized SimpleDiarization with 2 speakers
+2026-02-07 14:21:37,738 - agents.diarization_agent - INFO - Diarization agent initialized successfully
+2026-02-07 14:21:37,738 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-07 14:21:38,437 - models.asr_models - INFO - Loading Whisper model (openai-whisper): base on cpu
+2026-02-07 14:21:39,232 - models.asr_models - INFO - Whisper model (openai-whisper) loaded successfully
+2026-02-07 14:21:39,232 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-07 14:21:39,232 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-07 14:21:39,232 - pipeline.orchestrator - INFO - Step 1/4: Loading audio from D:\Jiahao_Zheng\On-Device-ASR-ADHD\data\ENNIA413.wav...
+2026-02-07 14:21:39,232 - agents.recording_agent - INFO - Loading audio from: D:\Jiahao_Zheng\On-Device-ASR-ADHD\data\ENNIA413.wav
+2026-02-07 14:21:41,434 - agents.recording_agent - INFO - Loaded 392.69s of audio at 16000Hz
+2026-02-07 14:21:41,434 - pipeline.orchestrator - INFO - Output directory: outputs\daily_reports\ENNIA413
+2026-02-07 14:21:41,434 - pipeline.orchestrator - INFO - Step 2/5: Detecting speech segments (VAD)...
+2026-02-07 14:21:41,434 - agents.vad_transcription_agents - INFO - Running VAD on 392.69s of audio...
+2026-02-07 14:21:45,379 - models.vad_models - INFO - Detected 104 speech segments
+2026-02-07 14:21:45,379 - agents.vad_transcription_agents - INFO - Detected 104 speech segments
+2026-02-07 14:21:45,379 - agents.vad_transcription_agents - INFO - Total speech: 164.96s, Average segment: 1.59s
+2026-02-07 14:21:45,379 - pipeline.orchestrator - INFO - Found 104 speech segments
+2026-02-07 14:21:45,379 - pipeline.orchestrator - INFO - Step 3/5: Diarizing speech segments (simple clustering)...
+2026-02-07 14:21:45,379 - agents.diarization_agent - INFO - Diarizing 104 VAD segments...
+2026-02-07 14:21:45,379 - models.simple_diarization - INFO - Diarizing 104 segments...
+2026-02-07 14:22:09,335 - models.simple_diarization - INFO - Cluster median pitches: {0: 238.28604828950137, 1: 220.0809703691211}
+2026-02-07 14:22:09,335 - models.simple_diarization - INFO -   Cluster 0: 46 segments, median pitch = 238.3 Hz
+2026-02-07 14:22:09,335 - models.simple_diarization - INFO -   Cluster 1: 58 segments, median pitch = 220.1 Hz
+2026-02-07 14:22:09,335 - models.simple_diarization - INFO - Speaker assignment (relative): child=cluster 0 (238.3 Hz), adult=cluster 1 (220.1 Hz), pitch diff=18.2 Hz
+2026-02-07 14:22:09,335 - models.simple_diarization - INFO - Diarization complete: 46 child segments, 58 adult segments
+2026-02-07 14:22:09,335 - agents.diarization_agent - INFO - Diarization complete: 46 child segments, 58 adult segments
+2026-02-07 14:22:09,335 - pipeline.orchestrator - INFO - Step 4/5: Transcribing speaker-labeled segments...
+2026-02-07 14:22:09,335 - agents.vad_transcription_agents - INFO - Transcribing 104 segments...
+2026-02-07 14:22:09,335 - models.asr_models - INFO - Transcribing 104 audio segments...
+2026-02-07 14:22:30,421 - models.asr_models - INFO - Progress: 10/104 segments transcribed
+2026-02-07 14:23:06,329 - models.asr_models - INFO - Progress: 20/104 segments transcribed
+2026-02-07 14:23:23,923 - models.asr_models - INFO - Progress: 30/104 segments transcribed
+2026-02-07 14:23:50,668 - models.asr_models - INFO - Progress: 40/104 segments transcribed
+2026-02-07 14:24:27,012 - models.asr_models - INFO - Progress: 50/104 segments transcribed
+2026-02-07 14:24:52,819 - models.asr_models - INFO - Progress: 60/104 segments transcribed
+2026-02-07 14:25:31,336 - models.asr_models - INFO - Progress: 70/104 segments transcribed
+2026-02-07 14:26:15,242 - models.asr_models - INFO - Progress: 80/104 segments transcribed
+2026-02-07 14:26:43,970 - models.asr_models - INFO - Progress: 90/104 segments transcribed
+2026-02-07 14:27:16,519 - models.asr_models - INFO - Progress: 100/104 segments transcribed
+2026-02-07 14:27:32,109 - models.asr_models - INFO - Progress: 104/104 segments transcribed
+2026-02-07 14:27:33,116 - models.asr_models - INFO - Completed transcription of 104 segments
+2026-02-07 14:27:33,116 - agents.vad_transcription_agents - INFO - Successfully transcribed 103/104 segments
+2026-02-07 14:27:33,125 - agents.vad_transcription_agents - INFO - Saved 103 transcripts to outputs\daily_reports\ENNIA413\transcripts_20260207.json
+2026-02-07 14:27:33,125 - pipeline.orchestrator - INFO - Transcripts saved to outputs\daily_reports\ENNIA413\transcripts_20260207.json
+2026-02-07 14:27:33,125 - pipeline.orchestrator - INFO - Initializing summary agent...
+2026-02-07 14:27:33,125 - agents.summary_agent - INFO - Initializing SummaryAgent...
+2026-02-07 14:27:37,702 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cpu
+2026-02-07 14:27:37,844 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-07 14:27:37,863 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-07 14:27:37,935 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-07 14:27:37,953 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-07 14:27:38,016 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-07 14:27:38,060 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-07 14:27:38,802 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-07 14:27:38,852 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-07 14:27:38,868 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-07 14:27:39,066 - models.llm_models - ERROR - Failed to load Qwen model: Could not import module 'Qwen2ForCausalLM'. Are this object's requirements defined correctly?
+2026-02-07 14:27:39,066 - pipeline.orchestrator - WARNING - Summary generation skipped due to error: Could not import module 'Qwen2ForCausalLM'. Are this object's requirements defined correctly?
+2026-02-07 14:27:39,066 - pipeline.orchestrator - INFO - Transcripts are still available for review
+2026-02-07 14:27:39,066 - pipeline.orchestrator - INFO - ============================================================
+2026-02-07 14:27:39,066 - pipeline.orchestrator - INFO - Pipeline execution completed
+2026-02-07 14:27:39,066 - pipeline.orchestrator - INFO - Output saved to: outputs\daily_reports\ENNIA413
+2026-02-07 14:27:39,066 - pipeline.orchestrator - INFO - ============================================================
+2026-02-07 14:27:39,072 - __main__ - INFO - 
+[OK] Success! Reports available at: outputs\daily_reports\ENNIA413
+2026-02-07 14:27:39,072 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-07 14:27:39,072 - agents.recording_agent - INFO - AudioFileAgent cleaned up
+2026-02-07 14:27:39,081 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-07 14:27:39,081 - agents.diarization_agent - INFO - Diarization agent cleaned up
+2026-02-07 14:27:39,081 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-07 14:27:39,126 - agents.summary_agent - INFO - SummaryAgent cleaned up
+2026-02-07 14:27:39,126 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-07 14:27:39,126 - __main__ - INFO - 
+======================================================================
+2026-02-07 14:27:39,126 - __main__ - INFO - Processing completed successfully
+2026-02-07 14:27:39,126 - __main__ - INFO - ======================================================================
+2026-02-07 14:43:17,901 - __main__ - INFO - ======================================================================
+2026-02-07 14:43:17,901 - __main__ - INFO - ADHD Audio Summarization System
+2026-02-07 14:43:17,902 - __main__ - INFO - On-Device Processing - Privacy Preserved
+2026-02-07 14:43:17,902 - __main__ - INFO - ======================================================================
+2026-02-07 14:43:17,902 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-07 14:43:17,911 - __main__ - INFO - Running full pipeline...
+2026-02-07 14:43:17,911 - pipeline.orchestrator - INFO - ============================================================
+2026-02-07 14:43:17,911 - pipeline.orchestrator - INFO - Starting full pipeline execution
+2026-02-07 14:43:17,911 - pipeline.orchestrator - INFO - ============================================================
+2026-02-07 14:43:17,911 - pipeline.orchestrator - INFO - Diarization-first mode enabled
+2026-02-07 14:43:17,911 - pipeline.orchestrator - INFO - Initializing agents: ['audio_file', 'vad', 'diarization', 'transcription']
+2026-02-07 14:43:17,911 - agents.recording_agent - INFO - AudioFileAgent initialized
+2026-02-07 14:43:17,911 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-07 14:43:17,911 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-07 14:43:18,791 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-07 14:43:18,791 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-07 14:43:18,792 - agents.diarization_agent - INFO - Initializing speaker diarization (simple)...
+2026-02-07 14:43:22,067 - models.simple_diarization - INFO - Initialized SimpleDiarization with 2 speakers
+2026-02-07 14:43:22,067 - agents.diarization_agent - INFO - Diarization agent initialized successfully
+2026-02-07 14:43:22,067 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-07 14:43:22,759 - models.asr_models - INFO - Loading Whisper model (openai-whisper): base on cuda
+2026-02-07 14:43:23,818 - models.asr_models - INFO - Whisper model (openai-whisper) loaded successfully
+2026-02-07 14:43:23,819 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-07 14:43:23,820 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-07 14:43:23,820 - pipeline.orchestrator - INFO - Step 1/4: Loading audio from D:\Jiahao_Zheng\On-Device-ASR-ADHD\data\ENNIA413.wav...
+2026-02-07 14:43:23,821 - agents.recording_agent - INFO - Loading audio from: D:\Jiahao_Zheng\On-Device-ASR-ADHD\data\ENNIA413.wav
+2026-02-07 14:43:26,280 - agents.recording_agent - INFO - Loaded 392.69s of audio at 16000Hz
+2026-02-07 14:43:26,281 - pipeline.orchestrator - INFO - Output directory: outputs\daily_reports\ENNIA413
+2026-02-07 14:43:26,281 - pipeline.orchestrator - INFO - Step 2/5: Detecting speech segments (VAD)...
+2026-02-07 14:43:26,281 - agents.vad_transcription_agents - INFO - Running VAD on 392.69s of audio...
+2026-02-07 14:43:30,941 - models.vad_models - INFO - Detected 104 speech segments
+2026-02-07 14:43:30,941 - agents.vad_transcription_agents - INFO - Detected 104 speech segments
+2026-02-07 14:43:30,943 - agents.vad_transcription_agents - INFO - Total speech: 164.96s, Average segment: 1.59s
+2026-02-07 14:43:30,943 - pipeline.orchestrator - INFO - Found 104 speech segments
+2026-02-07 14:43:30,943 - pipeline.orchestrator - INFO - Step 3/5: Diarizing speech segments (simple clustering)...
+2026-02-07 14:43:30,943 - agents.diarization_agent - INFO - Diarizing 104 VAD segments...
+2026-02-07 14:43:30,943 - models.simple_diarization - INFO - Diarizing 104 segments...
+2026-02-07 14:43:49,183 - models.simple_diarization - INFO - Cluster median pitches: {0: 238.28604828950137, 1: 220.0809703691211}
+2026-02-07 14:43:49,183 - models.simple_diarization - INFO -   Cluster 0: 46 segments, median pitch = 238.3 Hz
+2026-02-07 14:43:49,183 - models.simple_diarization - INFO -   Cluster 1: 58 segments, median pitch = 220.1 Hz
+2026-02-07 14:43:49,183 - models.simple_diarization - INFO - Speaker assignment (relative): child=cluster 0 (238.3 Hz), adult=cluster 1 (220.1 Hz), pitch diff=18.2 Hz
+2026-02-07 14:43:49,183 - models.simple_diarization - INFO - Diarization complete: 46 child segments, 58 adult segments
+2026-02-07 14:43:49,183 - agents.diarization_agent - INFO - Diarization complete: 46 child segments, 58 adult segments
+2026-02-07 14:43:49,183 - pipeline.orchestrator - INFO - Step 4/5: Transcribing speaker-labeled segments...
+2026-02-07 14:43:49,183 - agents.vad_transcription_agents - INFO - Transcribing 104 segments...
+2026-02-07 14:43:49,183 - models.asr_models - INFO - Transcribing 104 audio segments...
+2026-02-07 14:43:51,783 - models.asr_models - INFO - Progress: 10/104 segments transcribed
+2026-02-07 14:43:53,579 - models.asr_models - INFO - Progress: 20/104 segments transcribed
+2026-02-07 14:43:55,032 - models.asr_models - INFO - Progress: 30/104 segments transcribed
+2026-02-07 14:43:56,642 - models.asr_models - INFO - Progress: 40/104 segments transcribed
+2026-02-07 14:43:59,031 - models.asr_models - INFO - Progress: 50/104 segments transcribed
+2026-02-07 14:44:00,612 - models.asr_models - INFO - Progress: 60/104 segments transcribed
+2026-02-07 14:44:02,895 - models.asr_models - INFO - Progress: 70/104 segments transcribed
+2026-02-07 14:44:05,535 - models.asr_models - INFO - Progress: 80/104 segments transcribed
+2026-02-07 14:44:07,352 - models.asr_models - INFO - Progress: 90/104 segments transcribed
+2026-02-07 14:44:09,203 - models.asr_models - INFO - Progress: 100/104 segments transcribed
+2026-02-07 14:44:10,177 - models.asr_models - INFO - Progress: 104/104 segments transcribed
+2026-02-07 14:44:10,259 - models.asr_models - INFO - Completed transcription of 104 segments
+2026-02-07 14:44:10,259 - agents.vad_transcription_agents - INFO - Successfully transcribed 103/104 segments
+2026-02-07 14:44:10,268 - agents.vad_transcription_agents - INFO - Saved 103 transcripts to outputs\daily_reports\ENNIA413\transcripts_20260207.json
+2026-02-07 14:44:10,268 - pipeline.orchestrator - INFO - Transcripts saved to outputs\daily_reports\ENNIA413\transcripts_20260207.json
+2026-02-07 14:44:10,269 - pipeline.orchestrator - INFO - Initializing summary agent...
+2026-02-07 14:44:10,269 - agents.summary_agent - INFO - Initializing SummaryAgent...
+2026-02-07 14:44:13,785 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cuda
+2026-02-07 14:44:13,920 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-07 14:44:13,936 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-07 14:44:14,006 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-07 14:44:14,031 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-07 14:44:14,098 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-07 14:44:14,137 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-07 14:44:14,846 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-07 14:44:14,889 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-07 14:44:14,906 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-07 14:44:36,748 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-07 14:44:36,770 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/generation_config.json "HTTP/1.1 200 OK"
+2026-02-07 14:44:36,828 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-02-07 14:44:45,418 - models.llm_models - INFO - Qwen model loaded successfully
+2026-02-07 14:44:45,426 - agents.summary_agent - INFO - SummaryAgent initialized successfully
+2026-02-07 14:44:45,426 - pipeline.orchestrator - INFO - Step 5/5: Generating daily summary...
+2026-02-07 14:44:45,426 - agents.summary_agent - INFO - Generating summary for 103 transcripts...
+2026-02-07 14:44:45,426 - agents.summary_agent - INFO - Using 33 transcripts after filtering (min_words=3, min_confidence=0.3)
+2026-02-07 14:45:07,447 - agents.summary_agent - INFO - Speaker breakdown: 15 child, 18 adult segments
+2026-02-07 14:45:07,447 - agents.summary_agent - INFO - Summary generated successfully
+2026-02-07 14:45:07,456 - agents.summary_agent - INFO - Saved summary JSON to outputs\daily_reports\ENNIA413\summary_20260207.json
+2026-02-07 14:45:07,459 - agents.summary_agent - INFO - Saved summary report to outputs\daily_reports\ENNIA413\report_20260207.md
+2026-02-07 14:45:07,459 - pipeline.orchestrator - INFO - ============================================================
+2026-02-07 14:45:07,459 - pipeline.orchestrator - INFO - Pipeline execution completed
+2026-02-07 14:45:07,459 - pipeline.orchestrator - INFO - Output saved to: outputs\daily_reports\ENNIA413
+2026-02-07 14:45:07,459 - pipeline.orchestrator - INFO - ============================================================
+2026-02-07 14:45:07,465 - __main__ - INFO - 
+[OK] Success! Reports available at: outputs\daily_reports\ENNIA413
+2026-02-07 14:45:07,465 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-07 14:45:07,465 - agents.recording_agent - INFO - AudioFileAgent cleaned up
+2026-02-07 14:45:07,535 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-07 14:45:07,536 - agents.diarization_agent - INFO - Diarization agent cleaned up
+2026-02-07 14:45:07,544 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-07 14:45:07,755 - agents.summary_agent - INFO - SummaryAgent cleaned up
+2026-02-07 14:45:07,755 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-07 14:45:07,755 - __main__ - INFO - 
+======================================================================
+2026-02-07 14:45:07,755 - __main__ - INFO - Processing completed successfully
+2026-02-07 14:45:07,755 - __main__ - INFO - ======================================================================

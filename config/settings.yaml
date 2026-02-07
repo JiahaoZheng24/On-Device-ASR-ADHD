@@ -15,13 +15,45 @@ vad:
   min_silence_duration: 0.3  # seconds
   padding: 0.1  # seconds of padding around speech
 
+# Speaker Diarization Settings (for diarization-first pipeline)
+diarization:
+  enabled: true  # Set to true to enable separate diarization before ASR
+  method: "simple"  # Options: "simple" (local, no token) or "pyannote" (needs HF token)
+
+  # Simple diarization settings (completely local, no external dependencies)
+  n_speakers: 2  # Expected number of speakers
+  n_mfcc: 20  # Number of MFCC coefficients for feature extraction
+  child_pitch_threshold: 250.0  # Pitch threshold (Hz) to distinguish child from adult
+
+  # Pyannote settings (only used if method = "pyannote")
+  model_name: "pyannote/speaker-diarization-3.1"  # Pyannote model for speaker diarization
+  device: "cuda"  # Options: cpu, cuda
+  min_speakers: 2  # Minimum number of speakers (null = auto-detect)
+  max_speakers: 2  # Maximum number of speakers (null = auto-detect)
+  # HuggingFace token required for pyannote models:
+  # 1. Visit https://huggingface.co/pyannote/speaker-diarization-3.1
+  # 2. Accept user conditions
+  # 3. Create token at https://huggingface.co/settings/tokens
+  hf_token: null  # Set your HF token here or use environment variable HF_TOKEN
+
 # Automatic Speech Recognition (ASR) Settings
 asr:
-  model_type: "whisper"  # Currently only whisper supported
-  model_name: "base"  # Options: tiny, base, small, medium, large
+  # Model type options:
+  #   - "whisper": Standard Whisper ASR (use with simple diarization)
+  #   - "whisper-diarization": Joint ASR + child/adult speaker identification (not recommended)
+  model_type: "whisper"  # Use standard Whisper with simple diarization
+
+  # For standard Whisper: tiny, base, small, medium, large
+  model_name: "base"
+
+  # For whisper-diarization model (identifies child vs adult speakers)
+  # Uncomment below to enable:
+  # model_type: "whisper-diarization"
+  diarization_model: "AlexXu811/child-adult-joint-asr-diarization"
+
   # For local model path: uncomment below
   # model_path: "/path/to/local/whisper/model"
-  device: "cuda"  # Options: cpu, cuda
+  device: "cuda"  # Options: cpu, cuda (GPU strongly recommended)
   language: "en"  # Options: en, zh, auto
   batch_size: 8
   compute_type: "int8"  # Options: float32, float16, int8
@@ -34,7 +66,7 @@ llm:
   
   # Local model path (if using downloaded model)
   model_path: null  # e.g., "/home/user/models/Qwen2.5-7B-Instruct"
-  
+
   device: "cuda"  # Options: cpu, cuda
   max_length: 4096
   temperature: 0.7

@@ -1,5 +1,5 @@
 # Core dependencies
-numpy>=1.24.0
+numpy>=2.0.0
 scipy>=1.10.0
 PyYAML>=6.0
 
@@ -7,26 +7,26 @@ PyYAML>=6.0
 sounddevice>=0.4.6
 librosa>=0.10.0
 
-# Voice Activity Detection
-torch>=2.0.0
-torchaudio>=2.0.0
+# Voice Activity Detection & ASR
+# For GPU: pip install torch torchaudio torchvision --index-url https://download.pytorch.org/whl/cu128
+torch>=2.8.0
+torchaudio>=2.8.0
+torchvision>=0.23.0
 
-# Speech Recognition (using original OpenAI Whisper for best compatibility)
+# Speech Recognition (OpenAI Whisper)
 openai-whisper>=20231117
+
+# Speaker Diarization (simple local approach)
+scikit-learn>=1.2.0
 
 # Large Language Models
 transformers>=4.35.0
-accelerate>=0.24.0
-sentencepiece>=0.1.99
-
-# Quantization (optional, comment out if installation fails)
-bitsandbytes>=0.41.0
 
 # Utilities
 python-dateutil>=2.8.0
 tqdm>=4.65.0
 
-# Notes:
-# - Uses openai-whisper instead of faster-whisper for better cross-platform compatibility
-# - bitsandbytes may not work on all systems (can be commented out)
-# - System works with CPU-only configuration
+# Optional dependencies (uncomment if needed):
+# accelerate>=0.24.0       # For faster model loading
+# sentencepiece>=0.1.99    # For some tokenizers
+# bitsandbytes>=0.41.0     # For quantization (may not work on Windows)

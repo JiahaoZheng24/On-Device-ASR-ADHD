@@ -76,6 +76,18 @@ class SummaryAgent(BaseAgent):
                 'min_confidence': min_confidence
             }
 
+            # Add speaker statistics if diarization is available
+            speaker_ids = [t.speaker_id for t in filtered_transcripts if t.speaker_id]
+            if speaker_ids:
+                child_count = sum(1 for s in speaker_ids if s == 'child')
+                adult_count = sum(1 for s in speaker_ids if s == 'adult')
+                summary.metadata['speaker_statistics'] = {
+                    'child_segments': child_count,
+                    'adult_segments': adult_count,
+                    'child_ratio': child_count / len(speaker_ids) if speaker_ids else 0
+                }
+                logger.info(f"Speaker breakdown: {child_count} child, {adult_count} adult segments")
+
             logger.info("Summary generated successfully")
             self.set_status("idle")
 
@@ -86,47 +98,46 @@ class SummaryAgent(BaseAgent):
             self.set_status("error")
             raise
     
-    def save_summary(self, summary: DailySummary, input_filename: str = None) -> Path:
+    def save_summary(self, summary: DailySummary, input_filename: str = None,
+                     output_subdir: Path = None) -> Path:
         """
         Save summary to files (JSON and markdown).
 
         Args:
             summary: DailySummary object
-            input_filename: Original input audio filename (optional)
+            input_filename: Original input audio filename (optional, deprecated)
+            output_subdir: Subdirectory for this input file's outputs (optional)
 
         Returns:
             Path to saved files directory
         """
         date_str = summary.date.strftime("%Y%m%d")
 
-        # Build filename with optional input filename
-        if input_filename:
-            # Remove extension and sanitize filename
-            from pathlib import Path as PathLib
-            base_name = PathLib(input_filename).stem
-            # Remove any characters that might cause issues
-            base_name = "".join(c for c in base_name if c.isalnum() or c in ('_', '-'))
-            file_suffix = f"{date_str}_{base_name}"
+        # Determine output directory
+        if output_subdir:
+            save_dir = output_subdir
         else:
-            file_suffix = date_str
+            save_dir = self.output_dir
+
+        save_dir.mkdir(parents=True, exist_ok=True)
 
         # Save JSON version
-        json_path = self.output_dir / f"summary_{file_suffix}.json"
+        json_path = save_dir / f"summary_{date_str}.json"
         with open(json_path, 'w', encoding='utf-8') as f:
             json.dump(summary.to_dict(), f, indent=2, ensure_ascii=False)
         
         logger.info(f"Saved summary JSON to {json_path}")
 
         # Save human-readable markdown version
-        md_path = self.output_dir / f"report_{file_suffix}.md"
+        md_path = save_dir / f"report_{date_str}.md"
         markdown_content = self._generate_markdown_report(summary)
-        
+
         with open(md_path, 'w', encoding='utf-8') as f:
             f.write(markdown_content)
-        
+
         logger.info(f"Saved summary report to {md_path}")
-        
-        return self.output_dir
+
+        return save_dir
     
     def _generate_markdown_report(self, summary: DailySummary) -> str:
         """
@@ -157,8 +168,18 @@ class SummaryAgent(BaseAgent):
         else:
             md += f"- **Number of Segments:** {summary.segment_count}\n"
 
-        md += f"- **Average Confidence:** {summary.metadata.get('average_confidence', 0):.2%}\n\n"
-        
+        md += f"- **Average Confidence:** {summary.metadata.get('average_confidence', 0):.2%}\n"
+
+        # Show speaker statistics if available (from diarization model)
+        speaker_stats = summary.metadata.get('speaker_statistics')
+        if speaker_stats:
+            child_segs = speaker_stats.get('child_segments', 0)
+            adult_segs = speaker_stats.get('adult_segments', 0)
+            child_ratio = speaker_stats.get('child_ratio', 0)
+            md += f"- **Speaker Segments:** {child_segs} child segments ({child_ratio:.0%}), {adult_segs} adult segments ({1-child_ratio:.0%})\n"
+
+        md += "\n"
+
         # Temporal Distribution (by audio position in minutes)
         md += "## Speech Distribution in Audio\n\n"
 

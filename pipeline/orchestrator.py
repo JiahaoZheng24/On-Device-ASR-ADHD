@@ -11,6 +11,7 @@ import yaml
 from agents.recording_agent import RecordingAgent, AudioFileAgent
 from agents.vad_transcription_agents import VADAgent, TranscriptionAgent
 from agents.summary_agent import SummaryAgent
+from agents.diarization_agent import DiarizationAgent
 
 logger = logging.getLogger(__name__)
 
@@ -34,9 +35,10 @@ class PipelineOrchestrator:
         self.recording_agent: Optional[RecordingAgent] = None
         self.audio_file_agent: Optional[AudioFileAgent] = None
         self.vad_agent: Optional[VADAgent] = None
+        self.diarization_agent: Optional[DiarizationAgent] = None
         self.transcription_agent: Optional[TranscriptionAgent] = None
         self.summary_agent: Optional[SummaryAgent] = None
-        
+
         self.is_initialized = False
         
     @staticmethod
@@ -72,15 +74,19 @@ class PipelineOrchestrator:
         if 'vad' in agents:
             self.vad_agent = VADAgent(self.config)
             self.vad_agent.initialize()
-        
+
+        if 'diarization' in agents:
+            self.diarization_agent = DiarizationAgent(self.config)
+            self.diarization_agent.initialize()
+
         if 'transcription' in agents:
             self.transcription_agent = TranscriptionAgent(self.config)
             self.transcription_agent.initialize()
-        
+
         if 'summary' in agents:
             self.summary_agent = SummaryAgent(self.config)
             self.summary_agent.initialize()
-        
+
         self.is_initialized = True
         logger.info("All requested agents initialized successfully")
     
@@ -100,14 +106,19 @@ class PipelineOrchestrator:
         logger.info("Starting full pipeline execution")
         logger.info("=" * 60)
         
-        # Determine which agents are needed based on audio source
-        required_agents = ['vad', 'transcription', 'summary']
-        
+        # Determine which agents are needed based on audio source and diarization config
+        diarization_enabled = self.config.get('diarization', {}).get('enabled', False)
+        required_agents = ['vad', 'transcription']  # Summary is optional
+
+        if diarization_enabled:
+            required_agents.insert(1, 'diarization')  # Add after VAD
+            logger.info("Diarization-first mode enabled")
+
         if audio_source == "record":
             required_agents.insert(0, 'recording')
         else:
             required_agents.insert(0, 'audio_file')
-        
+
         # Ensure required agents are initialized
         if not self.is_initialized:
             self.initialize_agents(required_agents)
@@ -121,7 +132,7 @@ class PipelineOrchestrator:
                 self.audio_file_agent.initialize()
         
         # Step 1: Get audio
-        input_filename = None
+        output_subdir = None
         if audio_source == "record":
             logger.info(f"Step 1/4: Recording audio ({duration}s)...")
             audio = self.recording_agent.execute(duration)
@@ -129,44 +140,112 @@ class PipelineOrchestrator:
         else:
             logger.info(f"Step 1/4: Loading audio from {audio_source}...")
             audio, sample_rate = self.audio_file_agent.execute(Path(audio_source))
-            input_filename = Path(audio_source).name
+            # Create subdirectory for this input file's outputs
+            input_basename = Path(audio_source).stem
+            # Sanitize the folder name
+            input_basename = "".join(c for c in input_basename if c.isalnum() or c in ('_', '-'))
+            output_subdir = Path(self.config['system']['output_dir']) / input_basename
+            output_subdir.mkdir(parents=True, exist_ok=True)
+            logger.info(f"Output directory: {output_subdir}")
         
-        # Step 2: Detect speech segments
-        logger.info("Step 2/4: Detecting speech segments...")
-        speech_segments = self.vad_agent.execute(audio)
-        
-        if not speech_segments:
-            logger.warning("No speech detected. Pipeline terminated.")
-            return None
-        
-        logger.info(f"Found {len(speech_segments)} speech segments")
-        
-        # Step 3: Transcribe speech
-        logger.info("Step 3/4: Transcribing speech...")
-        transcripts = self.transcription_agent.execute(speech_segments)
+        # Step 2: Speaker diarization or VAD
+        if diarization_enabled:
+            diar_method = self.config.get('diarization', {}).get('method', 'simple')
+
+            if diar_method == 'pyannote':
+                # Pyannote: Run diarization on full audio
+                logger.info("Step 2/5: Performing speaker diarization (pyannote)...")
+                diar_segments = self.diarization_agent.execute(audio, sample_rate)
+
+                if not diar_segments:
+                    logger.warning("No speech detected. Pipeline terminated.")
+                    return None
+
+                logger.info(
+                    f"Found {len(set(s['speaker'] for s in diar_segments))} speakers "
+                    f"in {len(diar_segments)} segments"
+                )
+
+                # Step 3: Create audio segments with speaker labels
+                logger.info("Step 3/5: Creating speaker-labeled audio segments...")
+                speaker_segments = self.diarization_agent.create_speaker_segments(
+                    audio, sample_rate, diar_segments
+                )
+
+                # Step 4: Transcribe each speaker segment
+                logger.info("Step 4/5: Transcribing speaker segments...")
+                transcripts = self.transcription_agent.execute(speaker_segments)
+
+            elif diar_method == 'simple':
+                # Simple: VAD first, then diarize VAD segments
+                logger.info("Step 2/5: Detecting speech segments (VAD)...")
+                speech_segments = self.vad_agent.execute(audio)
+
+                if not speech_segments:
+                    logger.warning("No speech detected. Pipeline terminated.")
+                    return None
+
+                logger.info(f"Found {len(speech_segments)} speech segments")
+
+                # Step 3: Diarize VAD segments
+                logger.info("Step 3/5: Diarizing speech segments (simple clustering)...")
+                speaker_segments = self.diarization_agent.diarize_vad_segments(speech_segments)
+
+                # Step 4: Transcribe speaker-labeled segments
+                logger.info("Step 4/5: Transcribing speaker-labeled segments...")
+                transcripts = self.transcription_agent.execute(speaker_segments)
+
+            else:
+                raise ValueError(f"Unknown diarization method: {diar_method}")
+
+        else:
+            # Standard VAD-based flow (no diarization)
+            logger.info("Step 2/4: Detecting speech segments...")
+            speech_segments = self.vad_agent.execute(audio)
+
+            if not speech_segments:
+                logger.warning("No speech detected. Pipeline terminated.")
+                return None
+
+            logger.info(f"Found {len(speech_segments)} speech segments")
+
+            # Step 3: Transcribe speech
+            logger.info("Step 3/4: Transcribing speech...")
+            transcripts = self.transcription_agent.execute(speech_segments)
         
         if not transcripts:
             logger.warning("No transcripts generated. Pipeline terminated.")
             return None
-        
+
         # Save transcripts
         transcript_path = self.transcription_agent.save_transcripts(
-            transcripts, input_filename=input_filename
+            transcripts, output_subdir=output_subdir
         )
         logger.info(f"Transcripts saved to {transcript_path}")
 
-        # Step 4: Generate summary
-        logger.info("Step 4/4: Generating daily summary...")
-        summary = self.summary_agent.execute(transcripts)
+        # Final step: Generate summary (optional)
+        output_dir = output_subdir or Path(self.config['system']['output_dir'])
+        try:
+            if self.summary_agent is None:
+                logger.info("Initializing summary agent...")
+                self.summary_agent = SummaryAgent(self.config)
+                self.summary_agent.initialize()
 
-        # Save summary
-        output_dir = self.summary_agent.save_summary(summary, input_filename=input_filename)
-        
+            final_step = "5/5" if diarization_enabled else "4/4"
+            logger.info(f"Step {final_step}: Generating daily summary...")
+            summary = self.summary_agent.execute(transcripts)
+
+            # Save summary
+            output_dir = self.summary_agent.save_summary(summary, output_subdir=output_subdir)
+        except Exception as e:
+            logger.warning(f"Summary generation skipped due to error: {e}")
+            logger.info("Transcripts are still available for review")
+
         logger.info("=" * 60)
-        logger.info("Pipeline execution completed successfully")
-        logger.info(f"Reports saved to: {output_dir}")
+        logger.info("Pipeline execution completed")
+        logger.info(f"Output saved to: {output_dir}")
         logger.info("=" * 60)
-        
+
         return output_dir
     
     def run_vad_only(self, audio_source: str, save_segments: bool = True) -> list:
@@ -309,13 +388,16 @@ class PipelineOrchestrator:
         
         if self.vad_agent:
             self.vad_agent.cleanup()
-        
+
+        if self.diarization_agent:
+            self.diarization_agent.cleanup()
+
         if self.transcription_agent:
             self.transcription_agent.cleanup()
-        
+
         if self.summary_agent:
             self.summary_agent.cleanup()
-        
+
         logger.info("Cleanup completed")
     
     def __enter__(self):
