@@ -16,8 +16,9 @@ torchvision>=0.23.0
 # Speech Recognition (OpenAI Whisper)
 openai-whisper>=20231117
 
-# Speaker Diarization (simple local approach)
-scikit-learn>=1.2.0
+# Speaker Diarization
+scikit-learn>=1.2.0                # For simple local diarization (MFCC + K-means)
+pyannote.audio>=3.3.0              # For neural speaker diarization (requires HF token)
 
 # Large Language Models
 transformers>=4.35.0

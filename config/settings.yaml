@@ -18,7 +18,7 @@ vad:
 # Speaker Diarization Settings (for diarization-first pipeline)
 diarization:
   enabled: true  # Set to true to enable separate diarization before ASR
-  method: "simple"  # Options: "simple" (local, no token) or "pyannote" (needs HF token)
+  method: "pyannote"  # Options: "simple" (local, no token) or "pyannote" (needs HF token)
 
   # Simple diarization settings (completely local, no external dependencies)
   n_speakers: 2  # Expected number of speakers
@@ -34,7 +34,7 @@ diarization:
   # 1. Visit https://huggingface.co/pyannote/speaker-diarization-3.1
   # 2. Accept user conditions
   # 3. Create token at https://huggingface.co/settings/tokens
-  hf_token: null  # Set your HF token here or use environment variable HF_TOKEN
+  hf_token: null  # Set via environment variable HF_TOKEN, or paste your token here (do NOT commit)
 
 # Automatic Speech Recognition (ASR) Settings
 asr:
@@ -44,7 +44,7 @@ asr:
   model_type: "whisper"  # Use standard Whisper with simple diarization
 
   # For standard Whisper: tiny, base, small, medium, large
-  model_name: "base"
+  model_name: "small"
 
   # For whisper-diarization model (identifies child vs adult speakers)
   # Uncomment below to enable:

@@ -1,0 +1,65 @@
+{
+  "date": "2026-02-10T00:00:00",
+  "total_speech_duration": 102.41437500000005,
+  "segment_count": 39,
+  "temporal_distribution": {
+    "0": 20.165625000000002,
+    "1": 18.410624999999996,
+    "2": 18.10687500000003,
+    "3": 13.398750000000007,
+    "4": 18.14062500000003,
+    "5": 11.053124999999966,
+    "6": 3.138750000000016
+  },
+  "communication_patterns": {
+    "primary_characteristics": [
+      "Short and simple responses",
+      "Frequent interruptions by adult"
+    ],
+    "temporal_notes": "Speech segments span from 00:00 to 06:27 in the audio (approximately 6.4 minutes)",
+    "interaction_style": "Brief exchanges"
+  },
+  "representative_excerpts": [
+    {
+      "time": "01:51:20",
+      "text": "Okay, Tyler, look at these pictures and tell me what's happened.",
+      "context": "This excerpt shows the initial interaction where the adult initiates a conversation about observing pictures."
+    },
+    {
+      "time": "01:51:21",
+      "text": "and get cookies.\nand it falls off.\nI'm a kid.\nand thank you!",
+      "context": "This excerpt illustrates Tyler’s brief and disjointed responses, which are typical of his communication patterns during this time."
+    },
+    {
+      "time": "01:51:24",
+      "text": "and a kicking swimming pool.\nand go in it.\nwork on me.",
+      "context": "Another example of Tyler providing short, fragmented statements in response to the adult's prompts."
+    },
+    {
+      "time": "01:51:26",
+      "text": "Okay, Tider, tell me the story you see here.",
+      "context": "This excerpt marks another instance of the adult prompting Tyler to narrate a scene, highlighting the repetitive nature of the interactions."
+    },
+    {
+      "time": "01:51:27",
+      "text": "and thank you!",
+      "context": "This brief exchange continues the pattern of Tyler providing concise and often one-word responses to questions or prompts."
+    }
+  ],
+  "metadata": {
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "total_transcripts": 39,
+    "average_confidence": 0.4996603128556612,
+    "original_transcript_count": 92,
+    "filtered_transcript_count": 39,
+    "filter_settings": {
+      "min_words": 3,
+      "min_confidence": 0.3
+    },
+    "speaker_statistics": {
+      "child_segments": 32,
+      "adult_segments": 7,
+      "child_ratio": 0.8205128205128205
+    }
+  }
+}

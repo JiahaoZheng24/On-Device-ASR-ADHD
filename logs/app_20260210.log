@@ -1,0 +1,683 @@
+2026-02-10 01:26:41,856 - __main__ - INFO - ======================================================================
+2026-02-10 01:26:41,856 - __main__ - INFO - ADHD Audio Summarization System
+2026-02-10 01:26:41,856 - __main__ - INFO - On-Device Processing - Privacy Preserved
+2026-02-10 01:26:41,856 - __main__ - INFO - ======================================================================
+2026-02-10 01:26:41,856 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-10 01:26:41,872 - __main__ - INFO - Running full pipeline...
+2026-02-10 01:26:41,872 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:26:41,872 - pipeline.orchestrator - INFO - Starting full pipeline execution
+2026-02-10 01:26:41,872 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:26:41,872 - pipeline.orchestrator - INFO - Diarization-first mode enabled
+2026-02-10 01:26:41,872 - pipeline.orchestrator - INFO - Initializing agents: ['audio_file', 'vad', 'diarization', 'transcription']
+2026-02-10 01:26:41,872 - agents.recording_agent - INFO - AudioFileAgent initialized
+2026-02-10 01:26:41,872 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-10 01:26:41,872 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-10 01:26:42,558 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-10 01:26:42,558 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-10 01:26:42,558 - agents.diarization_agent - INFO - Initializing speaker diarization (pyannote)...
+2026-02-10 01:26:42,567 - models.pyannote_diarization - INFO - Initializing PyAnnote diarization: pyannote/speaker-diarization-3.1
+2026-02-10 01:26:54,720 - models.pyannote_diarization - ERROR - Failed to load pyannote pipeline: Pipeline.from_pretrained() got an unexpected keyword argument 'use_auth_token'
+2026-02-10 01:26:54,720 - models.pyannote_diarization - ERROR - If you see authentication errors:
+1. Visit https://huggingface.co/pyannote/speaker-diarization-3.1
+2. Accept the user conditions
+3. Set hf_token in config/settings.yaml
+2026-02-10 01:26:54,720 - agents.diarization_agent - ERROR - Failed to initialize diarization agent: Pipeline.from_pretrained() got an unexpected keyword argument 'use_auth_token'
+2026-02-10 01:26:54,720 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-10 01:26:54,720 - agents.recording_agent - INFO - AudioFileAgent cleaned up
+2026-02-10 01:26:54,722 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-10 01:26:54,722 - agents.diarization_agent - INFO - Diarization agent cleaned up
+2026-02-10 01:26:54,722 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-10 01:26:54,722 - __main__ - ERROR - 
+
+[ERROR] Error occurred: Pipeline.from_pretrained() got an unexpected keyword argument 'use_auth_token'
+Traceback (most recent call last):
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\main.py", line 114, in main
+    output_dir = orchestrator.run_full_pipeline(
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\pipeline\orchestrator.py", line 124, in run_full_pipeline
+    self.initialize_agents(required_agents)
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\pipeline\orchestrator.py", line 80, in initialize_agents
+    self.diarization_agent.initialize()
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\agents\diarization_agent.py", line 93, in initialize
+    self.model.load_model()
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\models\pyannote_diarization.py", line 42, in load_model
+    self.pipeline = Pipeline.from_pretrained(
+TypeError: Pipeline.from_pretrained() got an unexpected keyword argument 'use_auth_token'
+2026-02-10 01:27:19,458 - __main__ - INFO - ======================================================================
+2026-02-10 01:27:19,458 - __main__ - INFO - ADHD Audio Summarization System
+2026-02-10 01:27:19,458 - __main__ - INFO - On-Device Processing - Privacy Preserved
+2026-02-10 01:27:19,458 - __main__ - INFO - ======================================================================
+2026-02-10 01:27:19,459 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-10 01:27:19,468 - __main__ - INFO - Running full pipeline...
+2026-02-10 01:27:19,468 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:27:19,468 - pipeline.orchestrator - INFO - Starting full pipeline execution
+2026-02-10 01:27:19,468 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:27:19,468 - pipeline.orchestrator - INFO - Diarization-first mode enabled
+2026-02-10 01:27:19,468 - pipeline.orchestrator - INFO - Initializing agents: ['audio_file', 'vad', 'diarization', 'transcription']
+2026-02-10 01:27:19,468 - agents.recording_agent - INFO - AudioFileAgent initialized
+2026-02-10 01:27:19,468 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-10 01:27:19,468 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-10 01:27:19,757 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-10 01:27:19,757 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-10 01:27:19,757 - agents.diarization_agent - INFO - Initializing speaker diarization (pyannote)...
+2026-02-10 01:27:19,760 - models.pyannote_diarization - INFO - Initializing PyAnnote diarization: pyannote/speaker-diarization-3.1
+2026-02-10 01:27:26,045 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-3.1/resolve/main/config.yaml "HTTP/1.1 403 Forbidden"
+2026-02-10 01:27:26,048 - models.pyannote_diarization - ERROR - Failed to load pyannote pipeline: 403 Client Error. (Request ID: Root=1-698acfcd-1fde215713297ffb72f8a3b1;18e81810-8ae1-48e4-a210-84f463d199f1)
+
+Cannot access gated repo for url https://huggingface.co/pyannote/speaker-diarization-3.1/resolve/main/config.yaml.
+Access to model pyannote/speaker-diarization-3.1 is restricted and you are not in the authorized list. Visit https://huggingface.co/pyannote/speaker-diarization-3.1 to ask for access.
+2026-02-10 01:27:26,049 - models.pyannote_diarization - ERROR - If you see authentication errors:
+1. Visit https://huggingface.co/pyannote/speaker-diarization-3.1
+2. Accept the user conditions
+3. Set hf_token in config/settings.yaml
+2026-02-10 01:27:26,049 - agents.diarization_agent - ERROR - Failed to initialize diarization agent: 403 Client Error. (Request ID: Root=1-698acfcd-1fde215713297ffb72f8a3b1;18e81810-8ae1-48e4-a210-84f463d199f1)
+
+Cannot access gated repo for url https://huggingface.co/pyannote/speaker-diarization-3.1/resolve/main/config.yaml.
+Access to model pyannote/speaker-diarization-3.1 is restricted and you are not in the authorized list. Visit https://huggingface.co/pyannote/speaker-diarization-3.1 to ask for access.
+2026-02-10 01:27:26,049 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-10 01:27:26,049 - agents.recording_agent - INFO - AudioFileAgent cleaned up
+2026-02-10 01:27:26,053 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-10 01:27:26,054 - agents.diarization_agent - INFO - Diarization agent cleaned up
+2026-02-10 01:27:26,054 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-10 01:27:26,054 - __main__ - ERROR - 
+
+[ERROR] Error occurred: 403 Client Error. (Request ID: Root=1-698acfcd-1fde215713297ffb72f8a3b1;18e81810-8ae1-48e4-a210-84f463d199f1)
+
+Cannot access gated repo for url https://huggingface.co/pyannote/speaker-diarization-3.1/resolve/main/config.yaml.
+Access to model pyannote/speaker-diarization-3.1 is restricted and you are not in the authorized list. Visit https://huggingface.co/pyannote/speaker-diarization-3.1 to ask for access.
+Traceback (most recent call last):
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\utils\_http.py", line 657, in hf_raise_for_status
+    response.raise_for_status()
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\httpx\_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '403 Forbidden' for url 'https://huggingface.co/pyannote/speaker-diarization-3.1/resolve/main/config.yaml'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\main.py", line 114, in main
+    output_dir = orchestrator.run_full_pipeline(
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\pipeline\orchestrator.py", line 124, in run_full_pipeline
+    self.initialize_agents(required_agents)
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\pipeline\orchestrator.py", line 80, in initialize_agents
+    self.diarization_agent.initialize()
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\agents\diarization_agent.py", line 93, in initialize
+    self.model.load_model()
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\models\pyannote_diarization.py", line 42, in load_model
+    self.pipeline = Pipeline.from_pretrained(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\pyannote\audio\core\pipeline.py", line 198, in from_pretrained
+    config_yml = download_from_hf_hub(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\pyannote\audio\utils\hf_hub.py", line 80, in download_from_hf_hub
+    return hf_hub_download(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\utils\_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 1024, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 1175, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 1804, in _raise_on_head_call_error
+    raise head_call_error
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 1691, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\utils\_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 1614, in get_hf_file_metadata
+    response = _httpx_follow_relative_redirects(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 309, in _httpx_follow_relative_redirects
+    hf_raise_for_status(response)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\utils\_http.py", line 677, in hf_raise_for_status
+    raise _format(GatedRepoError, message, response) from e
+huggingface_hub.errors.GatedRepoError: 403 Client Error. (Request ID: Root=1-698acfcd-1fde215713297ffb72f8a3b1;18e81810-8ae1-48e4-a210-84f463d199f1)
+
+Cannot access gated repo for url https://huggingface.co/pyannote/speaker-diarization-3.1/resolve/main/config.yaml.
+Access to model pyannote/speaker-diarization-3.1 is restricted and you are not in the authorized list. Visit https://huggingface.co/pyannote/speaker-diarization-3.1 to ask for access.
+2026-02-10 01:33:29,331 - __main__ - INFO - ======================================================================
+2026-02-10 01:33:29,331 - __main__ - INFO - ADHD Audio Summarization System
+2026-02-10 01:33:29,331 - __main__ - INFO - On-Device Processing - Privacy Preserved
+2026-02-10 01:33:29,331 - __main__ - INFO - ======================================================================
+2026-02-10 01:33:29,331 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-10 01:33:29,339 - __main__ - INFO - Running full pipeline...
+2026-02-10 01:33:29,339 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:33:29,339 - pipeline.orchestrator - INFO - Starting full pipeline execution
+2026-02-10 01:33:29,339 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:33:29,339 - pipeline.orchestrator - INFO - Diarization-first mode enabled
+2026-02-10 01:33:29,339 - pipeline.orchestrator - INFO - Initializing agents: ['audio_file', 'vad', 'diarization', 'transcription']
+2026-02-10 01:33:29,339 - agents.recording_agent - INFO - AudioFileAgent initialized
+2026-02-10 01:33:29,339 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-10 01:33:29,339 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-10 01:33:29,853 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-10 01:33:29,853 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-10 01:33:29,853 - agents.diarization_agent - INFO - Initializing speaker diarization (pyannote)...
+2026-02-10 01:33:29,853 - models.pyannote_diarization - INFO - Initializing PyAnnote diarization: pyannote/speaker-diarization-3.1
+2026-02-10 01:33:36,356 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-3.1/resolve/main/config.yaml "HTTP/1.1 200 OK"
+2026-02-10 01:33:36,423 - httpx - INFO - HTTP Request: GET https://huggingface.co/pyannote/speaker-diarization-3.1/resolve/main/config.yaml "HTTP/1.1 200 OK"
+2026-02-10 01:33:38,285 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/segmentation-3.0/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+2026-02-10 01:33:38,562 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/pyannote/segmentation-3.0/xet-read-token/e66f3d3b9eb0873085418a7b813d3b369bf160bb "HTTP/1.1 200 OK"
+2026-02-10 01:33:39,470 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/xvec_transform.npz "HTTP/1.1 403 Forbidden"
+2026-02-10 01:33:39,471 - models.pyannote_diarization - ERROR - Failed to load pyannote pipeline: 403 Client Error. (Request ID: Root=1-698ad143-50e4493b4ce8fb927fed275a;b98f9067-8db4-42b8-ae53-576006c7d62f)
+
+Cannot access gated repo for url https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/xvec_transform.npz.
+Access to model pyannote/speaker-diarization-community-1 is restricted and you are not in the authorized list. Visit https://huggingface.co/pyannote/speaker-diarization-community-1 to ask for access.
+2026-02-10 01:33:39,471 - models.pyannote_diarization - ERROR - If you see authentication errors:
+1. Visit https://huggingface.co/pyannote/speaker-diarization-3.1
+2. Accept the user conditions
+3. Set hf_token in config/settings.yaml
+2026-02-10 01:33:39,471 - agents.diarization_agent - ERROR - Failed to initialize diarization agent: 403 Client Error. (Request ID: Root=1-698ad143-50e4493b4ce8fb927fed275a;b98f9067-8db4-42b8-ae53-576006c7d62f)
+
+Cannot access gated repo for url https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/xvec_transform.npz.
+Access to model pyannote/speaker-diarization-community-1 is restricted and you are not in the authorized list. Visit https://huggingface.co/pyannote/speaker-diarization-community-1 to ask for access.
+2026-02-10 01:33:39,471 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-10 01:33:39,471 - agents.recording_agent - INFO - AudioFileAgent cleaned up
+2026-02-10 01:33:39,476 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-10 01:33:39,476 - agents.diarization_agent - INFO - Diarization agent cleaned up
+2026-02-10 01:33:39,476 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-10 01:33:39,476 - __main__ - ERROR - 
+
+[ERROR] Error occurred: 403 Client Error. (Request ID: Root=1-698ad143-50e4493b4ce8fb927fed275a;b98f9067-8db4-42b8-ae53-576006c7d62f)
+
+Cannot access gated repo for url https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/xvec_transform.npz.
+Access to model pyannote/speaker-diarization-community-1 is restricted and you are not in the authorized list. Visit https://huggingface.co/pyannote/speaker-diarization-community-1 to ask for access.
+Traceback (most recent call last):
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\utils\_http.py", line 657, in hf_raise_for_status
+    response.raise_for_status()
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\httpx\_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '403 Forbidden' for url 'https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/xvec_transform.npz'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\main.py", line 114, in main
+    output_dir = orchestrator.run_full_pipeline(
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\pipeline\orchestrator.py", line 124, in run_full_pipeline
+    self.initialize_agents(required_agents)
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\pipeline\orchestrator.py", line 80, in initialize_agents
+    self.diarization_agent.initialize()
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\agents\diarization_agent.py", line 93, in initialize
+    self.model.load_model()
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\models\pyannote_diarization.py", line 42, in load_model
+    self.pipeline = Pipeline.from_pretrained(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\pyannote\audio\core\pipeline.py", line 245, in from_pretrained
+    pipeline = Klass(**params)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\pyannote\audio\pipelines\speaker_diarization.py", line 231, in __init__
+    self._plda = get_plda(plda, token=token, cache_dir=cache_dir)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\pyannote\audio\pipelines\utils\getter.py", line 239, in get_plda
+    loaded_plda = PLDA.from_pretrained(**plda)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\pyannote\audio\core\plda.py", line 114, in from_pretrained
+    path_to_transform = download_from_hf_hub(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\pyannote\audio\utils\hf_hub.py", line 80, in download_from_hf_hub
+    return hf_hub_download(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\utils\_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 1024, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 1175, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 1804, in _raise_on_head_call_error
+    raise head_call_error
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 1691, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\utils\_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 1614, in get_hf_file_metadata
+    response = _httpx_follow_relative_redirects(
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\file_download.py", line 309, in _httpx_follow_relative_redirects
+    hf_raise_for_status(response)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\huggingface_hub\utils\_http.py", line 677, in hf_raise_for_status
+    raise _format(GatedRepoError, message, response) from e
+huggingface_hub.errors.GatedRepoError: 403 Client Error. (Request ID: Root=1-698ad143-50e4493b4ce8fb927fed275a;b98f9067-8db4-42b8-ae53-576006c7d62f)
+
+Cannot access gated repo for url https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/xvec_transform.npz.
+Access to model pyannote/speaker-diarization-community-1 is restricted and you are not in the authorized list. Visit https://huggingface.co/pyannote/speaker-diarization-community-1 to ask for access.
+2026-02-10 01:34:50,905 - __main__ - INFO - ======================================================================
+2026-02-10 01:34:50,905 - __main__ - INFO - ADHD Audio Summarization System
+2026-02-10 01:34:50,905 - __main__ - INFO - On-Device Processing - Privacy Preserved
+2026-02-10 01:34:50,905 - __main__ - INFO - ======================================================================
+2026-02-10 01:34:50,905 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-10 01:34:50,910 - __main__ - INFO - Running full pipeline...
+2026-02-10 01:34:50,910 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:34:50,910 - pipeline.orchestrator - INFO - Starting full pipeline execution
+2026-02-10 01:34:50,910 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:34:50,910 - pipeline.orchestrator - INFO - Diarization-first mode enabled
+2026-02-10 01:34:50,910 - pipeline.orchestrator - INFO - Initializing agents: ['audio_file', 'vad', 'diarization', 'transcription']
+2026-02-10 01:34:50,910 - agents.recording_agent - INFO - AudioFileAgent initialized
+2026-02-10 01:34:50,910 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-10 01:34:50,910 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-10 01:34:51,184 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-10 01:34:51,184 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-10 01:34:51,184 - agents.diarization_agent - INFO - Initializing speaker diarization (pyannote)...
+2026-02-10 01:34:51,184 - models.pyannote_diarization - INFO - Initializing PyAnnote diarization: pyannote/speaker-diarization-3.1
+2026-02-10 01:34:57,564 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-3.1/resolve/main/config.yaml "HTTP/1.1 200 OK"
+2026-02-10 01:34:58,030 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/segmentation-3.0/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+2026-02-10 01:34:58,453 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/xvec_transform.npz "HTTP/1.1 302 Found"
+2026-02-10 01:34:58,527 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/pyannote/speaker-diarization-community-1/xet-read-token/3533c8cf8e369892e6b79ff1bf80f7b0286a54ee "HTTP/1.1 200 OK"
+2026-02-10 01:34:59,002 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/plda.npz "HTTP/1.1 302 Found"
+2026-02-10 01:34:59,322 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/wespeaker-voxceleb-resnet34-LM/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+2026-02-10 01:34:59,389 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/pyannote/wespeaker-voxceleb-resnet34-LM/xet-read-token/837717ddb9ff5507820346191109dc79c958d614 "HTTP/1.1 200 OK"
+2026-02-10 01:35:01,141 - models.pyannote_diarization - INFO - Using GPU for diarization
+2026-02-10 01:35:01,141 - models.pyannote_diarization - INFO - Loaded diarization pipeline on cuda
+2026-02-10 01:35:01,141 - agents.diarization_agent - INFO - Diarization agent initialized successfully
+2026-02-10 01:35:01,143 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-10 01:35:02,449 - models.asr_models - INFO - Loading Whisper model (openai-whisper): base on cuda
+2026-02-10 01:35:03,618 - models.asr_models - INFO - Whisper model (openai-whisper) loaded successfully
+2026-02-10 01:35:03,619 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-10 01:35:03,619 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-10 01:35:03,619 - pipeline.orchestrator - INFO - Step 1/4: Loading audio from D:\Jiahao_Zheng\On-Device-ASR-ADHD\data\ENNIA413.wav...
+2026-02-10 01:35:03,619 - agents.recording_agent - INFO - Loading audio from: D:\Jiahao_Zheng\On-Device-ASR-ADHD\data\ENNIA413.wav
+2026-02-10 01:35:04,941 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-10 01:35:04,941 - agents.recording_agent - INFO - AudioFileAgent cleaned up
+2026-02-10 01:35:04,941 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-10 01:35:04,941 - agents.diarization_agent - INFO - Diarization agent cleaned up
+2026-02-10 01:35:04,946 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-10 01:35:04,946 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-10 01:35:04,946 - __main__ - ERROR - 
+
+[ERROR] Error occurred: [Errno 2] No such file or directory: 'D:\\Jiahao_Zheng\\On-Device-ASR-ADHD\\data\\ENNIA413.wav'
+Traceback (most recent call last):
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\librosa\core\audio.py", line 176, in load
+    y, sr_native = __soundfile_load(path, offset, duration, dtype)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\librosa\core\audio.py", line 209, in __soundfile_load
+    context = sf.SoundFile(path)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'D:\\Jiahao_Zheng\\On-Device-ASR-ADHD\\data\\ENNIA413.wav': System error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\main.py", line 114, in main
+    output_dir = orchestrator.run_full_pipeline(
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\pipeline\orchestrator.py", line 142, in run_full_pipeline
+    audio, sample_rate = self.audio_file_agent.execute(Path(audio_source))
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\agents\recording_agent.py", line 230, in execute
+    audio, sr = librosa.load(filepath, sr=self.sample_rate, mono=True)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\librosa\core\audio.py", line 184, in load
+    y, sr_native = __audioread_load(path, offset, duration, dtype)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\decorator.py", line 235, in fun
+    return caller(func, *(extras + args), **kw)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\librosa\util\decorators.py", line 63, in __wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\librosa\core\audio.py", line 240, in __audioread_load
+    reader = audioread.audio_open(path)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\audioread\__init__.py", line 126, in audio_open
+    return BackendClass(path)
+  File "C:\Users\jzheng7\AppData\Local\anaconda3\envs\adhd_audio\lib\site-packages\audioread\rawread.py", line 59, in __init__
+    self._fh = open(filename, 'rb')
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Jiahao_Zheng\\On-Device-ASR-ADHD\\data\\ENNIA413.wav'
+2026-02-10 01:36:40,443 - __main__ - INFO - ======================================================================
+2026-02-10 01:36:40,443 - __main__ - INFO - ADHD Audio Summarization System
+2026-02-10 01:36:40,443 - __main__ - INFO - On-Device Processing - Privacy Preserved
+2026-02-10 01:36:40,443 - __main__ - INFO - ======================================================================
+2026-02-10 01:36:40,443 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-10 01:36:40,451 - __main__ - INFO - Running full pipeline...
+2026-02-10 01:36:40,451 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:36:40,451 - pipeline.orchestrator - INFO - Starting full pipeline execution
+2026-02-10 01:36:40,451 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:36:40,451 - pipeline.orchestrator - INFO - Diarization-first mode enabled
+2026-02-10 01:36:40,451 - pipeline.orchestrator - INFO - Initializing agents: ['audio_file', 'vad', 'diarization', 'transcription']
+2026-02-10 01:36:40,451 - agents.recording_agent - INFO - AudioFileAgent initialized
+2026-02-10 01:36:40,451 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-10 01:36:40,451 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-10 01:36:40,742 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-10 01:36:40,742 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-10 01:36:40,742 - agents.diarization_agent - INFO - Initializing speaker diarization (pyannote)...
+2026-02-10 01:36:40,742 - models.pyannote_diarization - INFO - Initializing PyAnnote diarization: pyannote/speaker-diarization-3.1
+2026-02-10 01:36:47,077 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-3.1/resolve/main/config.yaml "HTTP/1.1 200 OK"
+2026-02-10 01:36:47,611 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/segmentation-3.0/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+2026-02-10 01:36:47,998 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/xvec_transform.npz "HTTP/1.1 302 Found"
+2026-02-10 01:36:48,071 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/plda.npz "HTTP/1.1 302 Found"
+2026-02-10 01:36:48,244 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/wespeaker-voxceleb-resnet34-LM/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+2026-02-10 01:36:48,609 - models.pyannote_diarization - INFO - Using GPU for diarization
+2026-02-10 01:36:48,609 - models.pyannote_diarization - INFO - Loaded diarization pipeline on cuda
+2026-02-10 01:36:48,609 - agents.diarization_agent - INFO - Diarization agent initialized successfully
+2026-02-10 01:36:48,609 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-10 01:36:49,111 - models.asr_models - INFO - Loading Whisper model (openai-whisper): base on cuda
+2026-02-10 01:36:50,028 - models.asr_models - INFO - Whisper model (openai-whisper) loaded successfully
+2026-02-10 01:36:50,028 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-10 01:36:50,028 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-10 01:36:50,028 - pipeline.orchestrator - INFO - Step 1/4: Loading audio from D:\Jiahao_Zheng\On-Device-ASR-ADHD\data\ENNIA413.wav...
+2026-02-10 01:36:50,028 - agents.recording_agent - INFO - Loading audio from: D:\Jiahao_Zheng\On-Device-ASR-ADHD\data\ENNIA413.wav
+2026-02-10 01:36:52,236 - agents.recording_agent - INFO - Loaded 392.69s of audio at 16000Hz
+2026-02-10 01:36:52,237 - pipeline.orchestrator - INFO - Output directory: outputs\daily_reports\ENNIA413
+2026-02-10 01:36:52,237 - pipeline.orchestrator - INFO - Step 2/5: Performing speaker diarization (pyannote)...
+2026-02-10 01:36:52,237 - agents.diarization_agent - INFO - Performing speaker diarization...
+2026-02-10 01:37:03,010 - models.pyannote_diarization - ERROR - Diarization failed: 'DiarizeOutput' object has no attribute 'itertracks'
+2026-02-10 01:37:03,010 - agents.diarization_agent - ERROR - Diarization failed: 'DiarizeOutput' object has no attribute 'itertracks'
+2026-02-10 01:37:03,010 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-10 01:37:03,010 - agents.recording_agent - INFO - AudioFileAgent cleaned up
+2026-02-10 01:37:03,010 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-10 01:37:03,010 - agents.diarization_agent - INFO - Diarization agent cleaned up
+2026-02-10 01:37:03,010 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-10 01:37:03,010 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-10 01:37:03,010 - __main__ - ERROR - 
+
+[ERROR] Error occurred: 'DiarizeOutput' object has no attribute 'itertracks'
+Traceback (most recent call last):
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\main.py", line 114, in main
+    output_dir = orchestrator.run_full_pipeline(
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\pipeline\orchestrator.py", line 158, in run_full_pipeline
+    diar_segments = self.diarization_agent.execute(audio, sample_rate)
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\agents\diarization_agent.py", line 133, in execute
+    diar_segments = self.model.diarize_audio(audio, sample_rate)
+  File "D:\Jiahao_Zheng\On-Device-ASR-ADHD\models\pyannote_diarization.py", line 112, in diarize_audio
+    for turn, _, speaker in diarization.itertracks(yield_label=True):
+AttributeError: 'DiarizeOutput' object has no attribute 'itertracks'
+2026-02-10 01:39:00,091 - __main__ - INFO - ======================================================================
+2026-02-10 01:39:00,091 - __main__ - INFO - ADHD Audio Summarization System
+2026-02-10 01:39:00,091 - __main__ - INFO - On-Device Processing - Privacy Preserved
+2026-02-10 01:39:00,091 - __main__ - INFO - ======================================================================
+2026-02-10 01:39:00,091 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-10 01:39:00,106 - __main__ - INFO - Running full pipeline...
+2026-02-10 01:39:00,106 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:39:00,106 - pipeline.orchestrator - INFO - Starting full pipeline execution
+2026-02-10 01:39:00,106 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:39:00,106 - pipeline.orchestrator - INFO - Diarization-first mode enabled
+2026-02-10 01:39:00,106 - pipeline.orchestrator - INFO - Initializing agents: ['audio_file', 'vad', 'diarization', 'transcription']
+2026-02-10 01:39:00,106 - agents.recording_agent - INFO - AudioFileAgent initialized
+2026-02-10 01:39:00,106 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-10 01:39:00,106 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-10 01:39:00,545 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-10 01:39:00,546 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-10 01:39:00,546 - agents.diarization_agent - INFO - Initializing speaker diarization (pyannote)...
+2026-02-10 01:39:00,548 - models.pyannote_diarization - INFO - Initializing PyAnnote diarization: pyannote/speaker-diarization-3.1
+2026-02-10 01:39:06,784 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-3.1/resolve/main/config.yaml "HTTP/1.1 200 OK"
+2026-02-10 01:39:07,232 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/segmentation-3.0/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+2026-02-10 01:39:07,606 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/xvec_transform.npz "HTTP/1.1 302 Found"
+2026-02-10 01:39:07,662 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/plda.npz "HTTP/1.1 302 Found"
+2026-02-10 01:39:07,809 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/wespeaker-voxceleb-resnet34-LM/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+2026-02-10 01:39:08,186 - models.pyannote_diarization - INFO - Using GPU for diarization
+2026-02-10 01:39:08,186 - models.pyannote_diarization - INFO - Loaded diarization pipeline on cuda
+2026-02-10 01:39:08,186 - agents.diarization_agent - INFO - Diarization agent initialized successfully
+2026-02-10 01:39:08,186 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-10 01:39:08,637 - models.asr_models - INFO - Loading Whisper model (openai-whisper): base on cuda
+2026-02-10 01:39:09,459 - models.asr_models - INFO - Whisper model (openai-whisper) loaded successfully
+2026-02-10 01:39:09,459 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-10 01:39:09,460 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-10 01:39:09,460 - pipeline.orchestrator - INFO - Step 1/4: Loading audio from D:\Jiahao_Zheng\On-Device-ASR-ADHD\data\ENNIA413.wav...
+2026-02-10 01:39:09,460 - agents.recording_agent - INFO - Loading audio from: D:\Jiahao_Zheng\On-Device-ASR-ADHD\data\ENNIA413.wav
+2026-02-10 01:39:11,338 - agents.recording_agent - INFO - Loaded 392.69s of audio at 16000Hz
+2026-02-10 01:39:11,339 - pipeline.orchestrator - INFO - Output directory: outputs\daily_reports\ENNIA413
+2026-02-10 01:39:11,339 - pipeline.orchestrator - INFO - Step 2/5: Performing speaker diarization (pyannote)...
+2026-02-10 01:39:11,339 - agents.diarization_agent - INFO - Performing speaker diarization...
+2026-02-10 01:39:20,603 - models.pyannote_diarization - INFO - Diarization found 2 speakers across 126 segments
+2026-02-10 01:39:20,603 - agents.diarization_agent - INFO - Diarization complete: found 2 speakers in 126 segments
+2026-02-10 01:39:20,603 - pipeline.orchestrator - INFO - Found 2 speakers in 126 segments
+2026-02-10 01:39:20,603 - pipeline.orchestrator - INFO - Step 3/5: Classifying speakers (child vs adult)...
+2026-02-10 01:39:34,137 - agents.diarization_agent - INFO - Speaker pitches: {'SPEAKER_01': 238.61770171621137, 'SPEAKER_00': 225.2251192010744}
+2026-02-10 01:39:34,137 - agents.diarization_agent - INFO - Speaker assignment: child=SPEAKER_01 (238.6 Hz), adult=SPEAKER_00 (225.2 Hz), pitch diff=13.4 Hz
+2026-02-10 01:39:34,138 - agents.diarization_agent - INFO - Classification: 25 child segments, 101 adult segments
+2026-02-10 01:39:34,140 - pipeline.orchestrator - INFO - Step 4/5: Transcribing speaker segments...
+2026-02-10 01:39:34,140 - agents.vad_transcription_agents - INFO - Transcribing 126 segments...
+2026-02-10 01:39:34,141 - models.asr_models - INFO - Transcribing 126 audio segments...
+2026-02-10 01:39:36,545 - models.asr_models - INFO - Progress: 10/126 segments transcribed
+2026-02-10 01:39:38,207 - models.asr_models - INFO - Progress: 20/126 segments transcribed
+2026-02-10 01:39:39,929 - models.asr_models - INFO - Progress: 30/126 segments transcribed
+2026-02-10 01:39:41,519 - models.asr_models - INFO - Progress: 40/126 segments transcribed
+2026-02-10 01:39:42,476 - models.asr_models - INFO - Progress: 50/126 segments transcribed
+2026-02-10 01:39:47,778 - models.asr_models - INFO - Progress: 60/126 segments transcribed
+2026-02-10 01:39:49,233 - models.asr_models - INFO - Progress: 70/126 segments transcribed
+2026-02-10 01:39:50,867 - models.asr_models - INFO - Progress: 80/126 segments transcribed
+2026-02-10 01:39:52,588 - models.asr_models - INFO - Progress: 90/126 segments transcribed
+2026-02-10 01:39:55,026 - models.asr_models - INFO - Progress: 100/126 segments transcribed
+2026-02-10 01:39:57,437 - models.asr_models - INFO - Progress: 110/126 segments transcribed
+2026-02-10 01:40:00,071 - models.asr_models - INFO - Progress: 120/126 segments transcribed
+2026-02-10 01:40:01,539 - models.asr_models - INFO - Progress: 126/126 segments transcribed
+2026-02-10 01:40:01,961 - models.asr_models - INFO - Completed transcription of 126 segments
+2026-02-10 01:40:01,961 - agents.vad_transcription_agents - INFO - Successfully transcribed 109/126 segments
+2026-02-10 01:40:01,969 - agents.vad_transcription_agents - INFO - Saved 109 transcripts to outputs\daily_reports\ENNIA413\transcripts_20260210.json
+2026-02-10 01:40:01,969 - pipeline.orchestrator - INFO - Transcripts saved to outputs\daily_reports\ENNIA413\transcripts_20260210.json
+2026-02-10 01:40:01,969 - pipeline.orchestrator - INFO - Initializing summary agent...
+2026-02-10 01:40:01,969 - agents.summary_agent - INFO - Initializing SummaryAgent...
+2026-02-10 01:40:01,981 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cuda
+2026-02-10 01:40:02,072 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-10 01:40:02,089 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-10 01:40:02,165 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-10 01:40:02,181 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-10 01:40:02,248 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-10 01:40:02,302 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-10 01:40:03,045 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-10 01:40:03,100 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-10 01:40:03,114 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-10 01:40:27,802 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-10 01:40:27,818 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-02-10 01:40:27,839 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/generation_config.json "HTTP/1.1 200 OK"
+2026-02-10 01:40:27,901 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-02-10 01:40:37,276 - models.llm_models - INFO - Qwen model loaded successfully
+2026-02-10 01:40:37,284 - agents.summary_agent - INFO - SummaryAgent initialized successfully
+2026-02-10 01:40:37,286 - pipeline.orchestrator - INFO - Step 5/5: Generating daily summary...
+2026-02-10 01:40:37,288 - agents.summary_agent - INFO - Generating summary for 109 transcripts...
+2026-02-10 01:40:37,291 - agents.summary_agent - INFO - Using 32 transcripts after filtering (min_words=3, min_confidence=0.3)
+2026-02-10 01:41:05,272 - agents.summary_agent - INFO - Speaker breakdown: 7 child, 25 adult segments
+2026-02-10 01:41:05,273 - agents.summary_agent - INFO - Summary generated successfully
+2026-02-10 01:41:05,282 - agents.summary_agent - INFO - Saved summary JSON to outputs\daily_reports\ENNIA413\summary_20260210.json
+2026-02-10 01:41:05,285 - agents.summary_agent - INFO - Saved summary report to outputs\daily_reports\ENNIA413\report_20260210.md
+2026-02-10 01:41:05,286 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:41:05,286 - pipeline.orchestrator - INFO - Pipeline execution completed
+2026-02-10 01:41:05,286 - pipeline.orchestrator - INFO - Output saved to: outputs\daily_reports\ENNIA413
+2026-02-10 01:41:05,286 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:41:05,288 - __main__ - INFO - 
+[OK] Success! Reports available at: outputs\daily_reports\ENNIA413
+2026-02-10 01:41:05,289 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-10 01:41:05,289 - agents.recording_agent - INFO - AudioFileAgent cleaned up
+2026-02-10 01:41:05,340 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-10 01:41:05,340 - agents.diarization_agent - INFO - Diarization agent cleaned up
+2026-02-10 01:41:05,345 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-10 01:41:05,554 - agents.summary_agent - INFO - SummaryAgent cleaned up
+2026-02-10 01:41:05,554 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-10 01:41:05,554 - __main__ - INFO - 
+======================================================================
+2026-02-10 01:41:05,554 - __main__ - INFO - Processing completed successfully
+2026-02-10 01:41:05,554 - __main__ - INFO - ======================================================================
+2026-02-10 01:45:08,208 - __main__ - INFO - ======================================================================
+2026-02-10 01:45:08,209 - __main__ - INFO - ADHD Audio Summarization System
+2026-02-10 01:45:08,209 - __main__ - INFO - On-Device Processing - Privacy Preserved
+2026-02-10 01:45:08,209 - __main__ - INFO - ======================================================================
+2026-02-10 01:45:08,209 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-10 01:45:08,216 - __main__ - INFO - Running full pipeline...
+2026-02-10 01:45:08,216 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:45:08,216 - pipeline.orchestrator - INFO - Starting full pipeline execution
+2026-02-10 01:45:08,216 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:45:08,216 - pipeline.orchestrator - INFO - Diarization-first mode enabled
+2026-02-10 01:45:08,216 - pipeline.orchestrator - INFO - Initializing agents: ['audio_file', 'vad', 'diarization', 'transcription']
+2026-02-10 01:45:08,216 - agents.recording_agent - INFO - AudioFileAgent initialized
+2026-02-10 01:45:08,216 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-10 01:45:08,216 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-10 01:45:08,716 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-10 01:45:08,716 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-10 01:45:08,716 - agents.diarization_agent - INFO - Initializing speaker diarization (pyannote)...
+2026-02-10 01:45:08,724 - models.pyannote_diarization - INFO - Initializing PyAnnote diarization: pyannote/speaker-diarization-3.1
+2026-02-10 01:45:20,319 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-3.1/resolve/main/config.yaml "HTTP/1.1 200 OK"
+2026-02-10 01:45:21,161 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/segmentation-3.0/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+2026-02-10 01:45:21,982 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/xvec_transform.npz "HTTP/1.1 302 Found"
+2026-02-10 01:45:22,049 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/plda.npz "HTTP/1.1 302 Found"
+2026-02-10 01:45:22,233 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/wespeaker-voxceleb-resnet34-LM/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+2026-02-10 01:45:22,759 - models.pyannote_diarization - INFO - Using GPU for diarization
+2026-02-10 01:45:22,759 - models.pyannote_diarization - INFO - Loaded diarization pipeline on cuda
+2026-02-10 01:45:22,759 - agents.diarization_agent - INFO - Diarization agent initialized successfully
+2026-02-10 01:45:22,761 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-10 01:45:23,475 - models.asr_models - INFO - Loading Whisper model (openai-whisper): small on cuda
+2026-02-10 01:45:44,675 - models.asr_models - INFO - Whisper model (openai-whisper) loaded successfully
+2026-02-10 01:45:44,675 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-10 01:45:44,676 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-10 01:45:44,676 - pipeline.orchestrator - INFO - Step 1/4: Loading audio from D:\Jiahao_Zheng\On-Device-ASR-ADHD\data\ENNIA413.wav...
+2026-02-10 01:45:44,676 - agents.recording_agent - INFO - Loading audio from: D:\Jiahao_Zheng\On-Device-ASR-ADHD\data\ENNIA413.wav
+2026-02-10 01:45:47,155 - agents.recording_agent - INFO - Loaded 392.69s of audio at 16000Hz
+2026-02-10 01:45:47,155 - pipeline.orchestrator - INFO - Output directory: outputs\daily_reports\ENNIA413
+2026-02-10 01:45:47,155 - pipeline.orchestrator - INFO - Step 2/5: Performing speaker diarization (pyannote)...
+2026-02-10 01:45:47,156 - agents.diarization_agent - INFO - Performing speaker diarization...
+2026-02-10 01:45:57,039 - models.pyannote_diarization - INFO - Diarization found 2 speakers across 126 segments
+2026-02-10 01:45:57,039 - agents.diarization_agent - INFO - Diarization complete: found 2 speakers in 126 segments
+2026-02-10 01:45:57,039 - pipeline.orchestrator - INFO - Found 2 speakers in 126 segments
+2026-02-10 01:45:57,039 - pipeline.orchestrator - INFO - Step 3/5: Classifying speakers (child vs adult)...
+2026-02-10 01:46:09,883 - agents.diarization_agent - INFO - Speaker pitches: {'SPEAKER_01': 238.61770171621137, 'SPEAKER_00': 225.2251192010744}
+2026-02-10 01:46:09,883 - agents.diarization_agent - INFO - Speaker assignment: adult=SPEAKER_01 (238.6 Hz), child=SPEAKER_00 (225.2 Hz), pitch diff=13.4 Hz
+2026-02-10 01:46:09,883 - agents.diarization_agent - INFO - Classification: 101 child segments, 25 adult segments
+2026-02-10 01:46:09,883 - pipeline.orchestrator - INFO - Step 4/5: Transcribing speaker segments...
+2026-02-10 01:46:09,883 - agents.vad_transcription_agents - INFO - Transcribing 126 segments...
+2026-02-10 01:46:09,883 - models.asr_models - INFO - Transcribing 126 audio segments...
+2026-02-10 01:46:12,720 - models.asr_models - INFO - Progress: 10/126 segments transcribed
+2026-02-10 01:46:17,492 - models.asr_models - INFO - Progress: 20/126 segments transcribed
+2026-02-10 01:46:19,783 - models.asr_models - INFO - Progress: 30/126 segments transcribed
+2026-02-10 01:46:21,800 - models.asr_models - INFO - Progress: 40/126 segments transcribed
+2026-02-10 01:46:23,890 - models.asr_models - INFO - Progress: 50/126 segments transcribed
+2026-02-10 01:46:27,143 - models.asr_models - INFO - Progress: 60/126 segments transcribed
+2026-02-10 01:46:29,381 - models.asr_models - INFO - Progress: 70/126 segments transcribed
+2026-02-10 01:46:32,602 - models.asr_models - INFO - Progress: 80/126 segments transcribed
+2026-02-10 01:46:34,039 - models.asr_models - INFO - Progress: 90/126 segments transcribed
+2026-02-10 01:46:37,042 - models.asr_models - INFO - Progress: 100/126 segments transcribed
+2026-02-10 01:46:39,106 - models.asr_models - INFO - Progress: 110/126 segments transcribed
+2026-02-10 01:46:45,047 - models.asr_models - INFO - Progress: 120/126 segments transcribed
+2026-02-10 01:46:47,373 - models.asr_models - INFO - Progress: 126/126 segments transcribed
+2026-02-10 01:46:47,504 - models.asr_models - INFO - Completed transcription of 126 segments
+2026-02-10 01:46:47,505 - agents.vad_transcription_agents - INFO - Successfully transcribed 108/126 segments
+2026-02-10 01:46:47,516 - agents.vad_transcription_agents - INFO - Saved 108 transcripts to outputs\daily_reports\ENNIA413\transcripts_20260210.json
+2026-02-10 01:46:47,516 - pipeline.orchestrator - INFO - Transcripts saved to outputs\daily_reports\ENNIA413\transcripts_20260210.json
+2026-02-10 01:46:47,516 - pipeline.orchestrator - INFO - Initializing summary agent...
+2026-02-10 01:46:47,516 - agents.summary_agent - INFO - Initializing SummaryAgent...
+2026-02-10 01:46:47,522 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cuda
+2026-02-10 01:46:47,626 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-10 01:46:47,642 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-10 01:46:47,695 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-10 01:46:47,710 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-10 01:46:47,773 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-10 01:46:47,820 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-10 01:46:48,468 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-10 01:46:48,522 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-10 01:46:48,539 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-10 01:47:09,708 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-10 01:47:09,728 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/generation_config.json "HTTP/1.1 200 OK"
+2026-02-10 01:47:09,780 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-02-10 01:47:15,794 - models.llm_models - INFO - Qwen model loaded successfully
+2026-02-10 01:47:15,800 - agents.summary_agent - INFO - SummaryAgent initialized successfully
+2026-02-10 01:47:15,800 - pipeline.orchestrator - INFO - Step 5/5: Generating daily summary...
+2026-02-10 01:47:15,800 - agents.summary_agent - INFO - Generating summary for 108 transcripts...
+2026-02-10 01:47:15,802 - agents.summary_agent - INFO - Using 39 transcripts after filtering (min_words=3, min_confidence=0.3)
+2026-02-10 01:47:58,892 - agents.summary_agent - INFO - Speaker breakdown: 31 child, 8 adult segments
+2026-02-10 01:47:58,892 - agents.summary_agent - INFO - Summary generated successfully
+2026-02-10 01:47:58,901 - agents.summary_agent - INFO - Saved summary JSON to outputs\daily_reports\ENNIA413\summary_20260210.json
+2026-02-10 01:47:58,902 - agents.summary_agent - INFO - Saved summary report to outputs\daily_reports\ENNIA413\report_20260210.md
+2026-02-10 01:47:58,902 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:47:58,902 - pipeline.orchestrator - INFO - Pipeline execution completed
+2026-02-10 01:47:58,902 - pipeline.orchestrator - INFO - Output saved to: outputs\daily_reports\ENNIA413
+2026-02-10 01:47:58,902 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:47:58,902 - __main__ - INFO - 
+[OK] Success! Reports available at: outputs\daily_reports\ENNIA413
+2026-02-10 01:47:58,902 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-10 01:47:58,904 - agents.recording_agent - INFO - AudioFileAgent cleaned up
+2026-02-10 01:47:58,925 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-10 01:47:58,925 - agents.diarization_agent - INFO - Diarization agent cleaned up
+2026-02-10 01:47:58,925 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-10 01:47:59,008 - agents.summary_agent - INFO - SummaryAgent cleaned up
+2026-02-10 01:47:59,008 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-10 01:47:59,008 - __main__ - INFO - 
+======================================================================
+2026-02-10 01:47:59,022 - __main__ - INFO - Processing completed successfully
+2026-02-10 01:47:59,022 - __main__ - INFO - ======================================================================
+2026-02-10 01:50:34,931 - __main__ - INFO - ======================================================================
+2026-02-10 01:50:34,931 - __main__ - INFO - ADHD Audio Summarization System
+2026-02-10 01:50:34,931 - __main__ - INFO - On-Device Processing - Privacy Preserved
+2026-02-10 01:50:34,931 - __main__ - INFO - ======================================================================
+2026-02-10 01:50:34,931 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-10 01:50:34,943 - __main__ - INFO - Running full pipeline...
+2026-02-10 01:50:34,943 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:50:34,944 - pipeline.orchestrator - INFO - Starting full pipeline execution
+2026-02-10 01:50:34,944 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:50:34,944 - pipeline.orchestrator - INFO - Diarization-first mode enabled
+2026-02-10 01:50:34,945 - pipeline.orchestrator - INFO - Initializing agents: ['audio_file', 'vad', 'diarization', 'transcription']
+2026-02-10 01:50:34,945 - agents.recording_agent - INFO - AudioFileAgent initialized
+2026-02-10 01:50:34,945 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-10 01:50:34,945 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-10 01:50:35,704 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-10 01:50:35,705 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-10 01:50:35,705 - agents.diarization_agent - INFO - Initializing speaker diarization (pyannote)...
+2026-02-10 01:50:35,714 - models.pyannote_diarization - INFO - Initializing PyAnnote diarization: pyannote/speaker-diarization-3.1
+2026-02-10 01:50:47,045 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-3.1/resolve/main/config.yaml "HTTP/1.1 200 OK"
+2026-02-10 01:50:47,936 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/segmentation-3.0/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+2026-02-10 01:50:48,472 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/xvec_transform.npz "HTTP/1.1 302 Found"
+2026-02-10 01:50:48,528 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/plda.npz "HTTP/1.1 302 Found"
+2026-02-10 01:50:48,694 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/wespeaker-voxceleb-resnet34-LM/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+2026-02-10 01:50:49,208 - models.pyannote_diarization - INFO - Using GPU for diarization
+2026-02-10 01:50:49,208 - models.pyannote_diarization - INFO - Loaded diarization pipeline on cuda
+2026-02-10 01:50:49,208 - agents.diarization_agent - INFO - Diarization agent initialized successfully
+2026-02-10 01:50:49,208 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-10 01:50:49,949 - models.asr_models - INFO - Loading Whisper model (openai-whisper): small on cuda
+2026-02-10 01:50:52,442 - models.asr_models - INFO - Whisper model (openai-whisper) loaded successfully
+2026-02-10 01:50:52,443 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-10 01:50:52,445 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-10 01:50:52,445 - pipeline.orchestrator - INFO - Step 1/4: Loading audio from D:\Jiahao_Zheng\On-Device-ASR-ADHD\data\ENNIA413.wav...
+2026-02-10 01:50:52,446 - agents.recording_agent - INFO - Loading audio from: D:\Jiahao_Zheng\On-Device-ASR-ADHD\data\ENNIA413.wav
+2026-02-10 01:50:54,756 - agents.recording_agent - INFO - Loaded 392.69s of audio at 16000Hz
+2026-02-10 01:50:54,757 - pipeline.orchestrator - INFO - Output directory: outputs\daily_reports\ENNIA413
+2026-02-10 01:50:54,757 - pipeline.orchestrator - INFO - Step 2/5: Performing speaker diarization (pyannote)...
+2026-02-10 01:50:54,758 - agents.diarization_agent - INFO - Performing speaker diarization...
+2026-02-10 01:51:04,874 - models.pyannote_diarization - INFO - Diarization found 2 speakers across 126 segments
+2026-02-10 01:51:04,874 - agents.diarization_agent - INFO - Diarization complete: found 2 speakers in 126 segments
+2026-02-10 01:51:04,874 - pipeline.orchestrator - INFO - Found 2 speakers in 126 segments
+2026-02-10 01:51:04,874 - pipeline.orchestrator - INFO - Step 3/5: Classifying speakers (child vs adult)...
+2026-02-10 01:51:18,685 - agents.diarization_agent - INFO - Speaker pitches: {'SPEAKER_00': 225.2251192010744, 'SPEAKER_01': 238.61770171621137}
+2026-02-10 01:51:18,685 - agents.diarization_agent - INFO - Speaker assignment: adult=SPEAKER_01 (238.6 Hz), child=SPEAKER_00 (225.2 Hz), pitch diff=13.4 Hz
+2026-02-10 01:51:18,685 - agents.diarization_agent - INFO - Classification: 101 child segments, 25 adult segments
+2026-02-10 01:51:18,685 - agents.diarization_agent - INFO - Merged 126 segments into 104 segments
+2026-02-10 01:51:18,687 - pipeline.orchestrator - INFO - Step 4/5: Transcribing speaker segments...
+2026-02-10 01:51:18,687 - agents.vad_transcription_agents - INFO - Transcribing 104 segments...
+2026-02-10 01:51:18,688 - models.asr_models - INFO - Transcribing 104 audio segments...
+2026-02-10 01:51:22,040 - models.asr_models - INFO - Progress: 10/104 segments transcribed
+2026-02-10 01:51:24,923 - models.asr_models - INFO - Progress: 20/104 segments transcribed
+2026-02-10 01:51:26,915 - models.asr_models - INFO - Progress: 30/104 segments transcribed
+2026-02-10 01:51:28,677 - models.asr_models - INFO - Progress: 40/104 segments transcribed
+2026-02-10 01:51:32,353 - models.asr_models - INFO - Progress: 50/104 segments transcribed
+2026-02-10 01:51:34,090 - models.asr_models - INFO - Progress: 60/104 segments transcribed
+2026-02-10 01:51:36,386 - models.asr_models - INFO - Progress: 70/104 segments transcribed
+2026-02-10 01:51:39,838 - models.asr_models - INFO - Progress: 80/104 segments transcribed
+2026-02-10 01:51:41,369 - models.asr_models - INFO - Progress: 90/104 segments transcribed
+2026-02-10 01:51:46,467 - models.asr_models - INFO - Progress: 100/104 segments transcribed
+2026-02-10 01:51:47,223 - models.asr_models - INFO - Progress: 104/104 segments transcribed
+2026-02-10 01:51:47,356 - models.asr_models - INFO - Completed transcription of 104 segments
+2026-02-10 01:51:47,357 - agents.vad_transcription_agents - INFO - Successfully transcribed 92/104 segments
+2026-02-10 01:51:47,366 - agents.vad_transcription_agents - INFO - Saved 92 transcripts to outputs\daily_reports\ENNIA413\transcripts_20260210.json
+2026-02-10 01:51:47,366 - pipeline.orchestrator - INFO - Transcripts saved to outputs\daily_reports\ENNIA413\transcripts_20260210.json
+2026-02-10 01:51:47,366 - pipeline.orchestrator - INFO - Initializing summary agent...
+2026-02-10 01:51:47,366 - agents.summary_agent - INFO - Initializing SummaryAgent...
+2026-02-10 01:51:47,371 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cuda
+2026-02-10 01:51:47,467 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-10 01:51:47,469 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-02-10 01:51:47,484 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-10 01:51:47,548 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-10 01:51:47,565 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-10 01:51:47,632 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-10 01:51:47,697 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-10 01:51:48,350 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-10 01:51:48,397 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-10 01:51:48,415 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-10 01:52:09,712 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-10 01:52:09,731 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/generation_config.json "HTTP/1.1 200 OK"
+2026-02-10 01:52:09,782 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-02-10 01:52:16,923 - models.llm_models - INFO - Qwen model loaded successfully
+2026-02-10 01:52:16,923 - agents.summary_agent - INFO - SummaryAgent initialized successfully
+2026-02-10 01:52:16,923 - pipeline.orchestrator - INFO - Step 5/5: Generating daily summary...
+2026-02-10 01:52:16,923 - agents.summary_agent - INFO - Generating summary for 92 transcripts...
+2026-02-10 01:52:16,925 - agents.summary_agent - INFO - Using 39 transcripts after filtering (min_words=3, min_confidence=0.3)
+2026-02-10 01:53:00,790 - agents.summary_agent - INFO - Speaker breakdown: 32 child, 7 adult segments
+2026-02-10 01:53:00,790 - agents.summary_agent - INFO - Summary generated successfully
+2026-02-10 01:53:00,800 - agents.summary_agent - INFO - Saved summary JSON to outputs\daily_reports\ENNIA413\summary_20260210.json
+2026-02-10 01:53:00,801 - agents.summary_agent - INFO - Saved summary report to outputs\daily_reports\ENNIA413\report_20260210.md
+2026-02-10 01:53:00,802 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:53:00,802 - pipeline.orchestrator - INFO - Pipeline execution completed
+2026-02-10 01:53:00,802 - pipeline.orchestrator - INFO - Output saved to: outputs\daily_reports\ENNIA413
+2026-02-10 01:53:00,802 - pipeline.orchestrator - INFO - ============================================================
+2026-02-10 01:53:00,802 - __main__ - INFO - 
+[OK] Success! Reports available at: outputs\daily_reports\ENNIA413
+2026-02-10 01:53:00,802 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-10 01:53:00,802 - agents.recording_agent - INFO - AudioFileAgent cleaned up
+2026-02-10 01:53:00,825 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-10 01:53:00,826 - agents.diarization_agent - INFO - Diarization agent cleaned up
+2026-02-10 01:53:00,829 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-10 01:53:00,914 - agents.summary_agent - INFO - SummaryAgent cleaned up
+2026-02-10 01:53:00,915 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-10 01:53:00,915 - __main__ - INFO - 
+======================================================================
+2026-02-10 01:53:00,915 - __main__ - INFO - Processing completed successfully
+2026-02-10 01:53:00,915 - __main__ - INFO - ======================================================================

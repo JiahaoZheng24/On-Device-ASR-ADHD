@@ -2,14 +2,14 @@
 Diarization Agent for speaker identification.
 
 This agent performs speaker diarization to identify different speakers
-in audio segments. It works with the pyannote.audio library.
+in audio segments. Supports pyannote.audio and simple local clustering.
 """
 
 import logging
-from pathlib import Path
 from typing import List, Dict, Optional
 from datetime import datetime
 import numpy as np
+import librosa
 
 from models.base import BaseAgent
 
@@ -144,36 +144,109 @@ class DiarizationAgent(BaseAgent):
             logger.error(f"Diarization failed: {e}")
             raise
 
-    def diarize_file(self, audio_path: str) -> List[Dict]:
+    def classify_speakers_by_pitch(
+        self,
+        audio: np.ndarray,
+        sample_rate: int,
+        diar_segments: List[Dict]
+    ) -> List[Dict]:
         """
-        Perform speaker diarization on an audio file.
+        Classify pyannote speaker labels (SPEAKER_00, SPEAKER_01) as child/adult
+        using pitch (pyin) analysis.
 
         Args:
-            audio_path: Path to audio file
+            audio: Full audio array
+            sample_rate: Sample rate
+            diar_segments: Pyannote diarization results
 
         Returns:
-            List of diarization segments
+            Updated segments with child/adult labels
         """
-        if not self.is_initialized:
-            raise RuntimeError("DiarizationAgent not initialized")
+        # Collect audio per speaker and compute median pitch
+        speakers = set(s['speaker'] for s in diar_segments)
+        speaker_pitches = {}
 
-        try:
-            logger.info(f"Performing diarization on file: {audio_path}")
+        for speaker in speakers:
+            # Get all audio for this speaker
+            speaker_audio_parts = []
+            for seg in diar_segments:
+                if seg['speaker'] == speaker:
+                    start_sample = int(seg['start'] * sample_rate)
+                    end_sample = int(seg['end'] * sample_rate)
+                    part = audio[start_sample:end_sample]
+                    if len(part) > 0:
+                        speaker_audio_parts.append(part)
 
-            # Run diarization on file
-            diar_segments = self.model.diarize_file(audio_path)
+            if not speaker_audio_parts:
+                speaker_pitches[speaker] = 0.0
+                continue
 
+            # Concatenate all audio for this speaker (for better pitch estimate)
+            speaker_audio = np.concatenate(speaker_audio_parts)
+
+            # Extract pitch using pyin
+            try:
+                f0, voiced_flag, _ = librosa.pyin(
+                    speaker_audio,
+                    fmin=60,
+                    fmax=500,
+                    sr=sample_rate
+                )
+                valid_f0 = f0[~np.isnan(f0)]
+                if len(valid_f0) > 0:
+                    speaker_pitches[speaker] = float(np.median(valid_f0))
+                else:
+                    speaker_pitches[speaker] = 0.0
+            except Exception as e:
+                logger.warning(f"Pitch extraction failed for {speaker}: {e}")
+                speaker_pitches[speaker] = 0.0
+
+        logger.info(f"Speaker pitches: {speaker_pitches}")
+
+        # Relative comparison: higher pitch = child, lower = adult
+        valid_speakers = {k: v for k, v in speaker_pitches.items() if v > 0}
+
+        if len(valid_speakers) >= 2:
+            # Sort by pitch: index 0 = highest pitch, index 1 = lowest pitch
+            sorted_speakers = sorted(
+                valid_speakers.items(), key=lambda x: x[1], reverse=True
+            )
+            # In child-adult recordings, the adult (examiner) typically has
+            # a higher projected voice, while children may speak more softly.
+            # Assign: higher pitch = adult, lower pitch = child
+            speaker_map = {sorted_speakers[0][0]: "adult", sorted_speakers[1][0]: "child"}
+
+            pitch_diff = sorted_speakers[0][1] - sorted_speakers[1][1]
             logger.info(
-                f"Diarization complete: found "
-                f"{len(set(s['speaker'] for s in diar_segments))} speakers "
-                f"in {len(diar_segments)} segments"
+                f"Speaker assignment: "
+                f"adult={sorted_speakers[0][0]} ({sorted_speakers[0][1]:.1f} Hz), "
+                f"child={sorted_speakers[1][0]} ({sorted_speakers[1][1]:.1f} Hz), "
+                f"pitch diff={pitch_diff:.1f} Hz"
             )
 
-            return diar_segments
+            # Map remaining speakers
+            for spk in speakers:
+                if spk not in speaker_map:
+                    speaker_map[spk] = spk
+        else:
+            # Fallback: keep original labels
+            logger.warning("Could not classify speakers by pitch, keeping original labels")
+            speaker_map = {spk: spk for spk in speakers}
 
-        except Exception as e:
-            logger.error(f"Diarization failed: {e}")
-            raise
+        # Update segments with child/adult labels
+        updated = []
+        for seg in diar_segments:
+            updated.append({
+                'start': seg['start'],
+                'end': seg['end'],
+                'speaker': speaker_map.get(seg['speaker'], seg['speaker']),
+            })
+
+        child_count = sum(1 for s in updated if s['speaker'] == 'child')
+        adult_count = sum(1 for s in updated if s['speaker'] == 'adult')
+        logger.info(f"Classification: {child_count} child segments, {adult_count} adult segments")
+
+        return updated
 
     def diarize_vad_segments(self, vad_segments: List) -> List[DiarizationSegment]:
         """

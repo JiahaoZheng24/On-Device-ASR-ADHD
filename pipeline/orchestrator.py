@@ -166,8 +166,18 @@ class PipelineOrchestrator:
                     f"in {len(diar_segments)} segments"
                 )
 
-                # Step 3: Create audio segments with speaker labels
-                logger.info("Step 3/5: Creating speaker-labeled audio segments...")
+                # Step 3: Classify speakers as child/adult using pitch
+                logger.info("Step 3/5: Classifying speakers (child vs adult)...")
+                diar_segments = self.diarization_agent.classify_speakers_by_pitch(
+                    audio, sample_rate, diar_segments
+                )
+
+                # Merge adjacent segments from the same speaker for better ASR
+                diar_segments = self.diarization_agent.merge_adjacent_segments(
+                    diar_segments, max_gap=1.0
+                )
+
+                # Create audio segments with child/adult labels
                 speaker_segments = self.diarization_agent.create_speaker_segments(
                     audio, sample_rate, diar_segments
                 )

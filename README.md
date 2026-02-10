@@ -8,19 +8,24 @@ A privacy-preserving, fully on-device system that processes child-adult audio in
 Audio File (.wav/.mp3/.flac/...)
     |
     v
-[1. VAD] Silero VAD - detect speech segments
+[1. Diarization] Pyannote 3.1 (GPU) - identify speakers + segment audio
     |
     v
-[2. Diarization] MFCC + K-means + Pitch (pyin) - classify child vs adult
+[2. Pitch Classification] pyin - label speakers as child vs adult
     |
     v
-[3. ASR] OpenAI Whisper - transcribe each segment
+[3. ASR] OpenAI Whisper (small) - transcribe each segment
     |
     v
 [4. Summary] Qwen 7B LLM - generate daily report
     |
     v
 Output: report.md + transcripts.json + summary.json
+```
+
+Alternative pipeline (no HuggingFace token needed):
+```
+Audio → [VAD] Silero → [Diarization] MFCC + K-means + pyin → [ASR] Whisper → [Summary] Qwen
 ```
 
 ## Quick Start
@@ -135,14 +140,16 @@ Edit `config/settings.yaml`:
 # Speaker Diarization
 diarization:
   enabled: true
-  method: "simple"       # Local MFCC + K-means + pitch analysis
-  n_speakers: 2          # Expected number of speakers
-  child_pitch_threshold: 250.0  # Hz (fallback threshold)
+  method: "pyannote"     # "pyannote" (recommended, needs HF token) or "simple" (local)
+  hf_token: "hf_..."     # Required for pyannote method
+  min_speakers: 2
+  max_speakers: 2
+  device: "cuda"
 
 # Speech Recognition
 asr:
   model_type: "whisper"
-  model_name: "base"     # Options: tiny, base, small, medium, large
+  model_name: "small"    # Options: tiny, base, small, medium, large
   device: "cuda"         # Options: cpu, cuda
 
 # Language Model (for summary generation)
@@ -156,9 +163,10 @@ llm:
 
 | Parameter | Description | Default |
 |-----------|-------------|---------|
-| `diarization.method` | `"simple"` (local) or `"pyannote"` (needs HF token) | `"simple"` |
-| `diarization.n_speakers` | Expected number of speakers | `2` |
-| `asr.model_name` | Whisper model size | `"base"` |
+| `diarization.method` | `"pyannote"` (neural, recommended) or `"simple"` (local, no token) | `"pyannote"` |
+| `diarization.hf_token` | HuggingFace token (required for pyannote) | — |
+| `diarization.min/max_speakers` | Speaker count constraints | `2` |
+| `asr.model_name` | Whisper model size | `"small"` |
 | `asr.device` | `"cuda"` for GPU, `"cpu"` for CPU | `"cuda"` |
 | `llm.device` | `"cuda"` for GPU, `"cpu"` for CPU | `"cuda"` |
 
@@ -173,7 +181,8 @@ On-Device-ASR-ADHD/
 │   ├── base.py                      # Base classes
 │   ├── vad_models.py                # Silero VAD
 │   ├── asr_models.py                # Whisper ASR
-│   ├── simple_diarization.py        # MFCC + K-means + pyin diarization
+│   ├── pyannote_diarization.py      # Pyannote neural diarization (recommended)
+│   ├── simple_diarization.py        # MFCC + K-means + pyin diarization (local)
 │   └── llm_models.py               # Qwen LLM for summaries
 ├── agents/
 │   ├── recording_agent.py           # Audio file loading / recording
@@ -189,13 +198,28 @@ On-Device-ASR-ADHD/
 
 ## Speaker Diarization
 
-The system uses a lightweight local approach for child vs adult classification:
+Two methods are available:
+
+### Pyannote (Recommended)
+
+Uses [pyannote/speaker-diarization-3.1](https://huggingface.co/pyannote/speaker-diarization-3.1) for neural speaker segmentation, followed by pitch-based child/adult classification:
+
+1. **Speaker Segmentation**: Pyannote neural pipeline identifies speaker turns on GPU
+2. **Segment Merging**: Adjacent same-speaker segments are merged for better ASR context
+3. **Child/Adult Classification**: pyin pitch analysis on each speaker's audio — the speaker with more segments and lower pitch is labeled "child"
+
+Requires a HuggingFace token with access to:
+- [pyannote/speaker-diarization-3.1](https://huggingface.co/pyannote/speaker-diarization-3.1)
+- [pyannote/segmentation-3.0](https://huggingface.co/pyannote/segmentation-3.0)
+- [pyannote/speaker-diarization-community-1](https://huggingface.co/pyannote/speaker-diarization-community-1)
+
+### Simple (Local, No Token)
+
+A lightweight local approach that requires no external dependencies:
 
 1. **Feature Extraction**: MFCC (mean + std), pitch (pyin), spectral centroid, ZCR, RMS energy
 2. **Clustering**: K-means groups segments into speaker clusters
-3. **Classification**: Relative pitch comparison — the cluster with higher median pitch is labeled "child", lower is "adult"
-
-This approach is completely local, requires no external API tokens, and works well for two-speaker child-adult interactions.
+3. **Classification**: Relative pitch comparison to label child vs adult
 
 ## Generated Reports
 
@@ -235,7 +259,8 @@ Models auto-download on first run:
 | Model | Size | Purpose |
 |-------|------|---------|
 | Silero VAD | ~2 MB | Voice activity detection |
-| Whisper base | ~145 MB | Speech recognition |
+| Pyannote 3.1 | ~200 MB | Speaker diarization |
+| Whisper small | ~465 MB | Speech recognition |
 | Qwen 7B | ~14 GB | Summary generation |
 
 Storage location: `~/.cache/huggingface/hub/` and `~/.cache/torch/hub/`
