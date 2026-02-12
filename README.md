@@ -202,11 +202,11 @@ Two methods are available:
 
 ### Pyannote (Recommended)
 
-Uses [pyannote/speaker-diarization-3.1](https://huggingface.co/pyannote/speaker-diarization-3.1) for neural speaker segmentation, followed by pitch-based child/adult classification:
+Uses [pyannote/speaker-diarization-3.1](https://huggingface.co/pyannote/speaker-diarization-3.1), a deep learning pipeline for speaker diarization. Internally, Pyannote uses neural segmentation (PyanNet) and neural speaker embeddings (e.g., ECAPA-TDNN) with agglomerative clustering — **not** MFCC + K-means.
 
-1. **Speaker Segmentation**: Pyannote neural pipeline identifies speaker turns on GPU
+1. **Speaker Segmentation**: Pyannote neural pipeline identifies speaker turns on GPU using learned audio representations
 2. **Segment Merging**: Adjacent same-speaker segments are merged for better ASR context
-3. **Child/Adult Classification**: pyin pitch analysis on each speaker's audio — the speaker with more segments and lower pitch is labeled "child"
+3. **Child/Adult Classification**: pyin pitch analysis on each speaker's audio — the speaker with higher pitch is labeled "child"
 
 Requires a HuggingFace token with access to:
 - [pyannote/speaker-diarization-3.1](https://huggingface.co/pyannote/speaker-diarization-3.1)
