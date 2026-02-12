@@ -41,7 +41,7 @@ asr:
   # Model type options:
   #   - "whisper": Standard Whisper ASR (use with simple diarization)
   #   - "whisper-diarization": Joint ASR + child/adult speaker identification (not recommended)
-  model_type: "whisper"  # Use standard Whisper with simple diarization
+  model_type: "whisper-diarization"  # Use standard Whisper with simple diarization
 
   # For standard Whisper: tiny, base, small, medium, large
   model_name: "small"

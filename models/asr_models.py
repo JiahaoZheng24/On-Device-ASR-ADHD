@@ -351,11 +351,14 @@ class WhisperDiarizationASR(BaseASRModel):
             self.processor = WhisperProcessor.from_pretrained("openai/whisper-small.en")
 
             # Load the joint model
+            self.model_dtype = torch.float32
             self.model = WhisperWithDiarization.from_pretrained(
                 model_name,
                 num_diar_classes=3,  # silence, child, adult
-                diar_loss_weight=1.0
+                diar_loss_weight=1.0,
+                dtype=self.model_dtype
             )
+            self.model.float()  # Ensure all parameters are float32
             self.model.to(device)
             self.model.eval()
 
@@ -405,7 +408,7 @@ class WhisperDiarizationASR(BaseASRModel):
                 audio,
                 sampling_rate=16000,
                 return_tensors="pt"
-            ).input_features.to(self.device)
+            ).input_features.to(device=self.device, dtype=self.model_dtype)
 
             with torch.no_grad():
                 # Generate transcription

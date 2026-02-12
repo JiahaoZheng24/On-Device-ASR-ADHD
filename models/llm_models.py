@@ -79,9 +79,9 @@ class QwenLLM(BaseLLMModel):
                 except ImportError:
                     logger.warning("bitsandbytes not installed, loading model in full precision")
                     logger.warning("Install with: pip install bitsandbytes")
-                    load_kwargs['torch_dtype'] = torch.float16 if device == "cuda" else torch.float32
+                    load_kwargs['dtype'] = torch.float16 if device == "cuda" else torch.float32
             else:
-                load_kwargs['torch_dtype'] = torch.float16 if device == "cuda" else torch.float32
+                load_kwargs['dtype'] = torch.float16 if device == "cuda" else torch.float32
             
             # Load model
             self.model = AutoModelForCausalLM.from_pretrained(
@@ -398,7 +398,7 @@ class LlamaLLM(BaseLLMModel):
             self.tokenizer = AutoTokenizer.from_pretrained(model_path)
             
             load_kwargs = {
-                "torch_dtype": torch.float16 if device == "cuda" else torch.float32,
+                "dtype": torch.float16 if device == "cuda" else torch.float32,
             }
             
             if self.config.get('load_in_8bit', False):

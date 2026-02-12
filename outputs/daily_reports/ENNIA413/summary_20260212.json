@@ -1,0 +1,70 @@
+{
+  "date": "2026-02-12T00:00:00",
+  "total_speech_duration": 108.20250000000004,
+  "segment_count": 45,
+  "temporal_distribution": {
+    "0": 18.225,
+    "1": 22.983750000000008,
+    "2": 18.10687500000003,
+    "3": 16.385625000000005,
+    "4": 20.300624999999997,
+    "5": 9.061874999999986,
+    "6": 3.138750000000016
+  },
+  "communication_patterns": {
+    "primary_characteristics": [
+      "Short, directed questions",
+      "Focus on visual stimuli"
+    ],
+    "temporal_notes": "Speech segments span from 00:00 to 06:27 in the audio (approximately 6.4 minutes)",
+    "interaction_style": "Brief exchanges"
+  },
+  "representative_excerpts": [
+    {
+      "time": "15:21:08",
+      "text": "[15:21:08] Okay, Tyler look at these pictures and tell me what is happening",
+      "context": "This excerpt demonstrates the initial prompt given to the child to engage with visual stimuli and provide a verbal response."
+    },
+    {
+      "time": "15:21:10",
+      "text": "[15:21:10] Okay Tyler tell me the story that you see in these hatches",
+      "context": "This excerpt shows a follow-up question aimed at eliciting a narrative from the child based on the visual images presented."
+    },
+    {
+      "time": "15:21:11",
+      "text": "[15:21:11] And a chicken swimming pool.",
+      "context": "This brief exchange indicates the child’s response to a specific part of the visual stimulus, showing how the child can provide concise answers."
+    },
+    {
+      "time": "15:21:11",
+      "text": "[15:21:11] As a kid.",
+      "context": "Another example of a brief response, suggesting the child is capable of providing short, focused descriptions."
+    },
+    {
+      "time": "15:21:12",
+      "text": "[15:21:12] And what is this?",
+      "context": "This question exemplifies the ongoing prompts used to encourage the child to describe various aspects of the visual stimuli."
+    },
+    {
+      "time": "15:21:13",
+      "text": "[15:21:13] Tiger tell me the story you speak to",
+      "context": "This excerpt illustrates the use of another word ('tiger') which might be a mistake or a playful variation, indicating the type of interaction style used."
+    }
+  ],
+  "metadata": {
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "total_transcripts": 45,
+    "average_confidence": 0.8660568396250407,
+    "original_transcript_count": 102,
+    "filtered_transcript_count": 45,
+    "filter_settings": {
+      "min_words": 3,
+      "min_confidence": 0.3
+    },
+    "speaker_statistics": {
+      "child_segments": 36,
+      "adult_segments": 9,
+      "child_ratio": 0.8
+    }
+  }
+}
