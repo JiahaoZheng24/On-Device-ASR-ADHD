@@ -91,3 +91,29 @@ Saved to: outputs\daily_reports\ENNIA413\transcripts_20260224.json
 2026-02-24 13:50:52,404 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
 2026-02-24 13:50:52,421 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
 2026-02-24 13:50:52,421 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-24 14:01:21,389 - agents.llm_agent - INFO - Loading LLM for agent...
+2026-02-24 14:01:28,421 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cuda
+2026-02-24 14:01:28,530 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-24 14:01:28,547 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-24 14:01:28,626 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-24 14:01:28,628 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-02-24 14:01:28,649 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-24 14:01:28,719 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-24 14:01:28,767 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-24 14:01:29,560 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-24 14:01:29,611 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-24 14:01:29,621 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-24 14:01:43,034 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-24 14:01:43,051 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/generation_config.json "HTTP/1.1 200 OK"
+2026-02-24 14:01:43,106 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-02-24 14:01:58,252 - models.llm_models - INFO - Qwen model loaded successfully
+2026-02-24 14:01:58,252 - agents.llm_agent - INFO - Setting up pipeline orchestrator...
+2026-02-24 14:01:58,252 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-24 14:01:58,280 - agents.llm_agent - INFO - Agent ready.
+2026-02-24 14:04:52,862 - agents.llm_agent - INFO - Tool call: list_output_files({})
+2026-02-24 14:04:52,864 - agents.llm_agent - INFO - Tool result: Available output files:
+  daily_reports\ENNIA413\report_20260210.md
+  daily_reports\ENNIA413\report_20260212.md
+  daily_
+2026-02-24 14:06:48,290 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-24 14:06:48,290 - pipeline.orchestrator - INFO - Cleanup completed

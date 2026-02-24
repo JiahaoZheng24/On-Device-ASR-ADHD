@@ -107,8 +107,8 @@ SYSTEM_PROMPT = (
     "summary reports, and manage output files. All processing is done locally "
     "— data never leaves the device.\n\n"
     "When the user asks you to do something, use the available tools to "
-    "accomplish the task. Respond in the same language as the user "
-    "(Chinese or English)."
+    "accomplish the task. Always respond in English unless the user "
+    "explicitly writes in Chinese."
 )
 
 # ---------------------------------------------------------------------------
