@@ -100,6 +100,42 @@ class QwenLLM(BaseLLMModel):
             logger.error(f"Failed to load Qwen model: {e}")
             raise
     
+    def generate_with_tools(self, messages: List[Dict[str, Any]], tools: List[Dict[str, Any]]) -> str:
+        """
+        Generate a response with tool definitions for function calling.
+        Used by LLMAgent. Returns raw response (may contain <tool_call> tags).
+        """
+        if not self._is_initialized:
+            raise RuntimeError("Model not initialized. Call load_model() first.")
+
+        import torch
+
+        text = self.tokenizer.apply_chat_template(
+            messages,
+            tools=tools,
+            tokenize=False,
+            add_generation_prompt=True
+        )
+
+        inputs = self.tokenizer([text], return_tensors="pt")
+        if self.config.get('device') == "cuda":
+            inputs = inputs.to("cuda")
+
+        input_length = inputs['input_ids'].shape[1]
+
+        with torch.no_grad():
+            outputs = self.model.generate(
+                **inputs,
+                max_new_tokens=self.config.get('max_length', 512),
+                temperature=self.config.get('temperature', 0.7),
+                top_p=self.config.get('top_p', 0.9),
+                do_sample=True,
+                pad_token_id=self.tokenizer.eos_token_id
+            )
+
+        new_tokens = outputs[0][input_length:]
+        return self.tokenizer.decode(new_tokens, skip_special_tokens=True).strip()
+
     def generate(self, prompt: str, **kwargs) -> str:
         """Generate text using Qwen model."""
         if not self._is_initialized:

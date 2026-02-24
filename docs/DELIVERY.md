@@ -1,117 +1,116 @@
-# 项目交付总结
+# Project Delivery Summary
 
-## 项目名称
+## Project Name
 **On-Device Daily Audio Summarization System for Children with ADHD**
-儿童ADHD音频日报生成系统（设备端处理）
 
-## 核心特性
+## Core Features
 
-### ✅ 完全模块化设计
-- 所有组件都可以独立替换
-- 使用工厂模式创建模型
-- 清晰的抽象接口定义
+### ✅ Fully Modular Design
+- All components can be independently replaced
+- Factory pattern used for model creation
+- Clean abstract interface definitions
 
-### ✅ 灵活的模型配置
-- **ASR模型**：Whisper (tiny/base/small/medium/large)
-- **LLM模型**：Qwen2.5-7B, Llama3.1-8B（可轻松切换）
-- **VAD模型**：Silero VAD, WebRTC VAD
+### ✅ Flexible Model Configuration
+- **ASR model**: Whisper (tiny/base/small/medium/large)
+- **LLM model**: Qwen2.5-7B, Llama3.1-8B (easy to swap)
+- **VAD model**: Silero VAD, WebRTC VAD
 
-### ✅ Agent架构
-- RecordingAgent：音频录制
-- VADAgent：语音活动检测
-- TranscriptionAgent：语音转文字
-- SummaryAgent：日报生成
+### ✅ Agent Architecture
+- RecordingAgent: audio recording
+- VADAgent: voice activity detection
+- TranscriptionAgent: speech-to-text
+- SummaryAgent: daily report generation
 
-### ✅ 隐私保护
-- 所有处理在本地完成
-- 无云端API调用
-- 可配置的数据保留策略
+### ✅ Privacy Protection
+- All processing done locally
+- No cloud API calls
+- Configurable data retention policy
 
-## 项目结构
+## Project Structure
 
 ```
 adhd_audio_system/
-├── README.md                    # 项目概览
-├── USAGE.md                     # 使用指南
-├── ARCHITECTURE.md              # 架构文档
-├── requirements.txt             # Python依赖
-├── main.py                      # 主入口
-├── examples.py                  # 使用示例
-├── test_setup.py                # 安装测试
+├── README.md                    # Project overview
+├── USAGE.md                     # Usage guide
+├── ARCHITECTURE.md              # Architecture docs
+├── requirements.txt             # Python dependencies
+├── main.py                      # Main entry point
+├── examples.py                  # Usage examples
+├── test_setup.py                # Installation tests
 │
 ├── config/
-│   └── settings.yaml            # 配置文件（模型切换在这里）
+│   └── settings.yaml            # Configuration file (switch models here)
 │
-├── models/                      # 模型层
-│   ├── base.py                  # 抽象基类
-│   ├── vad_models.py            # VAD模型实现
-│   ├── asr_models.py            # ASR模型实现（Whisper）
-│   └── llm_models.py            # LLM模型实现（Qwen/Llama）
+├── models/                      # Model layer
+│   ├── base.py                  # Abstract base classes
+│   ├── vad_models.py            # VAD model implementations
+│   ├── asr_models.py            # ASR model implementations (Whisper)
+│   └── llm_models.py            # LLM model implementations (Qwen/Llama)
 │
-├── agents/                      # Agent层
-│   ├── recording_agent.py       # 录音Agent
-│   ├── vad_transcription_agents.py  # VAD和转录Agent
-│   └── summary_agent.py         # 总结Agent
+├── agents/                      # Agent layer
+│   ├── recording_agent.py       # Recording agent
+│   ├── vad_transcription_agents.py  # VAD and transcription agents
+│   └── summary_agent.py         # Summary agent
 │
 ├── pipeline/
-│   └── orchestrator.py          # Pipeline协调器
+│   └── orchestrator.py          # Pipeline orchestrator
 │
-└── data/                        # 数据目录
-    ├── audio_segments/          # 语音片段
-    ├── transcripts/             # 转录文本
+└── data/                        # Data directory
+    ├── audio_segments/          # Speech segments
+    ├── transcripts/             # Transcription text
     └── outputs/
-        └── daily_reports/       # 日报输出
+        └── daily_reports/       # Daily report output
 ```
 
-## 快速开始
+## Quick Start
 
-### 1. 安装依赖
+### 1. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. 测试安装
+### 2. Test installation
 ```bash
 python test_setup.py
 ```
 
-### 3. 运行完整流程
+### 3. Run full pipeline
 ```bash
-# 录制5分钟音频并生成报告
+# Record 5 minutes of audio and generate a report
 python main.py --mode full --audio record --duration 300
 
-# 或处理已有音频文件
+# Or process an existing audio file
 python main.py --mode full --audio /path/to/audio.wav
 ```
 
-## 模型切换方法
+## Switching Models
 
-### 方法1：修改配置文件
-编辑 `config/settings.yaml`：
+### Method 1: Edit the config file
+Edit `config/settings.yaml`:
 
 ```yaml
-# 切换ASR模型
+# Switch ASR model
 asr:
-  model_name: "base"  # 改为: tiny, small, medium, large
+  model_name: "base"  # options: tiny, small, medium, large
 
-# 切换LLM模型到Qwen
+# Switch LLM to Qwen
 llm:
   model_type: "qwen"
   model_name: "Qwen/Qwen2.5-7B-Instruct"
 
-# 或切换到Llama
+# Or switch to Llama
 llm:
   model_type: "llama"
   model_name: "meta-llama/Llama-3.1-8B-Instruct"
 ```
 
-### 方法2：运行时切换
+### Method 2: Switch at runtime
 ```python
 from pipeline.orchestrator import PipelineOrchestrator
 
 orchestrator = PipelineOrchestrator("config/settings.yaml")
 
-# 切换模型
+# Switch models
 orchestrator.config['asr']['model_name'] = 'medium'
 orchestrator.config['llm']['model_type'] = 'llama'
 
@@ -119,35 +118,35 @@ orchestrator.initialize_agents()
 orchestrator.run_full_pipeline(audio_source="audio.wav")
 ```
 
-## 主要功能模式
+## Pipeline Modes
 
-### 1. 完整流程 (Full Pipeline)
+### 1. Full pipeline
 ```bash
 python main.py --mode full --audio record --duration 300
 ```
-录音 → VAD → 转录 → 生成报告
+Record → VAD → Transcribe → Generate report
 
-### 2. 仅VAD
+### 2. VAD only
 ```bash
 python main.py --mode vad --audio audio.wav
 ```
-检测语音片段并保存
+Detect speech segments and save
 
-### 3. 仅转录
+### 3. Transcribe only
 ```bash
 python main.py --mode transcribe --segments-dir data/audio_segments
 ```
-转录已检测的语音片段
+Transcribe already-detected speech segments
 
-### 4. 仅生成报告
+### 4. Summarize only
 ```bash
 python main.py --mode summarize --transcript-file data/transcripts/transcripts_20240101.json
 ```
-从转录文本生成日报
+Generate a daily report from an existing transcript
 
-## 输出示例
+## Output Examples
 
-### JSON输出 (summary_YYYYMMDD.json)
+### JSON output (summary_YYYYMMDD.json)
 ```json
 {
   "date": "2024-01-01T00:00:00",
@@ -167,19 +166,19 @@ python main.py --mode summarize --transcript-file data/transcripts/transcripts_2
 }
 ```
 
-### Markdown报告 (report_YYYYMMDD.md)
-- 概览统计
-- 时间分布图表
-- 交流模式分析
-- 代表性片段（带时间戳）
+### Markdown report (report_YYYYMMDD.md)
+- Overview statistics
+- Temporal distribution chart
+- Communication pattern analysis
+- Representative excerpts with timestamps
 
-## 扩展性
+## Extensibility
 
-### 添加新的ASR模型
-1. 在 `models/asr_models.py` 中创建新类
-2. 继承 `BaseASRModel`
-3. 实现必要方法
-4. 添加到工厂函数
+### Adding a new ASR model
+1. Create a new class in `models/asr_models.py`
+2. Inherit from `BaseASRModel`
+3. Implement required methods
+4. Register in the factory function
 
 ```python
 class NewASRModel(BaseASRModel):
@@ -187,11 +186,11 @@ class NewASRModel(BaseASRModel):
     def transcribe(self, segment): ...
 ```
 
-### 添加新的LLM模型
-1. 在 `models/llm_models.py` 中创建新类
-2. 继承 `BaseLLMModel`
-3. 实现必要方法
-4. 添加到工厂函数
+### Adding a new LLM model
+1. Create a new class in `models/llm_models.py`
+2. Inherit from `BaseLLMModel`
+3. Implement required methods
+4. Register in the factory function
 
 ```python
 class NewLLM(BaseLLMModel):
@@ -202,16 +201,16 @@ class NewLLM(BaseLLMModel):
 
 ## Agent-Based vs Pipeline-Based
 
-### 当前实现：Agent-Based
-- 每个Agent独立完成特定任务
-- 可以单独调用任何Agent
-- 通过Orchestrator协调
+### Current implementation: Agent-Based
+- Each agent independently handles a specific task
+- Any agent can be called individually
+- Coordinated through the Orchestrator
 
-### 可选：Pipeline-Based (Langchain风格)
-如果需要更接近Langchain的链式调用，可以修改Orchestrator：
+### Alternative: Pipeline-Based (Langchain-style)
+If a more Langchain-like chained interface is needed, the Orchestrator can be modified:
 
 ```python
-# 示例：Chain风格
+# Example: Chain style
 class ChainOrchestrator:
     def create_chain(self):
         return (
@@ -220,20 +219,20 @@ class ChainOrchestrator:
             | TranscriptionChain()
             | SummaryChain()
         )
-    
+
     def run(self, input):
         chain = self.create_chain()
         return chain.run(input)
 ```
 
-当前的Agent架构更灵活，因为：
-- 可以跳过某些步骤
-- 可以重复执行某个Agent
-- 更容易调试和测试
+The current agent architecture is more flexible because:
+- Steps can be skipped
+- Individual agents can be re-run
+- Easier to debug and test
 
-## 性能建议
+## Performance Recommendations
 
-### CPU环境
+### CPU environment
 ```yaml
 asr:
   model_name: "base"
@@ -244,7 +243,7 @@ llm:
   load_in_4bit: true
 ```
 
-### GPU环境
+### GPU environment
 ```yaml
 asr:
   model_name: "medium"
@@ -256,7 +255,7 @@ llm:
   load_in_4bit: true
 ```
 
-### 内存受限
+### Memory-constrained
 ```yaml
 asr:
   model_name: "tiny"
@@ -266,56 +265,56 @@ llm:
   load_in_4bit: true
 ```
 
-## 文档清单
+## Documentation Checklist
 
-- ✅ README.md - 项目概览和快速入门
-- ✅ USAGE.md - 详细使用指南
-- ✅ ARCHITECTURE.md - 系统架构文档
-- ✅ examples.py - 8个使用示例
-- ✅ test_setup.py - 安装验证脚本
-- ✅ config/settings.yaml - 完整配置示例
+- ✅ README.md - Project overview and quick start
+- ✅ USAGE.md - Detailed usage guide
+- ✅ ARCHITECTURE.md - System architecture docs
+- ✅ examples.py - 8 usage examples
+- ✅ test_setup.py - Installation verification script
+- ✅ config/settings.yaml - Complete configuration example
 
-## 关键设计决策
+## Key Design Decisions
 
-1. **模块化优先**：每个组件都可独立替换
-2. **抽象接口**：使用ABC定义清晰的契约
-3. **工厂模式**：简化模型创建和切换
-4. **Agent架构**：比纯Pipeline更灵活
-5. **配置驱动**：行为通过YAML配置控制
-6. **隐私保护**：所有处理本地完成
+1. **Modularity first**: Every component can be independently replaced
+2. **Abstract interfaces**: ABC used to define clean contracts
+3. **Factory pattern**: Simplifies model creation and switching
+4. **Agent architecture**: More flexible than a pure pipeline
+5. **Configuration-driven**: Behavior controlled via YAML config
+6. **Privacy-preserving**: All processing done locally
 
-## 技术栈
+## Technology Stack
 
 - **Python 3.8+**
-- **PyTorch** - 深度学习框架
-- **Transformers** - HuggingFace模型库
-- **faster-whisper** - 高效的Whisper实现
-- **Silero VAD** - 语音活动检测
-- **sounddevice** - 音频录制
+- **PyTorch** - deep learning framework
+- **Transformers** - HuggingFace model library
+- **faster-whisper** - efficient Whisper implementation
+- **Silero VAD** - voice activity detection
+- **sounddevice** - audio recording
 
-## 已测试的模型组合
+## Tested Model Combinations
 
 1. ✅ Whisper-base + Qwen2.5-7B
 2. ✅ Whisper-small + Llama3.1-8B
-3. ✅ Whisper-tiny + Qwen2.5-1.5B (低内存)
+3. ✅ Whisper-tiny + Qwen2.5-1.5B (low memory)
 
-## 下一步建议
+## Recommended Next Steps
 
-1. **测试运行**：先用小样本测试整个流程
-2. **选择模型**：根据硬件选择合适的模型大小
-3. **调整配置**：根据需求调整VAD敏感度等参数
-4. **定期运行**：可以设置定时任务自动处理
-5. **数据管理**：定期清理旧数据
+1. **Test run**: Start with a small sample to validate the full pipeline
+2. **Choose models**: Select model sizes appropriate for your hardware
+3. **Tune config**: Adjust VAD sensitivity and other parameters as needed
+4. **Schedule runs**: Set up a cron job for automated daily processing
+5. **Manage data**: Periodically clean up old output files
 
-## 联系与支持
+## Support
 
-如有问题或需要帮助，请参考：
-- USAGE.md - 常见问题解答
-- ARCHITECTURE.md - 深入了解系统设计
-- examples.py - 更多使用示例
+If you have questions or need help, refer to:
+- USAGE.md - common troubleshooting
+- ARCHITECTURE.md - deep dive into system design
+- examples.py - more usage examples
 
 ---
 
-**项目版本**: 1.0.0  
-**最后更新**: 2024  
-**许可**: 根据项目需求设定
+**Version**: 1.0.0
+**Last updated**: 2024
+**License**: Set per project requirements

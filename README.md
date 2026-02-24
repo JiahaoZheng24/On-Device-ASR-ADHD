@@ -49,7 +49,10 @@ pip install torch==2.8.0 torchaudio==2.8.0 torchvision==0.23.0 --index-url https
 # 4. Install dependencies
 pip install -r requirements.txt
 
-# 5. Run
+# 5a. Interactive agent (recommended)
+python agent.py
+
+# 5b. Or run the pipeline directly
 python main.py --mode full --audio your_audio.wav
 ```
 
@@ -113,7 +116,31 @@ python -c "import whisper; print('Whisper:', whisper.__version__)"
 
 ## Usage
 
-### Process Audio Files
+### Interactive Agent (Recommended)
+
+`agent.py` is a conversational interface powered by the on-device LLM (Qwen2.5). It loads the model once and lets you issue natural-language commands:
+
+```bash
+python agent.py
+# Optional flags:
+#   --config config/settings.yaml   (default)
+#   --log-level DEBUG
+```
+
+Example commands once the agent is running:
+
+```
+Transcribe data/audio.wav
+Run the full pipeline on data/audio.wav
+Generate summary outputs/daily_reports/audio/transcripts_20260212.json
+List all output files
+```
+
+Type `quit`, `exit`, or `q` to stop.
+
+### Direct Pipeline (`main.py`)
+
+Use `main.py` for scripted or automated runs without the conversational interface:
 
 ```bash
 conda activate adhd_audio
@@ -174,7 +201,8 @@ llm:
 
 ```
 On-Device-ASR-ADHD/
-├── main.py                          # Entry point
+├── agent.py                         # Interactive LLM agent (recommended entry point)
+├── main.py                          # Direct pipeline entry point
 ├── config/
 │   └── settings.yaml                # Configuration
 ├── models/
