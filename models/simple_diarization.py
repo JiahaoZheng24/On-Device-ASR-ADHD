@@ -208,10 +208,10 @@ class SimpleDiarization:
                 child_cluster: "child",
                 adult_cluster: "adult"
             }
-            # Handle any additional clusters
+            # Handle any additional clusters — default to "adult"
             for cid in range(self.n_speakers):
                 if cid not in cluster_to_speaker:
-                    cluster_to_speaker[cid] = f"SPEAKER_{cid}"
+                    cluster_to_speaker[cid] = "adult"
         else:
             # Fallback: use fixed threshold if relative comparison not possible
             logger.warning("Cannot do relative comparison, using fixed threshold")
@@ -219,10 +219,9 @@ class SimpleDiarization:
             for cid, pitch in cluster_pitches.items():
                 if pitch > self.child_pitch_threshold:
                     cluster_to_speaker[cid] = "child"
-                elif pitch > 0:
-                    cluster_to_speaker[cid] = "adult"
                 else:
-                    cluster_to_speaker[cid] = f"SPEAKER_{cid}"
+                    # pitch == 0 (unvoiced/silent) or below threshold → adult
+                    cluster_to_speaker[cid] = "adult"
 
         # Assign speaker labels
         speaker_labels = [

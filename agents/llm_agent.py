@@ -259,14 +259,50 @@ class LLMAgent:
             orc.initialize_agents(["transcription"])
 
         audio, sample_rate = orc.audio_file_agent.execute(path)
-        speech_segments = orc.vad_agent.execute(audio)
 
-        if not speech_segments:
-            return "No speech detected in the audio file."
+        diarization_cfg = self.config.get("diarization", {})
+        diar_enabled = diarization_cfg.get("enabled", False)
+        diar_method = diarization_cfg.get("method", "simple")
 
-        transcripts = orc.transcription_agent.execute(speech_segments)
+        if diar_enabled and diar_method == "pyannote":
+            # Pyannote flow: run diarization on full audio (no VAD step needed)
+            if orc.diarization_agent is None:
+                orc.initialize_agents(["diarization"])
+            diar_segments = orc.diarization_agent.execute(audio, sample_rate)
+            if not diar_segments:
+                return "No speech detected in the audio file."
+            diar_segments = orc.diarization_agent.classify_speakers_by_pitch(
+                audio, sample_rate, diar_segments
+            )
+            diar_segments = orc.diarization_agent.merge_adjacent_segments(
+                diar_segments, max_gap=1.0
+            )
+            speaker_segments = orc.diarization_agent.create_speaker_segments(
+                audio, sample_rate, diar_segments
+            )
+        else:
+            # Simple or no diarization: VAD first
+            speech_segments = orc.vad_agent.execute(audio)
+            if not speech_segments:
+                return "No speech detected in the audio file."
+            if diar_enabled and diar_method == "simple":
+                if orc.diarization_agent is None:
+                    orc.initialize_agents(["diarization"])
+                speaker_segments = orc.diarization_agent.diarize_vad_segments(speech_segments)
+            else:
+                speaker_segments = speech_segments
+
+        transcripts = orc.transcription_agent.execute(speaker_segments)
         if not transcripts:
             return "Transcription produced no text."
+
+        # Drop obvious hallucinations: segments with confidence < 0.15 are almost
+        # always Whisper producing garbage on noise/silence, not real speech.
+        min_conf = self.config.get("summary", {}).get("min_confidence", 0.3)
+        hallucination_threshold = min(0.15, min_conf)
+        transcripts = [t for t in transcripts if t.confidence >= hallucination_threshold]
+        if not transcripts:
+            return "All segments were below the confidence threshold — no usable transcription."
 
         # Save under outputs/<stem>/
         stem = "".join(c for c in path.stem if c.isalnum() or c in ("_", "-"))
@@ -291,7 +327,12 @@ class LLMAgent:
 
         orc = self.orchestrator
         if orc.summary_agent is None:
-            orc.initialize_agents(["summary"])
+            # Reuse the already-loaded LLM instead of loading a second copy on GPU
+            from agents.summary_agent import SummaryAgent
+            orc.summary_agent = SummaryAgent(self.config)
+            orc.summary_agent.output_dir.mkdir(parents=True, exist_ok=True)
+            orc.summary_agent.llm_model = self.llm
+            orc.summary_agent.set_status("initialized")
         if orc.transcription_agent is None:
             orc.initialize_agents(["transcription"])
 
@@ -300,7 +341,8 @@ class LLMAgent:
             return "No transcripts found in the file."
 
         summary = orc.summary_agent.execute(transcripts)
-        out_dir = orc.summary_agent.save_summary(summary)
+        # Save report alongside the transcript file, not in the root output dir
+        out_dir = orc.summary_agent.save_summary(summary, output_subdir=path.parent)
 
         return (
             f"Summary generated: {len(transcripts)} segments, "

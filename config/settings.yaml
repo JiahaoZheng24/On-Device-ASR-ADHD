@@ -34,14 +34,14 @@ diarization:
   # 1. Visit https://huggingface.co/pyannote/speaker-diarization-3.1
   # 2. Accept user conditions
   # 3. Create token at https://huggingface.co/settings/tokens
-  hf_token: null  # Set via environment variable HF_TOKEN, or paste your token here (do NOT commit)
+  hf_token: " "  # HuggingFace token
 
 # Automatic Speech Recognition (ASR) Settings
 asr:
   # Model type options:
   #   - "whisper": Standard Whisper ASR (use with simple diarization)
   #   - "whisper-diarization": Joint ASR + child/adult speaker identification (not recommended)
-  model_type: "whisper-diarization"  # Use standard Whisper with simple diarization
+  model_type: "whisper"  # Use standard Whisper with simple diarization
 
   # For standard Whisper: tiny, base, small, medium, large
   model_name: "small"

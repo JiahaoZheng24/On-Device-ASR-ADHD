@@ -1,0 +1,70 @@
+{
+  "date": "2026-02-25T00:00:00",
+  "total_speech_duration": 103.81500000000004,
+  "segment_count": 40,
+  "temporal_distribution": {
+    "0": 20.165625000000002,
+    "1": 18.410624999999996,
+    "2": 18.10687500000003,
+    "3": 13.398750000000007,
+    "4": 19.54125000000002,
+    "5": 11.053124999999966,
+    "6": 3.138750000000016
+  },
+  "communication_patterns": {
+    "primary_characteristics": [
+      "Short, focused prompts",
+      "Simple language used"
+    ],
+    "temporal_notes": "Speech segments span from 00:00 to 06:27 in the audio (approximately 6.4 minutes)",
+    "interaction_style": "Brief exchanges"
+  },
+  "representative_excerpts": [
+    {
+      "time": "15:43:26",
+      "text": "[15:43:26] Okay, Tyler, look at these pictures and tell me what's happened.",
+      "context": "This excerpt shows a brief instruction followed by an expectation of a verbal response from Tyler, highlighting the structured nature of the interaction."
+    },
+    {
+      "time": "15:43:30",
+      "text": "[15:43:30] and it falls off.",
+      "context": "This short, direct statement demonstrates Tyler's ability to follow instructions and provide a simple verbal response, indicating his communication skills during brief interactions."
+    },
+    {
+      "time": "15:43:35",
+      "text": "[15:43:35] Okay, Tyler. Tell me the story that you've seen as Patrick.",
+      "context": "The prompt for storytelling indicates the activity is designed to elicit more detailed responses, though the actual response is brief."
+    },
+    {
+      "time": "15:43:44",
+      "text": "[15:43:44] Okay, Tider, tell me the story you see here.",
+      "context": "This excerpt continues the pattern of brief, structured prompts to encourage verbal responses, suggesting the session involves multiple such exchanges."
+    },
+    {
+      "time": "15:43:46",
+      "text": "[15:43:46] and go in it.",
+      "context": "Another concise exchange, demonstrating the repetitive nature of the interaction and the focus on eliciting simple responses."
+    },
+    {
+      "time": "15:43:48",
+      "text": "[15:43:48] and work on me.",
+      "context": "This short response provides a context for further structured activities, reinforcing the pattern of brief exchanges."
+    }
+  ],
+  "metadata": {
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "total_transcripts": 40,
+    "average_confidence": 0.4938628359864694,
+    "original_transcript_count": 92,
+    "filtered_transcript_count": 40,
+    "filter_settings": {
+      "min_words": 3,
+      "min_confidence": 0.3
+    },
+    "speaker_statistics": {
+      "child_segments": 33,
+      "adult_segments": 7,
+      "child_ratio": 0.825
+    }
+  }
+}

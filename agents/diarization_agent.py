@@ -211,8 +211,8 @@ class DiarizationAgent(BaseAgent):
             sorted_speakers = sorted(
                 valid_speakers.items(), key=lambda x: x[1], reverse=True
             )
-            # In child-adult recordings, the adult (examiner) typically has
-            # a higher projected voice, while children may speak more softly.
+            # In these child-assessment recordings the examiner (adult) tends to
+            # project their voice clearly, resulting in a higher measured pitch.
             # Assign: higher pitch = adult, lower pitch = child
             speaker_map = {sorted_speakers[0][0]: "adult", sorted_speakers[1][0]: "child"}
 

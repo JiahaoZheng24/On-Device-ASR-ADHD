@@ -1,0 +1,702 @@
+2026-02-25 14:03:22,349 - agents.llm_agent - INFO - Loading LLM for agent...
+2026-02-25 14:03:37,419 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cuda
+2026-02-25 14:03:37,552 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:03:37,567 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-25 14:03:37,633 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:03:37,658 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-25 14:03:37,727 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-25 14:03:37,775 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-25 14:03:38,473 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-25 14:03:38,519 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:03:38,520 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-02-25 14:03:38,534 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-25 14:04:06,906 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:04:06,934 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/generation_config.json "HTTP/1.1 200 OK"
+2026-02-25 14:04:07,004 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-02-25 14:04:44,746 - models.llm_models - INFO - Qwen model loaded successfully
+2026-02-25 14:04:44,747 - agents.llm_agent - INFO - Setting up pipeline orchestrator...
+2026-02-25 14:04:44,749 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-25 14:04:44,784 - agents.llm_agent - INFO - Agent ready.
+2026-02-25 14:05:24,681 - agents.llm_agent - INFO - Tool call: generate_summary({'transcript_path': 'D:\\Jiahao_Zheng\\On-Device-ASR-ADHD\\outputs\\daily_reports\\ENNIA413\\transcripts_20260224.json'})
+2026-02-25 14:05:24,683 - pipeline.orchestrator - INFO - Initializing agents: ['summary']
+2026-02-25 14:05:24,684 - agents.summary_agent - INFO - Initializing SummaryAgent...
+2026-02-25 14:05:24,694 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cuda
+2026-02-25 14:05:24,809 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:05:24,828 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-25 14:05:24,896 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:05:24,916 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-25 14:05:24,989 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-25 14:05:25,044 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-25 14:05:25,813 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-25 14:05:25,866 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:05:25,881 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-25 14:06:44,497 - agents.llm_agent - INFO - Loading LLM for agent...
+2026-02-25 14:06:51,925 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cuda
+2026-02-25 14:06:52,049 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:06:52,063 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-25 14:06:52,117 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:06:52,131 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-25 14:06:52,193 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-25 14:06:52,244 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-25 14:06:52,894 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-25 14:06:52,939 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:06:52,954 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-25 14:07:13,082 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:07:13,099 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/generation_config.json "HTTP/1.1 200 OK"
+2026-02-25 14:07:13,154 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-02-25 14:07:19,199 - models.llm_models - INFO - Qwen model loaded successfully
+2026-02-25 14:07:19,199 - agents.llm_agent - INFO - Setting up pipeline orchestrator...
+2026-02-25 14:07:19,199 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-25 14:07:19,210 - agents.llm_agent - INFO - Agent ready.
+2026-02-25 14:07:28,345 - agents.llm_agent - INFO - Tool call: list_output_files({})
+2026-02-25 14:07:28,351 - agents.llm_agent - INFO - Tool result: Available output files:
+  daily_reports\ENNIA413\report_20260210.md
+  daily_reports\ENNIA413\report_20260212.md
+  daily_
+2026-02-25 14:08:24,564 - agents.llm_agent - INFO - Tool call: transcribe_audio({'audio_path': 'D:\\Jiahao_Zheng\\On-Device-ASR-ADHD\\data\\ENNIA413.wav'})
+2026-02-25 14:08:24,565 - pipeline.orchestrator - INFO - Initializing agents: ['audio_file']
+2026-02-25 14:08:24,565 - agents.recording_agent - INFO - AudioFileAgent initialized
+2026-02-25 14:08:24,565 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 14:08:24,565 - pipeline.orchestrator - INFO - Initializing agents: ['vad']
+2026-02-25 14:08:24,566 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-25 14:08:24,566 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-25 14:08:25,882 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-25 14:08:25,883 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-25 14:08:25,883 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 14:08:25,883 - pipeline.orchestrator - INFO - Initializing agents: ['transcription']
+2026-02-25 14:08:25,884 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-25 14:08:26,029 - models.asr_models - INFO - Loading joint ASR-diarization model: AlexXu811/child-adult-joint-asr-diarization on cuda
+2026-02-25 14:08:26,112 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/openai/whisper-small.en/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-25 14:08:26,159 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/openai/whisper-small.en/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-02-25 14:08:26,212 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/openai/whisper-small.en/resolve/main/chat_template.json "HTTP/1.1 404 Not Found"
+2026-02-25 14:08:26,212 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-02-25 14:08:26,264 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/openai/whisper-small.en/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-02-25 14:08:26,353 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/openai/whisper-small.en/resolve/main/audio_tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-02-25 14:08:26,401 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/openai/whisper-small.en/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-02-25 14:08:26,448 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/openai/whisper-small.en/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:08:26,463 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/whisper-small.en/e8727524f962ee844a7319d92be39ac1bd25655a/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-02-25 14:08:26,554 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/openai/whisper-small.en/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-02-25 14:08:26,604 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/openai/whisper-small.en/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:08:26,618 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/whisper-small.en/e8727524f962ee844a7319d92be39ac1bd25655a/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-02-25 14:08:26,687 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/openai/whisper-small.en/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:08:26,703 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/whisper-small.en/e8727524f962ee844a7319d92be39ac1bd25655a/config.json "HTTP/1.1 200 OK"
+2026-02-25 14:08:26,760 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/openai/whisper-small.en/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:08:26,776 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/whisper-small.en/e8727524f962ee844a7319d92be39ac1bd25655a/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-25 14:08:26,860 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/openai/whisper-small.en/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-25 14:08:26,944 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/openai/whisper-small.en/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-25 14:08:27,654 - models.whisper_diarization - INFO - Loading WhisperWithDiarization from AlexXu811/child-adult-joint-asr-diarization
+2026-02-25 14:08:27,713 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/AlexXu811/child-adult-joint-asr-diarization/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:08:27,729 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/AlexXu811/child-adult-joint-asr-diarization/5cdc8151a6b1f080238e3060bcdae52a3b0a2822/config.json "HTTP/1.1 200 OK"
+2026-02-25 14:08:27,801 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/AlexXu811/child-adult-joint-asr-diarization/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-02-25 14:08:30,924 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/AlexXu811/child-adult-joint-asr-diarization/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:08:30,939 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/AlexXu811/child-adult-joint-asr-diarization/5cdc8151a6b1f080238e3060bcdae52a3b0a2822/generation_config.json "HTTP/1.1 200 OK"
+2026-02-25 14:08:31,001 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/AlexXu811/child-adult-joint-asr-diarization/resolve/main/diarization_conv_layers.pt "HTTP/1.1 302 Found"
+2026-02-25 14:08:31,080 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/AlexXu811/child-adult-joint-asr-diarization/resolve/main/diarization_classifier.pt "HTTP/1.1 302 Found"
+2026-02-25 14:08:31,084 - models.whisper_diarization - INFO - Detected hidden dimension: 256
+2026-02-25 14:08:31,085 - models.whisper_diarization - INFO - Loaded diarization conv layers weights
+2026-02-25 14:08:31,085 - models.whisper_diarization - INFO - Loaded diarization classifier weights
+2026-02-25 14:08:31,085 - models.whisper_diarization - INFO - Diarization head weights loaded successfully
+2026-02-25 14:08:33,131 - models.asr_models - INFO - Joint ASR-diarization model loaded successfully
+2026-02-25 14:08:33,132 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-25 14:08:33,133 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 14:08:33,133 - agents.recording_agent - INFO - Loading audio from: D:\Jiahao_Zheng\On-Device-ASR-ADHD\data\ENNIA413.wav
+2026-02-25 14:08:37,677 - agents.recording_agent - INFO - Loaded 392.69s of audio at 16000Hz
+2026-02-25 14:08:37,677 - agents.vad_transcription_agents - INFO - Running VAD on 392.69s of audio...
+2026-02-25 14:08:42,302 - models.vad_models - INFO - Detected 104 speech segments
+2026-02-25 14:08:42,302 - agents.vad_transcription_agents - INFO - Detected 104 speech segments
+2026-02-25 14:08:42,302 - agents.vad_transcription_agents - INFO - Total speech: 164.96s, Average segment: 1.59s
+2026-02-25 14:08:42,302 - agents.vad_transcription_agents - INFO - Transcribing 104 segments...
+2026-02-25 14:08:42,302 - models.asr_models - INFO - Transcribing 104 segments with speaker diarization...
+2026-02-25 14:09:03,750 - models.asr_models - INFO - Progress: 10/104 segments transcribed
+2026-02-25 14:09:24,440 - models.asr_models - INFO - Progress: 20/104 segments transcribed
+2026-02-25 14:09:44,692 - models.asr_models - INFO - Progress: 30/104 segments transcribed
+2026-02-25 14:10:04,825 - models.asr_models - INFO - Progress: 40/104 segments transcribed
+2026-02-25 14:10:25,049 - models.asr_models - INFO - Progress: 50/104 segments transcribed
+2026-02-25 14:11:03,317 - models.asr_models - INFO - Progress: 60/104 segments transcribed
+2026-02-25 14:11:25,105 - models.asr_models - INFO - Progress: 70/104 segments transcribed
+2026-02-25 14:11:45,811 - models.asr_models - INFO - Progress: 80/104 segments transcribed
+2026-02-25 14:12:06,482 - models.asr_models - INFO - Progress: 90/104 segments transcribed
+2026-02-25 14:12:26,643 - models.asr_models - INFO - Progress: 100/104 segments transcribed
+2026-02-25 14:12:34,778 - models.asr_models - INFO - Progress: 104/104 segments transcribed
+2026-02-25 14:12:36,793 - models.asr_models - INFO - Speaker breakdown: 2 child, 102 adult segments
+2026-02-25 14:12:36,793 - agents.vad_transcription_agents - INFO - Successfully transcribed 100/104 segments
+2026-02-25 14:12:36,814 - agents.vad_transcription_agents - INFO - Saved 100 transcripts to outputs\daily_reports\ENNIA413\transcripts_20260225.json
+2026-02-25 14:12:36,817 - agents.llm_agent - INFO - Tool result: Transcription complete: 100 segments, ~284 words.
+Saved to: outputs\daily_reports\ENNIA413\transcripts_20260225.json
+2026-02-25 14:16:03,134 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-25 14:16:03,134 - agents.recording_agent - INFO - AudioFileAgent cleaned up
+2026-02-25 14:16:03,147 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-25 14:16:03,163 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-25 14:16:03,163 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-25 14:40:43,414 - agents.llm_agent - INFO - Loading LLM for agent...
+2026-02-25 14:40:50,832 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cuda
+2026-02-25 14:40:50,968 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:40:50,985 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-25 14:40:51,032 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:40:51,064 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-25 14:40:51,128 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-25 14:40:51,188 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-25 14:40:51,986 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-25 14:40:52,032 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:40:52,046 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-25 14:41:14,456 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:41:14,474 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/generation_config.json "HTTP/1.1 200 OK"
+2026-02-25 14:41:14,532 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-02-25 14:41:27,937 - models.llm_models - INFO - Qwen model loaded successfully
+2026-02-25 14:41:27,937 - agents.llm_agent - INFO - Setting up pipeline orchestrator...
+2026-02-25 14:41:27,949 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-25 14:41:27,961 - agents.llm_agent - INFO - Agent ready.
+2026-02-25 14:42:02,683 - agents.llm_agent - INFO - Tool call: transcribe_audio({'audio_path': 'data/ENNIA413.wav'})
+2026-02-25 14:42:02,691 - pipeline.orchestrator - INFO - Initializing agents: ['audio_file']
+2026-02-25 14:42:02,691 - agents.recording_agent - INFO - AudioFileAgent initialized
+2026-02-25 14:42:02,691 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 14:42:02,691 - pipeline.orchestrator - INFO - Initializing agents: ['vad']
+2026-02-25 14:42:02,691 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-25 14:42:02,691 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-25 14:42:03,181 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-25 14:42:03,181 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-25 14:42:03,181 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 14:42:03,181 - pipeline.orchestrator - INFO - Initializing agents: ['transcription']
+2026-02-25 14:42:03,181 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-25 14:42:03,294 - models.asr_models - INFO - Loading joint ASR-diarization model: AlexXu811/child-adult-joint-asr-diarization on cuda
+2026-02-25 14:42:03,391 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/openai/whisper-small.en/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-25 14:42:03,440 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/openai/whisper-small.en/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-02-25 14:42:03,500 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/openai/whisper-small.en/resolve/main/chat_template.json "HTTP/1.1 404 Not Found"
+2026-02-25 14:42:03,552 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/openai/whisper-small.en/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-02-25 14:42:03,605 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/openai/whisper-small.en/resolve/main/audio_tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-02-25 14:42:03,656 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/openai/whisper-small.en/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-02-25 14:42:03,704 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/openai/whisper-small.en/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:42:03,720 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/whisper-small.en/e8727524f962ee844a7319d92be39ac1bd25655a/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-02-25 14:42:03,843 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/openai/whisper-small.en/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-02-25 14:42:03,889 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/openai/whisper-small.en/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:42:03,889 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-02-25 14:42:03,905 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/whisper-small.en/e8727524f962ee844a7319d92be39ac1bd25655a/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-02-25 14:42:03,963 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/openai/whisper-small.en/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:42:03,978 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/whisper-small.en/e8727524f962ee844a7319d92be39ac1bd25655a/config.json "HTTP/1.1 200 OK"
+2026-02-25 14:42:04,055 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/openai/whisper-small.en/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:42:04,071 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/whisper-small.en/e8727524f962ee844a7319d92be39ac1bd25655a/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-25 14:42:04,121 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/openai/whisper-small.en/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-25 14:42:04,172 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/openai/whisper-small.en/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-25 14:42:04,770 - models.whisper_diarization - INFO - Loading WhisperWithDiarization from AlexXu811/child-adult-joint-asr-diarization
+2026-02-25 14:42:04,833 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/AlexXu811/child-adult-joint-asr-diarization/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:42:04,849 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/AlexXu811/child-adult-joint-asr-diarization/5cdc8151a6b1f080238e3060bcdae52a3b0a2822/config.json "HTTP/1.1 200 OK"
+2026-02-25 14:42:04,929 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/AlexXu811/child-adult-joint-asr-diarization/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-02-25 14:42:06,368 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/AlexXu811/child-adult-joint-asr-diarization/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:42:06,400 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/AlexXu811/child-adult-joint-asr-diarization/5cdc8151a6b1f080238e3060bcdae52a3b0a2822/generation_config.json "HTTP/1.1 200 OK"
+2026-02-25 14:42:06,472 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/AlexXu811/child-adult-joint-asr-diarization/resolve/main/diarization_conv_layers.pt "HTTP/1.1 302 Found"
+2026-02-25 14:42:06,567 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/AlexXu811/child-adult-joint-asr-diarization/resolve/main/diarization_classifier.pt "HTTP/1.1 302 Found"
+2026-02-25 14:42:06,574 - models.whisper_diarization - INFO - Detected hidden dimension: 256
+2026-02-25 14:42:06,574 - models.whisper_diarization - INFO - Loaded diarization conv layers weights
+2026-02-25 14:42:06,574 - models.whisper_diarization - INFO - Loaded diarization classifier weights
+2026-02-25 14:42:06,574 - models.whisper_diarization - INFO - Diarization head weights loaded successfully
+2026-02-25 14:42:09,249 - models.asr_models - INFO - Joint ASR-diarization model loaded successfully
+2026-02-25 14:42:09,249 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-25 14:42:09,249 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 14:42:09,249 - agents.recording_agent - INFO - Loading audio from: data\ENNIA413.wav
+2026-02-25 14:42:13,137 - agents.recording_agent - INFO - Loaded 392.69s of audio at 16000Hz
+2026-02-25 14:42:13,138 - agents.vad_transcription_agents - INFO - Running VAD on 392.69s of audio...
+2026-02-25 14:42:18,489 - models.vad_models - INFO - Detected 104 speech segments
+2026-02-25 14:42:18,489 - agents.vad_transcription_agents - INFO - Detected 104 speech segments
+2026-02-25 14:42:18,489 - agents.vad_transcription_agents - INFO - Total speech: 164.96s, Average segment: 1.59s
+2026-02-25 14:42:18,489 - agents.vad_transcription_agents - INFO - Transcribing 104 segments...
+2026-02-25 14:42:18,489 - models.asr_models - INFO - Transcribing 104 segments with speaker diarization...
+2026-02-25 14:42:32,951 - models.asr_models - INFO - Progress: 10/104 segments transcribed
+2026-02-25 14:42:52,577 - models.asr_models - INFO - Progress: 20/104 segments transcribed
+2026-02-25 14:43:14,801 - models.asr_models - INFO - Progress: 30/104 segments transcribed
+2026-02-25 14:43:37,973 - models.asr_models - INFO - Progress: 40/104 segments transcribed
+2026-02-25 14:44:01,495 - models.asr_models - INFO - Progress: 50/104 segments transcribed
+2026-02-25 14:44:38,622 - models.asr_models - INFO - Progress: 60/104 segments transcribed
+2026-02-25 14:45:02,694 - models.asr_models - INFO - Progress: 70/104 segments transcribed
+2026-02-25 14:45:23,280 - models.asr_models - INFO - Progress: 80/104 segments transcribed
+2026-02-25 14:45:43,486 - models.asr_models - INFO - Progress: 90/104 segments transcribed
+2026-02-25 14:46:06,536 - models.asr_models - INFO - Progress: 100/104 segments transcribed
+2026-02-25 14:46:15,417 - models.asr_models - INFO - Progress: 104/104 segments transcribed
+2026-02-25 14:46:17,104 - models.asr_models - INFO - Speaker breakdown: 2 child, 102 adult segments
+2026-02-25 14:46:17,104 - agents.vad_transcription_agents - INFO - Successfully transcribed 100/104 segments
+2026-02-25 14:46:17,118 - agents.vad_transcription_agents - INFO - Saved 100 transcripts to outputs\daily_reports\ENNIA413\transcripts_20260225.json
+2026-02-25 14:46:17,128 - agents.llm_agent - INFO - Tool result: Transcription complete: 100 segments, ~284 words.
+Saved to: outputs\daily_reports\ENNIA413\transcripts_20260225.json
+2026-02-25 14:47:52,912 - agents.llm_agent - INFO - Tool call: generate_summary({'transcript_path': 'D:\\Jiahao_Zheng\\On-Device-ASR-ADHD\\outputs\\daily_reports\\ENNIA413\\transcripts_20260225.json'})
+2026-02-25 14:47:52,912 - agents.vad_transcription_agents - INFO - Loaded 100 transcripts from D:\Jiahao_Zheng\On-Device-ASR-ADHD\outputs\daily_reports\ENNIA413\transcripts_20260225.json
+2026-02-25 14:47:52,912 - agents.summary_agent - INFO - Generating summary for 100 transcripts...
+2026-02-25 14:47:52,912 - agents.summary_agent - INFO - Using 45 transcripts after filtering (min_words=3, min_confidence=0.3)
+2026-02-25 14:48:48,929 - agents.summary_agent - INFO - Speaker breakdown: 2 child, 43 adult segments
+2026-02-25 14:48:48,929 - agents.summary_agent - INFO - Summary generated successfully
+2026-02-25 14:48:48,946 - agents.summary_agent - INFO - Saved summary JSON to outputs\daily_reports\summary_20260225.json
+2026-02-25 14:48:48,958 - agents.summary_agent - INFO - Saved summary report to outputs\daily_reports\report_20260225.md
+2026-02-25 14:48:48,958 - agents.llm_agent - INFO - Tool result: Summary generated: 100 segments, 1.5 min of speech.
+Report saved to: outputs\daily_reports
+2026-02-25 14:53:40,146 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-25 14:53:40,146 - agents.recording_agent - INFO - AudioFileAgent cleaned up
+2026-02-25 14:53:40,157 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-25 14:53:40,173 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-25 14:53:40,173 - agents.summary_agent - INFO - SummaryAgent cleaned up
+2026-02-25 14:53:40,173 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-25 14:54:25,977 - agents.llm_agent - INFO - Loading LLM for agent...
+2026-02-25 14:54:33,994 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cuda
+2026-02-25 14:54:34,115 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:54:34,131 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-25 14:54:34,184 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:54:34,200 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-25 14:54:34,248 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-25 14:54:34,297 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-25 14:54:35,174 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-25 14:54:35,223 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:54:35,240 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-25 14:54:48,313 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 14:54:48,317 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-02-25 14:54:48,332 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/generation_config.json "HTTP/1.1 200 OK"
+2026-02-25 14:54:48,387 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-02-25 14:54:55,362 - models.llm_models - INFO - Qwen model loaded successfully
+2026-02-25 14:54:55,362 - agents.llm_agent - INFO - Setting up pipeline orchestrator...
+2026-02-25 14:54:55,362 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-25 14:54:55,388 - agents.llm_agent - INFO - Agent ready.
+2026-02-25 14:55:44,142 - agents.llm_agent - INFO - Tool call: transcribe_audio({'audio_path': 'data/ENNIA413.wav'})
+2026-02-25 14:55:44,151 - pipeline.orchestrator - INFO - Initializing agents: ['audio_file']
+2026-02-25 14:55:44,151 - agents.recording_agent - INFO - AudioFileAgent initialized
+2026-02-25 14:55:44,151 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 14:55:44,151 - pipeline.orchestrator - INFO - Initializing agents: ['vad']
+2026-02-25 14:55:44,151 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-25 14:55:44,151 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-25 14:55:44,744 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-25 14:55:44,744 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-25 14:55:44,744 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 14:55:44,744 - pipeline.orchestrator - INFO - Initializing agents: ['transcription']
+2026-02-25 14:55:44,744 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-25 14:55:46,005 - models.asr_models - INFO - Loading Whisper model (openai-whisper): small on cuda
+2026-02-25 14:55:49,796 - models.asr_models - INFO - Whisper model (openai-whisper) loaded successfully
+2026-02-25 14:55:49,796 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-25 14:55:49,796 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 14:55:49,796 - agents.recording_agent - INFO - Loading audio from: data\ENNIA413.wav
+2026-02-25 14:55:52,356 - agents.recording_agent - INFO - Loaded 392.69s of audio at 16000Hz
+2026-02-25 14:55:52,356 - agents.vad_transcription_agents - INFO - Running VAD on 392.69s of audio...
+2026-02-25 14:55:56,940 - models.vad_models - INFO - Detected 104 speech segments
+2026-02-25 14:55:56,941 - agents.vad_transcription_agents - INFO - Detected 104 speech segments
+2026-02-25 14:55:56,941 - agents.vad_transcription_agents - INFO - Total speech: 164.96s, Average segment: 1.59s
+2026-02-25 14:55:56,941 - pipeline.orchestrator - INFO - Initializing agents: ['diarization']
+2026-02-25 14:55:56,941 - agents.diarization_agent - INFO - Initializing speaker diarization (simple)...
+2026-02-25 14:55:58,009 - models.simple_diarization - INFO - Initialized SimpleDiarization with 2 speakers
+2026-02-25 14:55:58,009 - agents.diarization_agent - INFO - Diarization agent initialized successfully
+2026-02-25 14:55:58,009 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 14:55:58,009 - agents.diarization_agent - INFO - Diarizing 104 VAD segments...
+2026-02-25 14:55:58,009 - models.simple_diarization - INFO - Diarizing 104 segments...
+2026-02-25 14:56:17,431 - models.simple_diarization - INFO - Cluster median pitches: {0: 238.28604828950137, 1: 220.0809703691211}
+2026-02-25 14:56:17,431 - models.simple_diarization - INFO -   Cluster 0: 46 segments, median pitch = 238.3 Hz
+2026-02-25 14:56:17,431 - models.simple_diarization - INFO -   Cluster 1: 58 segments, median pitch = 220.1 Hz
+2026-02-25 14:56:17,431 - models.simple_diarization - INFO - Speaker assignment (relative): child=cluster 0 (238.3 Hz), adult=cluster 1 (220.1 Hz), pitch diff=18.2 Hz
+2026-02-25 14:56:17,431 - models.simple_diarization - INFO - Diarization complete: 46 child segments, 58 adult segments
+2026-02-25 14:56:17,432 - agents.diarization_agent - INFO - Diarization complete: 46 child segments, 58 adult segments
+2026-02-25 14:56:17,432 - agents.vad_transcription_agents - INFO - Transcribing 104 segments...
+2026-02-25 14:56:17,433 - models.asr_models - INFO - Transcribing 104 audio segments...
+2026-02-25 14:56:31,361 - models.asr_models - INFO - Progress: 10/104 segments transcribed
+2026-02-25 14:56:47,850 - models.asr_models - INFO - Progress: 20/104 segments transcribed
+2026-02-25 14:56:55,369 - models.asr_models - INFO - Progress: 30/104 segments transcribed
+2026-02-25 14:57:05,364 - models.asr_models - INFO - Progress: 40/104 segments transcribed
+2026-02-25 14:57:13,239 - models.asr_models - INFO - Progress: 50/104 segments transcribed
+2026-02-25 14:57:25,012 - models.asr_models - INFO - Progress: 60/104 segments transcribed
+2026-02-25 14:57:36,723 - models.asr_models - INFO - Progress: 70/104 segments transcribed
+2026-02-25 14:57:55,396 - models.asr_models - INFO - Progress: 80/104 segments transcribed
+2026-02-25 14:58:28,799 - models.asr_models - INFO - Progress: 90/104 segments transcribed
+2026-02-25 14:59:09,732 - models.asr_models - INFO - Progress: 100/104 segments transcribed
+2026-02-25 14:59:17,941 - models.asr_models - INFO - Progress: 104/104 segments transcribed
+2026-02-25 14:59:18,830 - models.asr_models - INFO - Completed transcription of 104 segments
+2026-02-25 14:59:18,830 - agents.vad_transcription_agents - INFO - Successfully transcribed 102/104 segments
+2026-02-25 14:59:18,855 - agents.vad_transcription_agents - INFO - Saved 102 transcripts to outputs\daily_reports\ENNIA413\transcripts_20260225.json
+2026-02-25 14:59:18,856 - agents.llm_agent - INFO - Tool result: Transcription complete: 102 segments, ~290 words.
+Saved to: outputs\daily_reports\ENNIA413\transcripts_20260225.json
+2026-02-25 15:03:09,875 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-25 15:03:09,875 - agents.recording_agent - INFO - AudioFileAgent cleaned up
+2026-02-25 15:03:09,886 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-25 15:03:09,886 - agents.diarization_agent - INFO - Diarization agent cleaned up
+2026-02-25 15:03:09,887 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-25 15:03:09,887 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-25 15:03:31,276 - agents.llm_agent - INFO - Loading LLM for agent...
+2026-02-25 15:03:38,302 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cuda
+2026-02-25 15:03:38,438 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 15:03:38,458 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-25 15:03:38,501 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 15:03:38,533 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-25 15:03:38,587 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-25 15:03:38,628 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-25 15:03:39,416 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-25 15:03:39,467 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 15:03:39,484 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-25 15:03:52,916 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 15:03:52,940 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/generation_config.json "HTTP/1.1 200 OK"
+2026-02-25 15:03:52,988 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-02-25 15:03:52,988 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-02-25 15:04:05,884 - models.llm_models - INFO - Qwen model loaded successfully
+2026-02-25 15:04:05,885 - agents.llm_agent - INFO - Setting up pipeline orchestrator...
+2026-02-25 15:04:05,885 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-25 15:04:05,904 - agents.llm_agent - INFO - Agent ready.
+2026-02-25 15:04:29,126 - agents.llm_agent - INFO - Tool call: transcribe_audio({'audio_path': 'data/ENNIA413.wav'})
+2026-02-25 15:04:29,126 - pipeline.orchestrator - INFO - Initializing agents: ['audio_file']
+2026-02-25 15:04:29,126 - agents.recording_agent - INFO - AudioFileAgent initialized
+2026-02-25 15:04:29,126 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 15:04:29,126 - pipeline.orchestrator - INFO - Initializing agents: ['vad']
+2026-02-25 15:04:29,126 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-25 15:04:29,126 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-25 15:04:29,631 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-25 15:04:29,632 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-25 15:04:29,632 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 15:04:29,632 - pipeline.orchestrator - INFO - Initializing agents: ['transcription']
+2026-02-25 15:04:29,632 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-25 15:04:30,430 - models.asr_models - INFO - Loading Whisper model (openai-whisper): small on cuda
+2026-02-25 15:04:35,189 - models.asr_models - INFO - Whisper model (openai-whisper) loaded successfully
+2026-02-25 15:04:35,189 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-25 15:04:35,189 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 15:04:35,189 - agents.recording_agent - INFO - Loading audio from: data\ENNIA413.wav
+2026-02-25 15:04:37,868 - agents.recording_agent - INFO - Loaded 392.69s of audio at 16000Hz
+2026-02-25 15:04:37,868 - agents.vad_transcription_agents - INFO - Running VAD on 392.69s of audio...
+2026-02-25 15:04:43,175 - models.vad_models - INFO - Detected 104 speech segments
+2026-02-25 15:04:43,175 - agents.vad_transcription_agents - INFO - Detected 104 speech segments
+2026-02-25 15:04:43,176 - agents.vad_transcription_agents - INFO - Total speech: 164.96s, Average segment: 1.59s
+2026-02-25 15:04:43,176 - pipeline.orchestrator - INFO - Initializing agents: ['diarization']
+2026-02-25 15:04:43,176 - agents.diarization_agent - INFO - Initializing speaker diarization (simple)...
+2026-02-25 15:04:43,457 - models.simple_diarization - INFO - Initialized SimpleDiarization with 2 speakers
+2026-02-25 15:04:43,457 - agents.diarization_agent - INFO - Diarization agent initialized successfully
+2026-02-25 15:04:43,458 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 15:04:43,458 - agents.diarization_agent - INFO - Diarizing 104 VAD segments...
+2026-02-25 15:04:43,458 - models.simple_diarization - INFO - Diarizing 104 segments...
+2026-02-25 15:05:10,423 - models.simple_diarization - INFO - Cluster median pitches: {0: 227.84210902812464, 1: 0.0}
+2026-02-25 15:05:10,423 - models.simple_diarization - INFO -   Cluster 0: 97 segments, median pitch = 227.8 Hz
+2026-02-25 15:05:10,423 - models.simple_diarization - INFO -   Cluster 1: 7 segments, median pitch = 0.0 Hz
+2026-02-25 15:05:10,423 - models.simple_diarization - WARNING - Cannot do relative comparison, using fixed threshold
+2026-02-25 15:05:10,423 - models.simple_diarization - INFO - Diarization complete: 0 child segments, 97 adult segments
+2026-02-25 15:05:10,423 - agents.diarization_agent - INFO - Diarization complete: 0 child segments, 97 adult segments
+2026-02-25 15:05:10,423 - agents.vad_transcription_agents - INFO - Transcribing 104 segments...
+2026-02-25 15:05:10,423 - models.asr_models - INFO - Transcribing 104 audio segments...
+2026-02-25 15:05:20,849 - models.asr_models - INFO - Progress: 10/104 segments transcribed
+2026-02-25 15:05:30,456 - models.asr_models - INFO - Progress: 20/104 segments transcribed
+2026-02-25 15:05:40,058 - models.asr_models - INFO - Progress: 30/104 segments transcribed
+2026-02-25 15:05:47,076 - models.asr_models - INFO - Progress: 40/104 segments transcribed
+2026-02-25 15:05:56,554 - models.asr_models - INFO - Progress: 50/104 segments transcribed
+2026-02-25 15:06:07,728 - models.asr_models - INFO - Progress: 60/104 segments transcribed
+2026-02-25 15:06:16,001 - models.asr_models - INFO - Progress: 70/104 segments transcribed
+2026-02-25 15:06:25,424 - models.asr_models - INFO - Progress: 80/104 segments transcribed
+2026-02-25 15:06:34,502 - models.asr_models - INFO - Progress: 90/104 segments transcribed
+2026-02-25 15:06:41,916 - models.asr_models - INFO - Progress: 100/104 segments transcribed
+2026-02-25 15:06:44,782 - models.asr_models - INFO - Progress: 104/104 segments transcribed
+2026-02-25 15:06:45,465 - models.asr_models - INFO - Completed transcription of 104 segments
+2026-02-25 15:06:45,465 - agents.vad_transcription_agents - INFO - Successfully transcribed 102/104 segments
+2026-02-25 15:06:45,477 - agents.vad_transcription_agents - INFO - Saved 102 transcripts to outputs\daily_reports\ENNIA413\transcripts_20260225.json
+2026-02-25 15:06:45,477 - agents.llm_agent - INFO - Tool result: Transcription complete: 102 segments, ~294 words.
+Saved to: outputs\daily_reports\ENNIA413\transcripts_20260225.json
+2026-02-25 15:13:12,050 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-25 15:13:12,050 - agents.recording_agent - INFO - AudioFileAgent cleaned up
+2026-02-25 15:13:12,062 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-25 15:13:12,062 - agents.diarization_agent - INFO - Diarization agent cleaned up
+2026-02-25 15:13:12,062 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-25 15:13:12,072 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-25 15:13:26,629 - agents.llm_agent - INFO - Loading LLM for agent...
+2026-02-25 15:13:33,577 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cuda
+2026-02-25 15:13:33,712 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 15:13:33,712 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-02-25 15:13:33,731 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-25 15:13:33,791 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 15:13:33,812 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-25 15:13:33,870 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-25 15:13:33,918 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-25 15:13:34,731 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-25 15:13:34,794 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 15:13:34,808 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-25 15:13:48,104 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 15:13:48,119 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/generation_config.json "HTTP/1.1 200 OK"
+2026-02-25 15:13:48,185 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-02-25 15:13:54,508 - models.llm_models - INFO - Qwen model loaded successfully
+2026-02-25 15:13:54,508 - agents.llm_agent - INFO - Setting up pipeline orchestrator...
+2026-02-25 15:13:54,508 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-25 15:13:54,528 - agents.llm_agent - INFO - Agent ready.
+2026-02-25 15:14:11,933 - agents.llm_agent - INFO - Tool call: transcribe_audio({'audio_path': 'data/ENNIA413.wav'})
+2026-02-25 15:14:11,934 - pipeline.orchestrator - INFO - Initializing agents: ['audio_file']
+2026-02-25 15:14:11,934 - agents.recording_agent - INFO - AudioFileAgent initialized
+2026-02-25 15:14:11,934 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 15:14:11,934 - pipeline.orchestrator - INFO - Initializing agents: ['vad']
+2026-02-25 15:14:11,934 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-25 15:14:11,934 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-25 15:14:12,728 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-25 15:14:12,729 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-25 15:14:12,729 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 15:14:12,729 - pipeline.orchestrator - INFO - Initializing agents: ['transcription']
+2026-02-25 15:14:12,729 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-25 15:14:13,851 - models.asr_models - INFO - Loading Whisper model (openai-whisper): small on cuda
+2026-02-25 15:14:18,988 - models.asr_models - INFO - Whisper model (openai-whisper) loaded successfully
+2026-02-25 15:14:18,988 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-25 15:14:18,988 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 15:14:18,988 - agents.recording_agent - INFO - Loading audio from: data\ENNIA413.wav
+2026-02-25 15:14:21,895 - agents.recording_agent - INFO - Loaded 392.69s of audio at 16000Hz
+2026-02-25 15:14:21,895 - agents.vad_transcription_agents - INFO - Running VAD on 392.69s of audio...
+2026-02-25 15:14:26,917 - models.vad_models - INFO - Detected 104 speech segments
+2026-02-25 15:14:26,917 - agents.vad_transcription_agents - INFO - Detected 104 speech segments
+2026-02-25 15:14:26,917 - agents.vad_transcription_agents - INFO - Total speech: 164.96s, Average segment: 1.59s
+2026-02-25 15:14:26,917 - pipeline.orchestrator - INFO - Initializing agents: ['diarization']
+2026-02-25 15:14:26,917 - agents.diarization_agent - INFO - Initializing speaker diarization (simple)...
+2026-02-25 15:14:27,211 - models.simple_diarization - INFO - Initialized SimpleDiarization with 2 speakers
+2026-02-25 15:14:27,211 - agents.diarization_agent - INFO - Diarization agent initialized successfully
+2026-02-25 15:14:27,211 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 15:14:27,211 - agents.diarization_agent - INFO - Diarizing 104 VAD segments...
+2026-02-25 15:14:27,211 - models.simple_diarization - INFO - Diarizing 104 segments...
+2026-02-25 15:14:46,683 - models.simple_diarization - INFO - Cluster median pitches: {0: 238.28604828950137, 1: 220.0809703691211}
+2026-02-25 15:14:46,683 - models.simple_diarization - INFO -   Cluster 0: 46 segments, median pitch = 238.3 Hz
+2026-02-25 15:14:46,683 - models.simple_diarization - INFO -   Cluster 1: 58 segments, median pitch = 220.1 Hz
+2026-02-25 15:14:46,683 - models.simple_diarization - INFO - Speaker assignment (relative): child=cluster 0 (238.3 Hz), adult=cluster 1 (220.1 Hz), pitch diff=18.2 Hz
+2026-02-25 15:14:46,683 - models.simple_diarization - INFO - Diarization complete: 46 child segments, 58 adult segments
+2026-02-25 15:14:46,683 - agents.diarization_agent - INFO - Diarization complete: 46 child segments, 58 adult segments
+2026-02-25 15:14:46,683 - agents.vad_transcription_agents - INFO - Transcribing 104 segments...
+2026-02-25 15:14:46,683 - models.asr_models - INFO - Transcribing 104 audio segments...
+2026-02-25 15:14:54,601 - models.asr_models - INFO - Progress: 10/104 segments transcribed
+2026-02-25 15:15:03,220 - models.asr_models - INFO - Progress: 20/104 segments transcribed
+2026-02-25 15:15:12,934 - models.asr_models - INFO - Progress: 30/104 segments transcribed
+2026-02-25 15:15:23,010 - models.asr_models - INFO - Progress: 40/104 segments transcribed
+2026-02-25 15:15:33,025 - models.asr_models - INFO - Progress: 50/104 segments transcribed
+2026-02-25 15:15:44,350 - models.asr_models - INFO - Progress: 60/104 segments transcribed
+2026-02-25 15:15:54,033 - models.asr_models - INFO - Progress: 70/104 segments transcribed
+2026-02-25 15:16:03,826 - models.asr_models - INFO - Progress: 80/104 segments transcribed
+2026-02-25 15:16:13,934 - models.asr_models - INFO - Progress: 90/104 segments transcribed
+2026-02-25 15:16:23,795 - models.asr_models - INFO - Progress: 100/104 segments transcribed
+2026-02-25 15:16:27,776 - models.asr_models - INFO - Progress: 104/104 segments transcribed
+2026-02-25 15:16:28,776 - models.asr_models - INFO - Completed transcription of 104 segments
+2026-02-25 15:16:28,776 - agents.vad_transcription_agents - INFO - Successfully transcribed 102/104 segments
+2026-02-25 15:16:28,778 - agents.vad_transcription_agents - INFO - Saved 102 transcripts to outputs\daily_reports\ENNIA413\transcripts_20260225.json
+2026-02-25 15:16:28,778 - agents.llm_agent - INFO - Tool result: Transcription complete: 102 segments, ~294 words.
+Saved to: outputs\daily_reports\ENNIA413\transcripts_20260225.json
+2026-02-25 15:19:21,159 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-25 15:19:21,160 - agents.recording_agent - INFO - AudioFileAgent cleaned up
+2026-02-25 15:19:21,169 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-25 15:19:21,170 - agents.diarization_agent - INFO - Diarization agent cleaned up
+2026-02-25 15:19:21,171 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-25 15:19:21,171 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-25 15:19:45,793 - agents.llm_agent - INFO - Loading LLM for agent...
+2026-02-25 15:19:52,837 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cuda
+2026-02-25 15:19:52,976 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 15:19:52,993 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-25 15:19:53,047 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 15:19:53,062 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-25 15:19:53,121 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-25 15:19:53,173 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-25 15:19:53,996 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-25 15:19:54,060 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 15:19:54,074 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-25 15:20:07,291 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 15:20:07,310 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/generation_config.json "HTTP/1.1 200 OK"
+2026-02-25 15:20:07,357 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-02-25 15:20:13,654 - models.llm_models - INFO - Qwen model loaded successfully
+2026-02-25 15:20:13,654 - agents.llm_agent - INFO - Setting up pipeline orchestrator...
+2026-02-25 15:20:13,654 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-25 15:20:13,675 - agents.llm_agent - INFO - Agent ready.
+2026-02-25 15:20:54,158 - agents.llm_agent - INFO - Tool call: transcribe_audio({'audio_path': 'data/ENNIA413.wav'})
+2026-02-25 15:20:54,158 - pipeline.orchestrator - INFO - Initializing agents: ['audio_file']
+2026-02-25 15:20:54,158 - agents.recording_agent - INFO - AudioFileAgent initialized
+2026-02-25 15:20:54,158 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 15:20:54,158 - pipeline.orchestrator - INFO - Initializing agents: ['vad']
+2026-02-25 15:20:54,158 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-25 15:20:54,158 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-25 15:20:54,669 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-25 15:20:54,669 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-25 15:20:54,669 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 15:20:54,669 - pipeline.orchestrator - INFO - Initializing agents: ['transcription']
+2026-02-25 15:20:54,669 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-25 15:20:55,424 - models.asr_models - INFO - Loading Whisper model (openai-whisper): small on cuda
+2026-02-25 15:21:00,705 - models.asr_models - INFO - Whisper model (openai-whisper) loaded successfully
+2026-02-25 15:21:00,705 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-25 15:21:00,705 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 15:21:00,705 - agents.recording_agent - INFO - Loading audio from: data\ENNIA413.wav
+2026-02-25 15:21:04,066 - agents.recording_agent - INFO - Loaded 392.69s of audio at 16000Hz
+2026-02-25 15:21:04,066 - agents.vad_transcription_agents - INFO - Running VAD on 392.69s of audio...
+2026-02-25 15:21:15,898 - models.vad_models - INFO - Detected 104 speech segments
+2026-02-25 15:21:15,898 - agents.vad_transcription_agents - INFO - Detected 104 speech segments
+2026-02-25 15:21:15,898 - agents.vad_transcription_agents - INFO - Total speech: 164.96s, Average segment: 1.59s
+2026-02-25 15:21:15,898 - agents.vad_transcription_agents - INFO - Transcribing 104 segments...
+2026-02-25 15:21:15,898 - models.asr_models - INFO - Transcribing 104 audio segments...
+2026-02-25 15:21:24,057 - models.asr_models - INFO - Progress: 10/104 segments transcribed
+2026-02-25 15:21:30,536 - models.asr_models - INFO - Progress: 20/104 segments transcribed
+2026-02-25 15:21:36,824 - models.asr_models - INFO - Progress: 30/104 segments transcribed
+2026-02-25 15:21:43,179 - models.asr_models - INFO - Progress: 40/104 segments transcribed
+2026-02-25 15:21:49,468 - models.asr_models - INFO - Progress: 50/104 segments transcribed
+2026-02-25 15:21:56,629 - models.asr_models - INFO - Progress: 60/104 segments transcribed
+2026-02-25 15:22:02,752 - models.asr_models - INFO - Progress: 70/104 segments transcribed
+2026-02-25 15:22:09,096 - models.asr_models - INFO - Progress: 80/104 segments transcribed
+2026-02-25 15:22:15,604 - models.asr_models - INFO - Progress: 90/104 segments transcribed
+2026-02-25 15:22:21,759 - models.asr_models - INFO - Progress: 100/104 segments transcribed
+2026-02-25 15:22:24,269 - models.asr_models - INFO - Progress: 104/104 segments transcribed
+2026-02-25 15:22:24,875 - models.asr_models - INFO - Completed transcription of 104 segments
+2026-02-25 15:22:24,875 - agents.vad_transcription_agents - INFO - Successfully transcribed 102/104 segments
+2026-02-25 15:22:24,897 - agents.vad_transcription_agents - INFO - Saved 102 transcripts to outputs\daily_reports\ENNIA413\transcripts_20260225.json
+2026-02-25 15:22:24,902 - agents.llm_agent - INFO - Tool result: Transcription complete: 102 segments, ~294 words.
+Saved to: outputs\daily_reports\ENNIA413\transcripts_20260225.json
+2026-02-25 15:26:06,453 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-25 15:26:06,458 - agents.recording_agent - INFO - AudioFileAgent cleaned up
+2026-02-25 15:26:06,467 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-25 15:26:06,468 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-25 15:26:06,469 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-25 15:26:16,026 - agents.llm_agent - INFO - Loading LLM for agent...
+2026-02-25 15:26:23,276 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cuda
+2026-02-25 15:26:23,401 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 15:26:23,417 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-25 15:26:23,481 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 15:26:23,481 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-02-25 15:26:23,502 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-25 15:26:23,565 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-25 15:26:23,609 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-25 15:26:24,790 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-25 15:26:24,851 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 15:26:24,866 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-25 15:26:39,057 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 15:26:39,084 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/generation_config.json "HTTP/1.1 200 OK"
+2026-02-25 15:26:39,138 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-02-25 15:26:45,871 - models.llm_models - INFO - Qwen model loaded successfully
+2026-02-25 15:26:45,871 - agents.llm_agent - INFO - Setting up pipeline orchestrator...
+2026-02-25 15:26:45,871 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-25 15:26:45,887 - agents.llm_agent - INFO - Agent ready.
+2026-02-25 15:29:46,610 - agents.llm_agent - INFO - Tool call: transcribe_audio({'audio_path': 'data/ENNIA413.wav'})
+2026-02-25 15:29:46,624 - pipeline.orchestrator - INFO - Initializing agents: ['audio_file']
+2026-02-25 15:29:46,624 - agents.recording_agent - INFO - AudioFileAgent initialized
+2026-02-25 15:29:46,624 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 15:29:46,624 - pipeline.orchestrator - INFO - Initializing agents: ['vad']
+2026-02-25 15:29:46,624 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-25 15:29:46,624 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-25 15:29:47,383 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-25 15:29:47,383 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-25 15:29:47,383 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 15:29:47,383 - pipeline.orchestrator - INFO - Initializing agents: ['transcription']
+2026-02-25 15:29:47,383 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-25 15:29:48,702 - models.asr_models - INFO - Loading Whisper model (openai-whisper): small on cuda
+2026-02-25 15:29:55,935 - models.asr_models - INFO - Whisper model (openai-whisper) loaded successfully
+2026-02-25 15:29:55,936 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-25 15:29:55,936 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 15:29:55,936 - agents.recording_agent - INFO - Loading audio from: data\ENNIA413.wav
+2026-02-25 15:30:00,412 - agents.recording_agent - INFO - Loaded 392.69s of audio at 16000Hz
+2026-02-25 15:30:00,413 - pipeline.orchestrator - INFO - Initializing agents: ['diarization']
+2026-02-25 15:30:00,413 - agents.diarization_agent - INFO - Initializing speaker diarization (pyannote)...
+2026-02-25 15:30:00,421 - models.pyannote_diarization - INFO - Initializing PyAnnote diarization: pyannote/speaker-diarization-3.1
+2026-02-25 15:30:04,566 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-3.1/resolve/main/config.yaml "HTTP/1.1 200 OK"
+2026-02-25 15:30:05,742 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/segmentation-3.0/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+2026-02-25 15:30:06,835 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/xvec_transform.npz "HTTP/1.1 302 Found"
+2026-02-25 15:30:06,894 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/plda.npz "HTTP/1.1 302 Found"
+2026-02-25 15:30:07,072 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/wespeaker-voxceleb-resnet34-LM/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+2026-02-25 15:30:07,380 - models.pyannote_diarization - INFO - Using GPU for diarization
+2026-02-25 15:30:07,380 - models.pyannote_diarization - INFO - Loaded diarization pipeline on cuda
+2026-02-25 15:30:07,380 - agents.diarization_agent - INFO - Diarization agent initialized successfully
+2026-02-25 15:30:07,380 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 15:30:07,380 - agents.diarization_agent - INFO - Performing speaker diarization...
+2026-02-25 15:31:59,432 - models.pyannote_diarization - INFO - Diarization found 2 speakers across 126 segments
+2026-02-25 15:31:59,432 - agents.diarization_agent - INFO - Diarization complete: found 2 speakers in 126 segments
+2026-02-25 15:32:26,120 - agents.diarization_agent - INFO - Speaker pitches: {'SPEAKER_01': 238.61770171621137, 'SPEAKER_00': 225.2251192010744}
+2026-02-25 15:32:26,121 - agents.diarization_agent - INFO - Speaker assignment: child=SPEAKER_01 (238.6 Hz), adult=SPEAKER_00 (225.2 Hz), pitch diff=13.4 Hz
+2026-02-25 15:32:26,121 - agents.diarization_agent - INFO - Classification: 25 child segments, 101 adult segments
+2026-02-25 15:32:26,121 - agents.diarization_agent - INFO - Merged 126 segments into 104 segments
+2026-02-25 15:32:26,123 - agents.vad_transcription_agents - INFO - Transcribing 104 segments...
+2026-02-25 15:32:26,123 - models.asr_models - INFO - Transcribing 104 audio segments...
+2026-02-25 15:32:34,343 - models.asr_models - INFO - Progress: 10/104 segments transcribed
+2026-02-25 15:32:42,560 - models.asr_models - INFO - Progress: 20/104 segments transcribed
+2026-02-25 15:32:51,570 - models.asr_models - INFO - Progress: 30/104 segments transcribed
+2026-02-25 15:33:01,370 - models.asr_models - INFO - Progress: 40/104 segments transcribed
+2026-02-25 15:33:11,306 - models.asr_models - INFO - Progress: 50/104 segments transcribed
+2026-02-25 15:33:21,936 - models.asr_models - INFO - Progress: 60/104 segments transcribed
+2026-02-25 15:33:31,258 - models.asr_models - INFO - Progress: 70/104 segments transcribed
+2026-02-25 15:33:40,140 - models.asr_models - INFO - Progress: 80/104 segments transcribed
+2026-02-25 15:33:50,304 - models.asr_models - INFO - Progress: 90/104 segments transcribed
+2026-02-25 15:33:59,572 - models.asr_models - INFO - Progress: 100/104 segments transcribed
+2026-02-25 15:34:03,979 - models.asr_models - INFO - Progress: 104/104 segments transcribed
+2026-02-25 15:34:04,804 - models.asr_models - INFO - Completed transcription of 104 segments
+2026-02-25 15:34:04,804 - agents.vad_transcription_agents - INFO - Successfully transcribed 92/104 segments
+2026-02-25 15:34:04,822 - agents.vad_transcription_agents - INFO - Saved 92 transcripts to outputs\daily_reports\ENNIA413\transcripts_20260225.json
+2026-02-25 15:34:04,822 - agents.llm_agent - INFO - Tool result: Transcription complete: 92 segments, ~300 words.
+Saved to: outputs\daily_reports\ENNIA413\transcripts_20260225.json
+2026-02-25 15:39:54,212 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-25 15:39:54,212 - agents.recording_agent - INFO - AudioFileAgent cleaned up
+2026-02-25 15:39:54,219 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-25 15:39:54,220 - agents.diarization_agent - INFO - Diarization agent cleaned up
+2026-02-25 15:39:54,220 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-25 15:39:54,220 - pipeline.orchestrator - INFO - Cleanup completed
+2026-02-25 15:40:04,096 - agents.llm_agent - INFO - Loading LLM for agent...
+2026-02-25 15:40:10,907 - models.llm_models - INFO - Loading Qwen model: Qwen/Qwen2.5-7B-Instruct on cuda
+2026-02-25 15:40:11,288 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 15:40:11,304 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-25 15:40:11,367 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 15:40:11,367 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-02-25 15:40:11,383 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-25 15:40:11,456 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-25 15:40:11,503 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-25 15:40:12,284 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+2026-02-25 15:40:12,330 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 15:40:12,341 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+2026-02-25 15:40:25,656 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-25 15:40:25,667 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/generation_config.json "HTTP/1.1 200 OK"
+2026-02-25 15:40:25,747 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-02-25 15:40:33,136 - models.llm_models - INFO - Qwen model loaded successfully
+2026-02-25 15:40:33,136 - agents.llm_agent - INFO - Setting up pipeline orchestrator...
+2026-02-25 15:40:33,136 - pipeline.orchestrator - INFO - Loading configuration from config/settings.yaml
+2026-02-25 15:40:33,153 - agents.llm_agent - INFO - Agent ready.
+2026-02-25 15:40:56,359 - agents.llm_agent - INFO - Tool call: transcribe_audio({'audio_path': 'data/ENNIA413.wav'})
+2026-02-25 15:40:56,365 - pipeline.orchestrator - INFO - Initializing agents: ['audio_file']
+2026-02-25 15:40:56,365 - agents.recording_agent - INFO - AudioFileAgent initialized
+2026-02-25 15:40:56,365 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 15:40:56,365 - pipeline.orchestrator - INFO - Initializing agents: ['vad']
+2026-02-25 15:40:56,365 - agents.vad_transcription_agents - INFO - Initializing VADAgent...
+2026-02-25 15:40:56,365 - models.vad_models - INFO - Loading Silero VAD model...
+2026-02-25 15:40:56,959 - models.vad_models - INFO - Silero VAD model loaded successfully
+2026-02-25 15:40:56,959 - agents.vad_transcription_agents - INFO - VADAgent initialized successfully
+2026-02-25 15:40:56,959 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 15:40:56,959 - pipeline.orchestrator - INFO - Initializing agents: ['transcription']
+2026-02-25 15:40:56,959 - agents.vad_transcription_agents - INFO - Initializing TranscriptionAgent...
+2026-02-25 15:40:57,971 - models.asr_models - INFO - Loading Whisper model (openai-whisper): small on cuda
+2026-02-25 15:41:02,704 - models.asr_models - INFO - Whisper model (openai-whisper) loaded successfully
+2026-02-25 15:41:02,704 - agents.vad_transcription_agents - INFO - TranscriptionAgent initialized successfully
+2026-02-25 15:41:02,704 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 15:41:02,704 - agents.recording_agent - INFO - Loading audio from: data\ENNIA413.wav
+2026-02-25 15:41:05,398 - agents.recording_agent - INFO - Loaded 392.69s of audio at 16000Hz
+2026-02-25 15:41:05,398 - pipeline.orchestrator - INFO - Initializing agents: ['diarization']
+2026-02-25 15:41:05,398 - agents.diarization_agent - INFO - Initializing speaker diarization (pyannote)...
+2026-02-25 15:41:05,406 - models.pyannote_diarization - INFO - Initializing PyAnnote diarization: pyannote/speaker-diarization-3.1
+2026-02-25 15:41:07,716 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-3.1/resolve/main/config.yaml "HTTP/1.1 200 OK"
+2026-02-25 15:41:08,464 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/segmentation-3.0/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+2026-02-25 15:41:08,826 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/xvec_transform.npz "HTTP/1.1 302 Found"
+2026-02-25 15:41:08,889 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/plda.npz "HTTP/1.1 302 Found"
+2026-02-25 15:41:09,084 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/pyannote/wespeaker-voxceleb-resnet34-LM/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+2026-02-25 15:41:09,299 - models.pyannote_diarization - INFO - Using GPU for diarization
+2026-02-25 15:41:09,299 - models.pyannote_diarization - INFO - Loaded diarization pipeline on cuda
+2026-02-25 15:41:09,299 - agents.diarization_agent - INFO - Diarization agent initialized successfully
+2026-02-25 15:41:09,299 - pipeline.orchestrator - INFO - All requested agents initialized successfully
+2026-02-25 15:41:09,299 - agents.diarization_agent - INFO - Performing speaker diarization...
+2026-02-25 15:43:11,266 - models.pyannote_diarization - INFO - Diarization found 2 speakers across 126 segments
+2026-02-25 15:43:11,266 - agents.diarization_agent - INFO - Diarization complete: found 2 speakers in 126 segments
+2026-02-25 15:43:24,736 - agents.diarization_agent - INFO - Speaker pitches: {'SPEAKER_01': 238.61770171621137, 'SPEAKER_00': 225.2251192010744}
+2026-02-25 15:43:24,736 - agents.diarization_agent - INFO - Speaker assignment: adult=SPEAKER_01 (238.6 Hz), child=SPEAKER_00 (225.2 Hz), pitch diff=13.4 Hz
+2026-02-25 15:43:24,737 - agents.diarization_agent - INFO - Classification: 101 child segments, 25 adult segments
+2026-02-25 15:43:24,737 - agents.diarization_agent - INFO - Merged 126 segments into 104 segments
+2026-02-25 15:43:24,737 - agents.vad_transcription_agents - INFO - Transcribing 104 segments...
+2026-02-25 15:43:24,737 - models.asr_models - INFO - Transcribing 104 audio segments...
+2026-02-25 15:43:32,414 - models.asr_models - INFO - Progress: 10/104 segments transcribed
+2026-02-25 15:43:40,044 - models.asr_models - INFO - Progress: 20/104 segments transcribed
+2026-02-25 15:43:47,453 - models.asr_models - INFO - Progress: 30/104 segments transcribed
+2026-02-25 15:43:55,510 - models.asr_models - INFO - Progress: 40/104 segments transcribed
+2026-02-25 15:44:03,810 - models.asr_models - INFO - Progress: 50/104 segments transcribed
+2026-02-25 15:44:12,665 - models.asr_models - INFO - Progress: 60/104 segments transcribed
+2026-02-25 15:44:20,884 - models.asr_models - INFO - Progress: 70/104 segments transcribed
+2026-02-25 15:44:28,516 - models.asr_models - INFO - Progress: 80/104 segments transcribed
+2026-02-25 15:44:36,769 - models.asr_models - INFO - Progress: 90/104 segments transcribed
+2026-02-25 15:44:44,764 - models.asr_models - INFO - Progress: 100/104 segments transcribed
+2026-02-25 15:44:48,117 - models.asr_models - INFO - Progress: 104/104 segments transcribed
+2026-02-25 15:44:48,922 - models.asr_models - INFO - Completed transcription of 104 segments
+2026-02-25 15:44:48,922 - agents.vad_transcription_agents - INFO - Successfully transcribed 92/104 segments
+2026-02-25 15:44:48,936 - agents.vad_transcription_agents - INFO - Saved 92 transcripts to outputs\daily_reports\ENNIA413\transcripts_20260225.json
+2026-02-25 15:44:48,936 - agents.llm_agent - INFO - Tool result: Transcription complete: 92 segments, ~300 words.
+Saved to: outputs\daily_reports\ENNIA413\transcripts_20260225.json
+2026-02-25 15:46:26,265 - agents.llm_agent - INFO - Tool call: generate_summary({'transcript_path': 'D:\\Jiahao_Zheng\\On-Device-ASR-ADHD\\outputs\\daily_reports\\ENNIA413\\transcripts_20260225.json'})
+2026-02-25 15:46:26,265 - agents.vad_transcription_agents - INFO - Loaded 92 transcripts from D:\Jiahao_Zheng\On-Device-ASR-ADHD\outputs\daily_reports\ENNIA413\transcripts_20260225.json
+2026-02-25 15:46:26,265 - agents.summary_agent - INFO - Generating summary for 92 transcripts...
+2026-02-25 15:46:26,265 - agents.summary_agent - INFO - Using 40 transcripts after filtering (min_words=3, min_confidence=0.3)
+2026-02-25 15:46:52,803 - agents.summary_agent - INFO - Speaker breakdown: 33 child, 7 adult segments
+2026-02-25 15:46:52,803 - agents.summary_agent - INFO - Summary generated successfully
+2026-02-25 15:46:52,816 - agents.summary_agent - INFO - Saved summary JSON to D:\Jiahao_Zheng\On-Device-ASR-ADHD\outputs\daily_reports\ENNIA413\summary_20260225.json
+2026-02-25 15:46:52,816 - agents.summary_agent - INFO - Saved summary report to D:\Jiahao_Zheng\On-Device-ASR-ADHD\outputs\daily_reports\ENNIA413\report_20260225.md
+2026-02-25 15:46:52,816 - agents.llm_agent - INFO - Tool result: Summary generated: 92 segments, 1.7 min of speech.
+Report saved to: D:\Jiahao_Zheng\On-Device-ASR-ADHD\outputs\daily_rep
+2026-02-25 15:47:04,925 - pipeline.orchestrator - INFO - Cleaning up pipeline orchestrator...
+2026-02-25 15:47:04,925 - agents.recording_agent - INFO - AudioFileAgent cleaned up
+2026-02-25 15:47:04,954 - agents.vad_transcription_agents - INFO - VADAgent cleaned up
+2026-02-25 15:47:04,954 - agents.diarization_agent - INFO - Diarization agent cleaned up
+2026-02-25 15:47:04,957 - agents.vad_transcription_agents - INFO - TranscriptionAgent cleaned up
+2026-02-25 15:47:04,958 - agents.summary_agent - INFO - SummaryAgent cleaned up
+2026-02-25 15:47:04,958 - pipeline.orchestrator - INFO - Cleanup completed

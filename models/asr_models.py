@@ -141,12 +141,16 @@ class WhisperASR(BaseASRModel):
                 avg_confidence = np.exp(np.mean(confidence_scores)) if confidence_scores else 0.0
                 
             else:
-                # Use openai-whisper transcribe
+                # Use openai-whisper transcribe.
+                # temperature=0 forces greedy decoding and disables the
+                # temperature-fallback that causes foreign-language hallucinations
+                # on short/noisy segments.
                 result = self.model.transcribe(
                     audio,
                     language=language if language != 'auto' else None,
                     fp16=False,  # Use fp32 for CPU
-                    verbose=False
+                    verbose=False,
+                    temperature=0,
                 )
                 
                 full_text = result['text']
@@ -157,14 +161,9 @@ class WhisperASR(BaseASRModel):
                     for seg in result['segments']:
                         if 'avg_logprob' in seg:
                             confidence_scores.append(seg['avg_logprob'])
-                        elif 'no_speech_prob' in seg:
-                            # Convert no_speech_prob to confidence
-                            confidence_scores.append(np.log(1 - seg['no_speech_prob']))
-                    
-                    avg_confidence = np.exp(np.mean(confidence_scores)) if confidence_scores else 0.8
+                    avg_confidence = np.exp(np.mean(confidence_scores)) if confidence_scores else 0.5
                 else:
-                    # Default confidence
-                    avg_confidence = 0.8
+                    avg_confidence = 0.5
             
             transcript = TranscriptSegment(
                 start_time=audio_segment.start_time,
@@ -424,13 +423,19 @@ class WhisperDiarizationASR(BaseASRModel):
                 diar_logits = self.model.diar_head(encoder_outputs.last_hidden_state)
                 diar_preds = torch.argmax(diar_logits, dim=-1)
 
-                # Determine dominant speaker (exclude silence=0)
-                speaker_counts = torch.bincount(diar_preds.flatten(), minlength=3)
-                # Only consider child (1) and adult (2)
-                if speaker_counts[1] > speaker_counts[2]:
-                    speaker_id = "child"
-                elif speaker_counts[2] > speaker_counts[1]:
-                    speaker_id = "adult"
+                # Determine dominant speaker using only non-silence frames.
+                # Short VAD segments padded to 30 s produce ~1400 silence frames
+                # that would otherwise drown out the ~80 real speech frames.
+                speech_mask = diar_preds != 0  # True where model predicts speech
+                speech_preds = diar_preds[speech_mask]
+                if speech_preds.numel() > 0:
+                    speaker_counts = torch.bincount(speech_preds.flatten(), minlength=3)
+                    if speaker_counts[1] > speaker_counts[2]:
+                        speaker_id = "child"
+                    elif speaker_counts[2] > speaker_counts[1]:
+                        speaker_id = "adult"
+                    else:
+                        speaker_id = "unknown"
                 else:
                     speaker_id = "unknown"
 
